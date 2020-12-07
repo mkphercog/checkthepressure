@@ -1,18 +1,21 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { ProfilesPage } from "./pages/Profiles/ProfilesPage";
-import { GlobalStyles, AppStyled } from "./index.css";
+import { Navigation } from "./components/Navigation/Navigation";
+import { ProfilesSelector } from "./components/ProfilesSelector/ProfilesSelector";
+import { GlobalStyles, AppBG, AppWrapper, AppBottomBar } from "./index.css";
 
 export const App: React.FC = () => (
-  <AppStyled>
-    <Switch>
-      <Route path="/" exact>
-        <ProfilesPage />
-      </Route>
-      <Route path="/app" exact>
-        <div>APP</div>
-      </Route>
-    </Switch>
+  <AppBG>
+    <AppBottomBar />
     <GlobalStyles />
-  </AppStyled>
+    <AppWrapper>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact>
+          <ProfilesSelector />
+        </Route>
+        <Route path="/app" exact></Route>
+      </Switch>
+    </AppWrapper>
+  </AppBG>
 );
