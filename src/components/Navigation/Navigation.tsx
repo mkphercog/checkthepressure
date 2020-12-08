@@ -12,7 +12,7 @@ export const Navigation: React.FC = () => {
     if (windowWidth >= 640) {
       setMenuVisibility(false);
     }
-  }, [windowWidth, menuVisibility]);
+  }, [windowWidth]);
 
   return (
     <Header windowWidth={windowWidth}>

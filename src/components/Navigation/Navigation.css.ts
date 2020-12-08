@@ -95,7 +95,7 @@ export const Nav = styled.nav`
       }
     }
     .active {
-      color: ${COLORS.orange};
+      border-bottom: 3px solid ${COLORS.orange};
     }
 
     a:hover {

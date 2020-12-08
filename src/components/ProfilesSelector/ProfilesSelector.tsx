@@ -5,6 +5,8 @@ import { numRangeOptions } from "./../../common/optionsForSelectTag";
 import { addProfile, deleteProfile } from "../../store/actions/profilesAction";
 import { GlobalState, UserInterface } from "./../../common/interfaces";
 import { Wrapper, ProfilesSelectorStyled } from "./ProfilesSelector.css";
+import { Portal, PortalTarget } from "../../common/Portal/Portal";
+import { Warnings } from "../Popups/Warnings/Warnings";
 
 export const ProfilesSelector: React.FC = () => {
   const [name, setName] = useState("");
@@ -13,6 +15,8 @@ export const ProfilesSelector: React.FC = () => {
   const profiles = useSelector((state: GlobalState) => state.profiles);
   const { nextAvailableID, users } = profiles;
   const renderOptionsAge = numRangeOptions(1, 120);
+  const [portalOpen, setPortalOpen] = useState(false);
+  const [message, setMessage] = useState(Object);
 
   const renderUsers = users.map(({ name, age, id }) => (
     <UserProfile
@@ -28,9 +32,18 @@ export const ProfilesSelector: React.FC = () => {
     e.preventDefault();
 
     if (name === "") {
-      alert("Podaj imię.");
+      setMessage(
+        <Warnings message="Puste pole, podaj imię :)" close={setPortalOpen} />
+      );
+      setPortalOpen(true);
     } else if (name.length >= 20) {
-      alert("Podane imię jest za długie. ( max 20 znaków )");
+      setMessage(
+        <Warnings
+          message="Podane imię jest za długie. (max 20 znaków)"
+          close={setPortalOpen}
+        />
+      );
+      setPortalOpen(true);
     } else {
       const newProfile: UserInterface = {
         id: nextAvailableID,
@@ -71,6 +84,9 @@ export const ProfilesSelector: React.FC = () => {
           </button>
         </form>
       </ProfilesSelectorStyled>
+      {portalOpen ? (
+        <Portal target={PortalTarget.MODAL}>{message}</Portal>
+      ) : null}
     </Wrapper>
   );
 };
