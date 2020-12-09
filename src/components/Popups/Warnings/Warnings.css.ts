@@ -74,7 +74,7 @@ export const WarningMessage = styled.div`
     }
   }
 
-  button {
+  i {
     align-self: flex-end;
     padding: 5px 10px;
     font-weight: bold;
@@ -94,7 +94,7 @@ export const WarningMessage = styled.div`
     }
   }
 
-  button:hover {
+  i:hover {
     background-color: ${COLORS.red};
     color: ${COLORS.white};
   }

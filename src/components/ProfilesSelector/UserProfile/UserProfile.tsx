@@ -15,7 +15,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
     <NavLink to="/app" exact>
       Otwórz profil
     </NavLink>
-    <button onClick={() => deleteProfile(id)}>Usuń profil</button>
+    <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
   </div>
 );
 

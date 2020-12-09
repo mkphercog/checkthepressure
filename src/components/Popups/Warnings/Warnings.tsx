@@ -8,7 +8,7 @@ export const Warnings: React.FC<WarningsProps> = ({ message, close }) => (
     </WarningTitle>
     <WarningMessage>
       <p>{message}</p>
-      <button onClick={() => close(false)}>OK</button>
+      <i className="fas fa-check" onClick={() => close(false)}></i>
     </WarningMessage>
   </WarningWrapper>
 );
