@@ -4,9 +4,10 @@ export const COLORS = {
   orange: "rgb(255, 187, 13)",
   red: "rgb(235,96,26)",
   white: "rgb(255,255,255)",
-  lightGray: "rgb(210,210,210)",
+  lightGray: "rgb(230,230,230)",
   gray: "rgb(150,150,150)",
   black: "rgb(0,0,0)",
 };
 
 export const CORNER_RADIUS = "15px";
+export const TRANSITION_TIME = "0.3s";

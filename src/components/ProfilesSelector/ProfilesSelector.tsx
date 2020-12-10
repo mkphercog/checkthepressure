@@ -3,9 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { UserProfile } from "./UserProfile/UserProfile";
 import { deleteProfile } from "./../../store/actions/profilesAction";
 import { GlobalState } from "./../../common/interfaces";
-import { Wrapper, ProfilesSelectorStyled } from "./ProfilesSelector.css";
 import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 import { AddUser } from "./../Popups/AddUser/AddUser";
+import {
+  Wrapper,
+  ProfilesSelectorStyled,
+  AddUserIcon,
+  UsersWrapper,
+} from "./ProfilesSelector.css";
+import { WarningsYesNo } from "../Popups/Warnings/Warnings";
 
 export const ProfilesSelector: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,21 +26,32 @@ export const ProfilesSelector: React.FC = () => {
       id={id}
       name={name}
       age={age}
-      deleteProfile={() => dispatch(deleteProfile(id))}
+      deleteProfile={() => {
+        setPopup(
+          <WarningsYesNo
+            message={`Usunąć użytkownika ${name}?`}
+            close={setPortalOpen}
+            response={(res: boolean) => !res || dispatch(deleteProfile(id))}
+          />
+        );
+        setPortalOpen(true);
+      }}
     />
   ));
 
   return (
     <Wrapper>
       <ProfilesSelectorStyled>
-        {renderUsers}
-        <i
+        <UsersWrapper>
+          {renderUsers.length ? renderUsers : "Brak użytkowników"}
+        </UsersWrapper>
+        <AddUserIcon
           className="fas fa-user-plus"
           onClick={() => {
             setPopup(<AddUser closeAddUserPopup={setPortalOpen} />);
             setPortalOpen(true);
           }}
-        ></i>
+        ></AddUserIcon>
       </ProfilesSelectorStyled>
       {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
     </Wrapper>

@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS } from "./../../../styles/variables";
+import {
+  COLORS,
+  CORNER_RADIUS,
+  TRANSITION_TIME,
+} from "./../../../styles/variables";
 
 export const AddUserWrapper = styled.div`
   position: relative;
@@ -111,6 +115,11 @@ export const AddUserContent = styled.div`
       }
     }
 
+    input:focus {
+      font-weight: bold;
+      border-bottom: 3px solid ${COLORS.orange};
+    }
+
     select {
       color: ${COLORS.black};
       font-size: 16px;
@@ -132,19 +141,33 @@ export const AddUserContent = styled.div`
       }
     }
 
+    select:focus {
+      font-weight: bold;
+      border-bottom: 3px solid ${COLORS.orange};
+    }
+
     button {
       align-self: flex-end;
       background-color: ${COLORS.green};
       border: 2px solid ${COLORS.green};
       border-radius: 50%;
       cursor: pointer;
-      transition: 0.5s;
+      transition: ${TRANSITION_TIME};
+      outline-style: none;
 
       i {
         padding: 5px 6px;
         font-size: 26px;
         color: ${COLORS.white};
+
+        @media (min-width: 1024px) {
+          font-size: 30px;
+        }
       }
+    }
+
+    button:focus {
+      border: 2px solid ${COLORS.orange};
     }
 
     button:hover {
@@ -166,8 +189,13 @@ export const ExitButton = styled.i`
   color: ${COLORS.white};
   font-size: 18px;
   cursor: pointer;
+  transition: ${TRANSITION_TIME};
 
   @media (min-width: 411px) {
     font-size: 20px;
+  }
+
+  :hover {
+    color: ${COLORS.black};
   }
 `;

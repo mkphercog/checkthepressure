@@ -1,5 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { COLORS, CORNER_RADIUS } from "./../../styles/variables";
+import {
+  COLORS,
+  CORNER_RADIUS,
+  TRANSITION_TIME,
+} from "./../../styles/variables";
 
 const widthWithoutMenuIcon = "640px";
 const opacityAnimation = keyframes`
@@ -12,6 +16,7 @@ const opacityAnimation = keyframes`
 `;
 
 export const Header = styled.header`
+  flex-shrink: 0;
   display: flex;
   justify-content: ${(props: { windowWidth: number }) =>
     props.windowWidth >= 640 ? "center" : "flex-end"};
@@ -84,7 +89,7 @@ export const Nav = styled.nav`
       font-weight: bold;
       font-size: 12px;
       color: ${COLORS.white};
-      transition: 0.5s;
+      transition: ${TRANSITION_TIME};
 
       @media (min-width: 768px) {
         font-size: 16px;

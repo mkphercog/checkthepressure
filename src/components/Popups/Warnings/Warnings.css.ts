@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS } from "../../../styles/variables";
+import {
+  COLORS,
+  CORNER_RADIUS,
+  TRANSITION_TIME,
+} from "../../../styles/variables";
 
 export const WarningWrapper = styled.div`
   display: flex;
@@ -83,7 +87,7 @@ export const WarningMessage = styled.div`
     border: 2px solid ${COLORS.red};
     border-radius: ${CORNER_RADIUS};
     cursor: pointer;
-    transition: 0.5s;
+    transition: ${TRANSITION_TIME};
 
     @media (min-width: 768px) {
       font-size: 18px;
@@ -95,6 +99,47 @@ export const WarningMessage = styled.div`
   }
 
   i:hover {
+    background-color: ${COLORS.red};
+    color: ${COLORS.white};
+  }
+`;
+
+export const BtnWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ApplyBtn = styled.button`
+  padding: 5px 10px;
+  font-weight: bold;
+  color: ${COLORS.green};
+  background-color: ${COLORS.white};
+  border: 2px solid ${COLORS.green};
+  border-radius: ${CORNER_RADIUS};
+  cursor: pointer;
+  transition: ${TRANSITION_TIME};
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
+
+  :hover {
+    background-color: ${COLORS.green};
+    color: ${COLORS.white};
+  }
+`;
+
+export const DenyBtn = styled(ApplyBtn)`
+  color: ${COLORS.red};
+  border: 2px solid ${COLORS.red};
+
+  :hover {
     background-color: ${COLORS.red};
     color: ${COLORS.white};
   }

@@ -18,7 +18,6 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
   const dispatch = useDispatch();
   const profiles = useSelector((state: GlobalState) => state.profiles);
   const { nextAvailableID } = profiles;
-
   const [portalOpen, setPortalOpen] = useState(false);
   const [popup, setPopup] = useState(Object);
   const renderOptionsAge = numRangeOptions(1, 120);
@@ -31,10 +30,10 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
         <Warnings message="Puste pole, podaj imię :)" close={setPortalOpen} />
       );
       setPortalOpen(true);
-    } else if (name.length >= 20) {
+    } else if (name.length >= 15) {
       setPopup(
         <Warnings
-          message="Podane imię jest za długie. (max 20 znaków)"
+          message="Podane imię jest za długie. (max 15 znaków)"
           close={setPortalOpen}
         />
       );
@@ -66,6 +65,7 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              autoFocus
             />
           </div>
           <div>
