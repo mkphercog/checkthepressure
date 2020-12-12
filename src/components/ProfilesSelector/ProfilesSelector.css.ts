@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLORS, CORNER_RADIUS, TRANSITION_TIME } from "../../styles/variables";
 
 export const Wrapper = styled.div`
+  position: relative;
   flex-grow: 1;
   width: 100%;
   display: flex;
@@ -12,6 +13,16 @@ export const Wrapper = styled.div`
   border-bottom-right-radius: ${CORNER_RADIUS};
   z-index: 1;
   overflow: auto;
+
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.45;
+  }
 `;
 
 export const ProfilesSelectorStyled = styled.div`
@@ -21,6 +32,7 @@ export const ProfilesSelectorStyled = styled.div`
   border-radius: ${CORNER_RADIUS};
   background-color: ${COLORS.white};
   border: 2px solid ${COLORS.black};
+  opacity: 0.95;
 
   @media (orientation: landscape) {
     width: 70%;

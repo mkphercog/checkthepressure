@@ -8,6 +8,7 @@ import { WarningsYesNo } from "./../Popups/Warnings/Warnings";
 import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 
 import { GlobalState } from "./../../common/interfaces";
+import BackGround from "./../../images/BG.jpg";
 import {
   Wrapper,
   ProfilesSelectorStyled,
@@ -42,6 +43,7 @@ export const ProfilesSelector: React.FC = () => {
 
   return (
     <Wrapper>
+      <img src={BackGround} alt="Blood Pressure" />
       <ProfilesSelectorStyled>
         <UsersWrapper>
           {renderUsers.length ? renderUsers : "Brak użytkowników."}
