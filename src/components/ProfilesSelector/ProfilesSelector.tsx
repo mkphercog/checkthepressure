@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProfile } from "./../../store/actions/profilesAction";
+import {
+  deleteProfile,
+  setSelectedUserID,
+} from "./../../store/actions/profilesAction";
 
 import { UserProfile } from "./UserProfile/UserProfile";
 import { AddUser } from "./../Popups/AddUser/AddUser";
@@ -38,6 +41,7 @@ export const ProfilesSelector: React.FC = () => {
         );
         setIsPortalOpen(true);
       }}
+      selectUserID={(id: number) => dispatch(setSelectedUserID(id))}
     />
   ));
 

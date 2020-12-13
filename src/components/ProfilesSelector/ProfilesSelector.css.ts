@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
     width: 100%;
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.45;
+    opacity: 0.15;
   }
 `;
 
@@ -31,7 +31,7 @@ export const ProfilesSelectorStyled = styled.div`
   height: 70%;
   border-radius: ${CORNER_RADIUS};
   background-color: ${COLORS.white};
-  border: 2px solid ${COLORS.black};
+  border: 2px solid ${COLORS.gray};
   opacity: 0.95;
 
   @media (orientation: landscape) {

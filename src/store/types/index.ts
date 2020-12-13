@@ -1,2 +1,4 @@
 export const ADD_PROFILE = "ADD_PROFILE";
 export const DELETE_PROFILE = "DELETE_PROFILE";
+
+export const SET_SELECTED_USER_ID = "SET_SELECTED_USER_ID";

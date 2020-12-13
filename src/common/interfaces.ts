@@ -2,6 +2,7 @@ export interface GlobalState {
   profiles: {
     nextAvailableID: number;
     users: UserInterface[];
+    selectedUserID: number;
   };
 }
 

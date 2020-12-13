@@ -8,6 +8,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   name,
   age,
   deleteProfile,
+  selectUserID,
 }) => (
   <UserProfileWrapper>
     <UserData>
@@ -15,7 +16,9 @@ export const UserProfile: React.FC<UserProfileProps> = ({
       <p>{age} lat</p>
     </UserData>
     <Options>
-      <NavLink to="/measurements">Otwórz profil</NavLink>
+      <NavLink to="/measurements" onClick={() => selectUserID(id)}>
+        Otwórz profil
+      </NavLink>
       <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
     </Options>
   </UserProfileWrapper>
@@ -23,4 +26,5 @@ export const UserProfile: React.FC<UserProfileProps> = ({
 
 interface UserProfileProps extends UserInterface {
   deleteProfile: Function;
+  selectUserID: Function;
 }
