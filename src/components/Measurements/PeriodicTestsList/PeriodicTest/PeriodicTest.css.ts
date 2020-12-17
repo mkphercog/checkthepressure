@@ -12,7 +12,7 @@ export const Wrapper = styled.li`
   justify-content: center;
   align-items: center;
   width: 90%;
-  height: 30%;
+  padding: 10px;
   margin-bottom: 10px;
   background-color: ${COLORS.lightGray};
   border-radius: ${CORNER_RADIUS};
@@ -20,22 +20,18 @@ export const Wrapper = styled.li`
 
   @media (orientation: landscape) {
     width: 55%;
-    height: 65%;
   }
 
   @media (orientation: landscape) and (min-width: 768px) {
     width: 45%;
-    height: 65%;
   }
 
   @media (min-width: 768px) {
     width: 60%;
-    height: 20%;
   }
 
   @media (min-width: 1024px) {
     width: 50%;
-    height: 30%;
   }
 `;
 
@@ -57,11 +53,8 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.div`
-  /* background-color: ${COLORS.orange}; */
   border-bottom: 2px solid ${COLORS.blue};
   border-top: 2px solid ${COLORS.blue};
-
-  /* border-radius: ${CORNER_RADIUS}; */
   padding: 4px 10px;
   margin-bottom: 5px;
   p {
