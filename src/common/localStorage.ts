@@ -1,9 +1,9 @@
-import { UserInterface } from "./interfaces";
+import { IUserInterface } from "./interfaces";
 
 const LOCAL_PROFILES = "localProfiles";
 const LOCAL_SELECTED_USER_ID = "localSelectedUserID";
 
-export const updateLocalStorageProfiles = (profiles: UserInterface[]) =>
+export const updateLocalStorageProfiles = (profiles: IUserInterface[]) =>
   localStorage.setItem(LOCAL_PROFILES, JSON.stringify(profiles));
 
 export const checkLocalProfiles = () => {

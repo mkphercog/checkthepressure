@@ -7,7 +7,7 @@ import {
 } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
-import { GlobalState, UserInterface } from "./../../../common/interfaces";
+import { IGlobalState, IUserInterface } from "./../../../common/interfaces";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { addProfile } from "./../../../store/actions/profilesAction";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
@@ -16,8 +16,8 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState(1);
   const dispatch = useDispatch();
-  const profiles = useSelector((state: GlobalState) => state.profiles);
-  const { nextAvailableID } = profiles;
+  const profiles = useSelector((state: IGlobalState) => state.profiles);
+  const { nextAvailableUserID } = profiles;
   const [portalOpen, setPortalOpen] = useState(false);
   const [popup, setPopup] = useState(Object);
   const renderOptionsAge = numRangeOptions(1, 120);
@@ -39,10 +39,12 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
       );
       setPortalOpen(true);
     } else {
-      const newProfile: UserInterface = {
-        id: nextAvailableID,
+      const newProfile: IUserInterface = {
+        id: nextAvailableUserID,
         name: name,
         age: age,
+        nextAvailablePeriodicTestID: 1,
+        periodicPressureTests: [],
       };
       setName("");
       setAge(1);

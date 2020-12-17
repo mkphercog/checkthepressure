@@ -10,7 +10,7 @@ import { AddUser } from "./../Popups/AddUser/AddUser";
 import { WarningsYesNo } from "./../Popups/Warnings/Warnings";
 import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 
-import { GlobalState } from "./../../common/interfaces";
+import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import {
   Wrapper,
@@ -22,28 +22,32 @@ import {
 export const ProfilesSelector: React.FC = () => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [popup, setPopup] = useState<Object>({});
-  const users = useSelector((state: GlobalState) => state.profiles.users);
+  const users = useSelector((state: IGlobalState) => state.profiles.users);
   const dispatch = useDispatch();
 
-  const renderUsers = users.map(({ name, age, id }) => (
-    <UserProfile
-      key={id}
-      id={id}
-      name={name}
-      age={age}
-      deleteProfile={() => {
-        setPopup(
-          <WarningsYesNo
-            message={`Usunąć użytkownika ${name}?`}
-            close={setIsPortalOpen}
-            response={(res: boolean) => res && dispatch(deleteProfile(id))}
-          />
-        );
-        setIsPortalOpen(true);
-      }}
-      selectUserID={(id: number) => dispatch(setSelectedUserID(id))}
-    />
-  ));
+  const renderUsers = users.map(
+    ({ name, age, id, nextAvailablePeriodicTestID, periodicPressureTests }) => (
+      <UserProfile
+        key={id}
+        id={id}
+        name={name}
+        age={age}
+        deleteProfile={() => {
+          setPopup(
+            <WarningsYesNo
+              message={`Usunąć użytkownika ${name}?`}
+              close={setIsPortalOpen}
+              response={(res: boolean) => res && dispatch(deleteProfile(id))}
+            />
+          );
+          setIsPortalOpen(true);
+        }}
+        selectUserID={(id: number) => dispatch(setSelectedUserID(id))}
+        nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
+        periodicPressureTests={periodicPressureTests}
+      />
+    )
+  );
 
   return (
     <Wrapper>

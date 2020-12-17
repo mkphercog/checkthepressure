@@ -1,70 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { PeriodicTestsList } from "./PeriodicTestsList/PeriodicTestsList";
+import { PeriodicTestDetails } from "./PeriodicTestDetails/PeriodicTestDetails";
 import {
-  Wrapper,
-  MeasurementsList,
-  MeasurementsDetails,
-} from "./Measurements.css";
+  IUserInterface,
+  IPeriodicPressureTests,
+} from "./../../common/interfaces";
+import BackGround from "./../../images/BG.jpg";
+import { emptyPeriodicTest } from "./../../common/constants";
+import { Wrapper } from "./Measurements.css";
 
-export const Measurements: React.FC = () => (
-  <Wrapper>
-    <MeasurementsList>
-      <ul>
-        <li>
-          <h1>
-            Pomiar okresowy <span>001</span>
-          </h1>
-          <h2>
-            Start: <span>20-11-2020</span>
-          </h2>
-          <h2>
-            Koniec: <span>27-11-2020</span>
-          </h2>
-          <h4>
-            Czas trwania: <span>7</span> dni
-          </h4>
+export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
+  const [selectedPeriodicTest, setSelectedPeriodicTest] = useState<
+    IPeriodicPressureTests | undefined
+  >(emptyPeriodicTest);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const {
+    periodicPressureTests,
+    id,
+    nextAvailablePeriodicTestID,
+  } = selectedUser;
 
-          <p>
-            Status: <span>Zakończono / W realizacji</span>
-          </p>
-          <button>Szczegóły...</button>
-          <button>Usuń</button>
-        </li>
-      </ul>
-      <button>Dodaj nowy pomiar okresowy</button>
-    </MeasurementsList>
-    <MeasurementsDetails>
-      <h1>Pomiar okresowy 001</h1>
-      <h2>(od 20-11-2020 do 27-11-2020)</h2>
-      <ul>
-        <li>
-          <h3>20-11-2020</h3>
-          <h4>RANO</h4>
-          <p>
-            SYS: <span>120</span>
-          </p>
-          <p>
-            DIA: <span>70</span>
-          </p>
-          <p>
-            PULS: <span>70</span>
-          </p>
-          <button>Edytuj</button>
-          <button>Pomiń</button>
-          <h4>WIECZÓR</h4>
-          <p>
-            SYS: <span>120</span>
-          </p>
-          <p>
-            DIA: <span>70</span>
-          </p>
-          <p>
-            PULS: <span>70</span>
-          </p>
-          <button>Edytuj</button>
-          <button>Pomiń</button>
-        </li>
-      </ul>
-      <button>Generuj PDF</button>
-    </MeasurementsDetails>
-  </Wrapper>
-);
+  const handleFindTest = (id: number) => {
+    const findedTest = periodicPressureTests.find((test) => id === test.id);
+    setSelectedPeriodicTest(findedTest);
+    setIsDetailsOpen(true);
+  };
+
+  return (
+    <Wrapper>
+      <img src={BackGround} alt="Blood Pressure" />
+      {isDetailsOpen ? (
+        <PeriodicTestDetails
+          test={selectedPeriodicTest || emptyPeriodicTest}
+          userID={id}
+          backToList={() => setIsDetailsOpen(false)}
+        />
+      ) : (
+        <PeriodicTestsList
+          userID={id}
+          tests={periodicPressureTests}
+          nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
+          findTestsList={handleFindTest}
+        />
+      )}
+    </Wrapper>
+  );
+};
+
+interface MeasurementsProps {
+  selectedUser: IUserInterface;
+}

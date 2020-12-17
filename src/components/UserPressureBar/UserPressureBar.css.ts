@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLORS } from "../../styles/variables";
 
 export const Bar = styled.div`
+  flex-shrink: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;

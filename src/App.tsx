@@ -4,15 +4,17 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { UserPressureBar } from "./components/UserPressureBar/UserPressureBar";
 import { ProfilesSelector } from "./components/ProfilesSelector/ProfilesSelector";
 import { Measurements } from "./components/Measurements/Measurements";
-import { GlobalState } from "./common/interfaces";
+import { IGlobalState } from "./common/interfaces";
 import { GlobalStyles, AppBG, AppWrapper, AppBottomBar } from "./index.css";
 import { useSelector } from "react-redux";
+import { anonymous } from "./common/constants";
 
 export const App: React.FC = () => {
-  const getProfiles = useSelector((state: GlobalState) => state.profiles);
+  const getProfiles = useSelector((state: IGlobalState) => state.profiles);
   const { users, selectedUserID } = getProfiles;
-  const selectedUser = users.find((user) => selectedUserID === user.id);
-  const { name, age } = selectedUser || { name: "Nieznajomy", age: 0 };
+  const selectedUser =
+    users.find((user) => selectedUserID === user.id) || anonymous;
+  const { name, age } = selectedUser;
 
   return (
     <AppBG>
@@ -26,7 +28,7 @@ export const App: React.FC = () => {
             <ProfilesSelector />
           </Route>
           <Route path="/measurements">
-            <Measurements />
+            <Measurements selectedUser={selectedUser} />
           </Route>
         </Switch>
       </AppWrapper>

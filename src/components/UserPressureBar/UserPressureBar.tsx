@@ -26,8 +26,8 @@ export const UserPressureBar: React.FC<Props> = ({ name, age }) => {
     <Bar>
       <UserData>
         <p>
-          <span>{name} </span>
-          {age} lat
+          <span>{name}, </span>
+          wiek: {age}
         </p>
       </UserData>
       <PressureMin>

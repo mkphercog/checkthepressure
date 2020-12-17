@@ -32,7 +32,7 @@ export const Header = styled.header`
   }
 
   @media (min-width: 1024px) {
-    height: 8vh;
+    height: 7vh;
   }
 `;
 
