@@ -70,7 +70,7 @@ export const PressureMin = styled.div`
 export const PressureNormal = styled.div`
   p {
     font-size: 10px;
-    color: ${COLORS.green};
+    color: ${COLORS.darkGreen};
     font-weight: bold;
 
     @media (min-width: 411px) {

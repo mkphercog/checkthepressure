@@ -1,6 +1,7 @@
 export const COLORS = {
   blue: "rgb(49,90,235)",
   green: "rgb(134,219,81)",
+  darkGreen: "rgb(94, 150, 59)",
   orange: "rgb(255, 187, 13)",
   red: "rgb(235,96,26)",
   white: "rgb(255,255,255)",

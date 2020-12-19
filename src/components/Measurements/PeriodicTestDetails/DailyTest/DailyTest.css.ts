@@ -41,13 +41,13 @@ export const Wrapper = styled.li`
 export const MorningEvening = styled.legend`
   p {
     color: ${({ sys, dia, pulse }: Props) =>
-      sys > 0 && dia > 0 && pulse > 0 ? COLORS.green : COLORS.red};
+      sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};
   }
 `;
 
 export const FieldsetStyled = styled.fieldset`
   border-color: ${({ sys, dia, pulse }: Props) =>
-    sys > 0 && dia > 0 && pulse > 0 ? COLORS.green : COLORS.red} !important;
+    sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
   margin-bottom: 10px;
 `;
 
@@ -61,6 +61,11 @@ export const SysDiaPuls = styled.div`
       font-weight: bold;
     }
   }
+`;
+
+export const SysAndDiaColored = styled.span`
+  color: ${(props: { color: string }) => props.color};
+  font-weight: bold;
 `;
 
 export const Btns = styled.div`

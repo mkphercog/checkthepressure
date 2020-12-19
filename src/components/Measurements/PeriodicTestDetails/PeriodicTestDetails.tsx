@@ -16,8 +16,9 @@ export const PeriodicTestDetails: React.FC<Props> = ({
   const { list, id: preidoicID } = test;
   const renderList = list.map((item) => (
     <DailyTest
+      userID={userID}
       key={item.id}
-      item={item}
+      dailyTest={item}
       editDailyTest={(
         dailyID: number,
         timeOfDay: TimeOfDayStates,
