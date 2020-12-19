@@ -68,6 +68,21 @@ export const AddTestBtn = styled.button`
   transition: ${TRANSITION_TIME};
   outline-style: none;
 
+  @media (min-width: 411px) and (orientation: landscape) {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  @media (min-width: 1024px) {
+    bottom: 10px;
+    right: 20px;
+  }
+
   i {
     padding: 5px 6px;
     font-size: 26px;
