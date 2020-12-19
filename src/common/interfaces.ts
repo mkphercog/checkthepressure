@@ -1,3 +1,5 @@
+import { TimeOfDayStates } from "./constants";
+
 export interface IGlobalState {
   profiles: {
     nextAvailableUserID: number;
@@ -27,11 +29,13 @@ export interface IDailyTest {
   id: number;
   date: string;
   morning: {
+    timeOfDay: TimeOfDayStates.MORNING;
     SYS: number;
     DIA: number;
     PULSE: number;
   };
   evening: {
+    timeOfDay: TimeOfDayStates.EVENING;
     SYS: number;
     DIA: number;
     PULSE: number;

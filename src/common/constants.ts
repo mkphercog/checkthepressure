@@ -3,6 +3,11 @@ export enum PeriodicTestStates {
   IN_PROGRESS = "W realizacji",
 }
 
+export enum TimeOfDayStates {
+  MORNING = "Rano",
+  EVENING = "Wieczór",
+}
+
 export const emptyPeriodicTest = {
   id: 0,
   start: "",

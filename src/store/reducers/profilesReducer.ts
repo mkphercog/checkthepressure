@@ -121,14 +121,14 @@ export const profilesReducer = (state = initialState, action: Action) => {
               periodicTest.list.map((daily) => {
                 if (
                   action.dailyID === daily.id &&
-                  action.timeOfDay === "morning"
+                  action.timeOfDay === daily.morning.timeOfDay
                 ) {
                   daily.morning.SYS = action.sys;
                   daily.morning.DIA = action.dia;
                   daily.morning.PULSE = action.pulse;
                 } else if (
                   action.dailyID === daily.id &&
-                  action.timeOfDay === "evening"
+                  action.timeOfDay === daily.evening.timeOfDay
                 ) {
                   daily.evening.SYS = action.sys;
                   daily.evening.DIA = action.dia;

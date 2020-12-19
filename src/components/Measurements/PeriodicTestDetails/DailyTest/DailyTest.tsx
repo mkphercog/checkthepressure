@@ -12,7 +12,7 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
 
       <fieldset>
         <MorningEvening>
-          <p>Rano</p>
+          <p>{morning.timeOfDay}</p>
         </MorningEvening>
         <SysDiaPuls>
           <p>
@@ -26,7 +26,7 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, "morning", date)}>
+          <button onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
             Edytuj
           </button>
           <button onClick={() => {}}>Pomiń</button>
@@ -35,7 +35,7 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
 
       <fieldset>
         <MorningEvening>
-          <p>Wieczór</p>
+          <p>{evening.timeOfDay}</p>
         </MorningEvening>
         <SysDiaPuls>
           <p>
@@ -49,7 +49,7 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, "evening", date)}>
+          <button onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
             Edytuj
           </button>
           <button onClick={() => {}}>Pomiń</button>

@@ -3,6 +3,7 @@ import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
+import { TimeOfDayStates } from "./../../../common/constants";
 import { Wrapper, BackArrow } from "./PeriodicTestDetails.css";
 
 export const PeriodicTestDetails: React.FC<Props> = ({
@@ -17,7 +18,11 @@ export const PeriodicTestDetails: React.FC<Props> = ({
     <DailyTest
       key={item.id}
       item={item}
-      editDailyTest={(dailyID: number, timeOfDay: string, date: string) => {
+      editDailyTest={(
+        dailyID: number,
+        timeOfDay: TimeOfDayStates,
+        date: string
+      ) => {
         setPopup(
           <EditDailyTest
             userID={userID}

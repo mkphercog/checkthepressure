@@ -3,6 +3,7 @@ import { Wrapper, Title, Content, ExitButton } from "./EditDailyTest.css";
 import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { editDailyValues } from "./../../../store/actions/profilesAction";
+import { TimeOfDayStates } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 
 export const EditDailyTest: React.FC<AddUserProps> = ({
@@ -73,7 +74,11 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
   return (
     <Wrapper>
       <Title>
-        <p>{`${timeOfDay === "morning" ? "Rano" : "Wieczór"} ${date}`}</p>
+        <p>{`${
+          timeOfDay === TimeOfDayStates.MORNING
+            ? TimeOfDayStates.MORNING
+            : TimeOfDayStates.EVENING
+        } ${date}`}</p>
       </Title>
       <Content>
         <form>
@@ -123,7 +128,7 @@ interface AddUserProps {
   userID: number;
   preidoicID: number;
   dailyID: number;
-  timeOfDay: string;
+  timeOfDay: TimeOfDayStates;
   close: Function;
   date: string;
 }

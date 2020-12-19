@@ -10,6 +10,7 @@ import {
   IUserInterface,
   IPeriodicPressureTests,
 } from "./../../common/interfaces";
+import { TimeOfDayStates } from "../../common/constants";
 
 export const addProfile = (newProfile: IUserInterface) => ({
   type: ADD_PROFILE,
@@ -44,7 +45,7 @@ export const editDailyValues = (
   userID: number,
   preidoicID: number,
   dailyID: number,
-  timeOfDay: string,
+  timeOfDay: TimeOfDayStates,
   sys: number,
   dia: number,
   pulse: number

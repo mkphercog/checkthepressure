@@ -1,3 +1,6 @@
+import { TimeOfDayStates } from "./../../../common/constants";
+import { IDailyTest } from "./../../../common/interfaces";
+
 export const generateDateArray = (startDashDate: string, numOfDays: number) => {
   const arrDate = startDashDate.split("-");
   const year = Number(arrDate[0]);
@@ -12,18 +15,22 @@ export const generateDateArray = (startDashDate: string, numOfDays: number) => {
   return dateList;
 };
 
-export const generateDailyTestList = (dateList: string[]) =>
-  dateList.map((date, index) => ({
+export const generateDailyTestList = (dateList: string[]) => {
+  const itemList: IDailyTest[] = dateList.map((date, index) => ({
     id: index + 1,
     date: date,
     morning: {
+      timeOfDay: TimeOfDayStates.MORNING,
       SYS: 0,
       DIA: 0,
       PULSE: 0,
     },
     evening: {
+      timeOfDay: TimeOfDayStates.EVENING,
       SYS: 0,
       DIA: 0,
       PULSE: 0,
     },
   }));
+  return itemList;
+};
