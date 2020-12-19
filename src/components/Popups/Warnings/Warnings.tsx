@@ -15,7 +15,9 @@ export const Warnings: React.FC<WarningsProps> = ({ message, close }) => (
     </WarningTitle>
     <WarningMessage>
       <p>{message}</p>
-      <i className="fas fa-check" onClick={() => close(false)}></i>
+      <button onClick={() => close(false)} autoFocus>
+        <i className="fas fa-check"></i>
+      </button>
     </WarningMessage>
   </WarningWrapper>
 );
@@ -37,6 +39,7 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
             response(false);
             close(false);
           }}
+          autoFocus
         >
           Nie
         </DenyBtn>

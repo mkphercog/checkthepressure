@@ -194,6 +194,6 @@ export const ExitButton = styled.i`
   }
 
   :hover {
-    color: ${COLORS.black};
+    color: ${COLORS.darkGray};
   }
 `;

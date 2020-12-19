@@ -78,29 +78,37 @@ export const WarningMessage = styled.div`
     }
   }
 
-  i {
+  button {
     align-self: flex-end;
     padding: 5px 10px;
-    font-weight: bold;
-    color: ${COLORS.red};
     background-color: ${COLORS.white};
     border: 2px solid ${COLORS.red};
     border-radius: ${CORNER_RADIUS};
     cursor: pointer;
     transition: ${TRANSITION_TIME};
+    color: ${COLORS.red};
 
-    @media (min-width: 768px) {
-      font-size: 18px;
+    i {
+      font-weight: bold;
+
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 16px;
+      }
     }
 
-    @media (min-width: 1024px) {
-      font-size: 16px;
+    :hover {
+      background-color: ${COLORS.red};
+      color: ${COLORS.white};
     }
-  }
 
-  i:hover {
-    background-color: ${COLORS.red};
-    color: ${COLORS.white};
+    :focus {
+      box-shadow: 0 0 10px ${COLORS.gray};
+      outline: none;
+    }
   }
 `;
 
@@ -133,6 +141,11 @@ export const ApplyBtn = styled.button`
     background-color: ${COLORS.green};
     color: ${COLORS.white};
   }
+
+  :focus {
+    box-shadow: 0 0 10px ${COLORS.gray};
+    outline: none;
+  }
 `;
 
 export const DenyBtn = styled(ApplyBtn)`
@@ -142,5 +155,10 @@ export const DenyBtn = styled(ApplyBtn)`
   :hover {
     background-color: ${COLORS.red};
     color: ${COLORS.white};
+  }
+
+  :focus {
+    box-shadow: 0 0 10px ${COLORS.gray};
+    outline: none;
   }
 `;
