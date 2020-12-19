@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   const { users, selectedUserID } = getProfiles;
   const selectedUser =
     users.find((user) => selectedUserID === user.id) || anonymous;
-  const { name, age } = selectedUser;
+  const { name, age, userBloodPressureBasedOnAge } = selectedUser;
 
   return (
     <AppBG>
@@ -22,7 +22,11 @@ export const App: React.FC = () => {
       <GlobalStyles />
       <AppWrapper>
         <Navigation />
-        <UserPressureBar name={name} age={age} />
+        <UserPressureBar
+          name={name}
+          age={age}
+          userBloodPressureBasedOnAge={userBloodPressureBasedOnAge}
+        />
         <Switch>
           <Route path="/" exact>
             <ProfilesSelector />

@@ -26,12 +26,20 @@ export const ProfilesSelector: React.FC = () => {
   const dispatch = useDispatch();
 
   const renderUsers = users.map(
-    ({ name, age, id, nextAvailablePeriodicTestID, periodicPressureTests }) => (
+    ({
+      name,
+      age,
+      id,
+      userBloodPressureBasedOnAge,
+      nextAvailablePeriodicTestID,
+      periodicPressureTests,
+    }) => (
       <UserProfile
         key={id}
         id={id}
         name={name}
         age={age}
+        userBloodPressureBasedOnAge={userBloodPressureBasedOnAge}
         deleteProfile={() => {
           setPopup(
             <WarningsYesNo

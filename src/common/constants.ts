@@ -21,6 +21,11 @@ export const anonymous = {
   id: -1,
   name: "Anonim",
   age: 0,
+  userBloodPressureBasedOnAge: {
+    MIN: { SYS: 0, DIA: 0 },
+    NORMAL: { SYS: 0, DIA: 0 },
+    MAX: { SYS: 0, DIA: 0 },
+  },
   nextAvailablePeriodicTestID: 0,
   periodicPressureTests: [],
 };

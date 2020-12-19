@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IGlobalState, IUserInterface } from "./../../../common/interfaces";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { addProfile } from "./../../../store/actions/profilesAction";
+import { findUserBloodPressureBasedOnAge } from "./../../../common/bloodPressureTable";
+import { anonymous } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 
 export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
@@ -39,10 +41,19 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
       );
       setPortalOpen(true);
     } else {
+      const getUserBloodPressure =
+        findUserBloodPressureBasedOnAge(age) ||
+        anonymous.userBloodPressureBasedOnAge;
+
       const newProfile: IUserInterface = {
         id: nextAvailableUserID,
         name: name,
         age: age,
+        userBloodPressureBasedOnAge: {
+          MIN: getUserBloodPressure?.MIN,
+          NORMAL: getUserBloodPressure?.NORMAL,
+          MAX: getUserBloodPressure?.MAX,
+        },
         nextAvailablePeriodicTestID: 1,
         periodicPressureTests: [],
       };

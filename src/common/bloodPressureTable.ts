@@ -1,3 +1,5 @@
+import { IBloodPressureBasedOnAge } from "./interfaces";
+
 export const bloodPressureTable: bloodPressure[] = [
   {
     age: 1,
@@ -224,18 +226,14 @@ export const bloodPressureTable: bloodPressure[] = [
   },
 ];
 
-interface bloodPressure {
+export const findUserBloodPressureBasedOnAge = (age: number) =>
+  bloodPressureTable.find((bloodTable) => {
+    if (age <= bloodTable.age) {
+      return bloodTable;
+    }
+    return bloodTable.age === 65;
+  });
+
+interface bloodPressure extends IBloodPressureBasedOnAge {
   age: number;
-  MIN: {
-    SYS: number;
-    DIA: number;
-  };
-  NORMAL: {
-    SYS: number;
-    DIA: number;
-  };
-  MAX: {
-    SYS: number;
-    DIA: number;
-  };
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { bloodPressureTable } from "./../../common/bloodPressureTable";
+import { IBloodPressureBasedOnAge } from "../../common/interfaces";
 import {
   Bar,
   UserData,
@@ -8,19 +8,12 @@ import {
   PressureMax,
 } from "./UserPressureBar.css";
 
-export const UserPressureBar: React.FC<Props> = ({ name, age }) => {
-  const findUserBloodPressure = bloodPressureTable.find((obj) => {
-    if (age <= obj.age) {
-      return obj;
-    }
-    return obj.age === 65;
-  });
-
-  const { MIN, NORMAL, MAX } = findUserBloodPressure || {
-    MIN: { SYS: 0, DIA: 0 },
-    NORMAL: { SYS: 0, DIA: 0 },
-    MAX: { SYS: 0, DIA: 0 },
-  };
+export const UserPressureBar: React.FC<Props> = ({
+  name,
+  age,
+  userBloodPressureBasedOnAge,
+}) => {
+  const { MIN, NORMAL, MAX } = userBloodPressureBasedOnAge;
 
   return (
     <Bar>
@@ -54,4 +47,5 @@ export const UserPressureBar: React.FC<Props> = ({ name, age }) => {
 interface Props {
   name: string;
   age: number;
+  userBloodPressureBasedOnAge: IBloodPressureBasedOnAge;
 }

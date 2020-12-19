@@ -12,8 +12,24 @@ export interface IUserInterface {
   id: number;
   name: string;
   age: number;
+  userBloodPressureBasedOnAge: IBloodPressureBasedOnAge;
   nextAvailablePeriodicTestID: number;
   periodicPressureTests: IPeriodicPressureTests[];
+}
+
+export interface IBloodPressureBasedOnAge {
+  MIN: {
+    SYS: number;
+    DIA: number;
+  };
+  NORMAL: {
+    SYS: number;
+    DIA: number;
+  };
+  MAX: {
+    SYS: number;
+    DIA: number;
+  };
 }
 
 export interface IPeriodicPressureTests {
