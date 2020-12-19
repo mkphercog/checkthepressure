@@ -36,17 +36,19 @@ export const Wrapper = styled.li`
       font-size: 19px;
     }
   }
-
-  fieldset {
-    border-color: ${COLORS.darkGray};
-    margin-bottom: 10px;
-  }
 `;
 
 export const MorningEvening = styled.legend`
   p {
-    color: ${COLORS.red};
+    color: ${({ sys, dia, pulse }: Props) =>
+      sys > 0 && dia > 0 && pulse > 0 ? COLORS.green : COLORS.red};
   }
+`;
+
+export const FieldsetStyled = styled.fieldset`
+  border-color: ${({ sys, dia, pulse }: Props) =>
+    sys > 0 && dia > 0 && pulse > 0 ? COLORS.green : COLORS.red} !important;
+  margin-bottom: 10px;
 `;
 
 export const SysDiaPuls = styled.div`
@@ -75,7 +77,7 @@ export const Btns = styled.div`
     color: ${COLORS.white};
     border: none;
     border-radius: ${CORNER_RADIUS};
-    background-color: ${COLORS.gray};
+    background-color: ${COLORS.darkGray};
     text-transform: uppercase;
 
     @media (min-width: 1024px) {
@@ -83,9 +85,14 @@ export const Btns = styled.div`
       transition: ${TRANSITION_TIME};
       cursor: pointer;
       :hover {
-        color: ${COLORS.gray};
-        background-color: ${COLORS.white};
+        background-color: ${COLORS.gray};
       }
     }
   }
 `;
+
+interface Props {
+  sys: number;
+  dia: number;
+  pulse: number;
+}

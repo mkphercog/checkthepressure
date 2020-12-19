@@ -1,6 +1,12 @@
 import React from "react";
 import { IDailyTest } from "./../../../../common/interfaces";
-import { Wrapper, MorningEvening, SysDiaPuls, Btns } from "./DailyTest.css";
+import {
+  Wrapper,
+  MorningEvening,
+  FieldsetStyled,
+  SysDiaPuls,
+  Btns,
+} from "./DailyTest.css";
 
 export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
   const { id, date, morning, evening } = item;
@@ -10,8 +16,12 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
         Dzień {id} - (<span>{date}</span>)
       </h4>
 
-      <fieldset>
-        <MorningEvening>
+      <FieldsetStyled sys={morning.SYS} dia={morning.DIA} pulse={morning.PULSE}>
+        <MorningEvening
+          sys={morning.SYS}
+          dia={morning.DIA}
+          pulse={morning.PULSE}
+        >
           <p>{morning.timeOfDay}</p>
         </MorningEvening>
         <SysDiaPuls>
@@ -31,10 +41,14 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
           </button>
           <button onClick={() => {}}>Pomiń</button>
         </Btns>
-      </fieldset>
+      </FieldsetStyled>
 
-      <fieldset>
-        <MorningEvening>
+      <FieldsetStyled sys={evening.SYS} dia={evening.DIA} pulse={evening.PULSE}>
+        <MorningEvening
+          sys={evening.SYS}
+          dia={evening.DIA}
+          pulse={evening.PULSE}
+        >
           <p>{evening.timeOfDay}</p>
         </MorningEvening>
         <SysDiaPuls>
@@ -54,7 +68,7 @@ export const DailyTest: React.FC<Props> = ({ item, editDailyTest }) => {
           </button>
           <button onClick={() => {}}>Pomiń</button>
         </Btns>
-      </fieldset>
+      </FieldsetStyled>
     </Wrapper>
   );
 };
