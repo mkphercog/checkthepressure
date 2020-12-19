@@ -122,9 +122,9 @@ export const BtnWrapper = styled.div`
 export const ApplyBtn = styled.button`
   padding: 5px 10px;
   font-weight: bold;
-  color: ${COLORS.green};
+  color: ${COLORS.green} !important;
   background-color: ${COLORS.white};
-  border: 2px solid ${COLORS.green};
+  border: 2px solid ${COLORS.green} !important;
   border-radius: ${CORNER_RADIUS};
   cursor: pointer;
   transition: ${TRANSITION_TIME};
@@ -138,8 +138,8 @@ export const ApplyBtn = styled.button`
   }
 
   :hover {
-    background-color: ${COLORS.green};
-    color: ${COLORS.white};
+    background-color: ${COLORS.green} !important;
+    color: ${COLORS.white} !important;
   }
 
   :focus {
@@ -149,12 +149,12 @@ export const ApplyBtn = styled.button`
 `;
 
 export const DenyBtn = styled(ApplyBtn)`
-  color: ${COLORS.red};
-  border: 2px solid ${COLORS.red};
+  color: ${COLORS.red} !important;
+  border: 2px solid ${COLORS.red} !important;
 
   :hover {
-    background-color: ${COLORS.red};
-    color: ${COLORS.white};
+    background-color: ${COLORS.red} !important;
+    color: ${COLORS.white} !important;
   }
 
   :focus {
