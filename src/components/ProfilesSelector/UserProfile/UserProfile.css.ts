@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { GrayButton } from "../../../styles/mixins";
 import {
   COLORS,
   CORNER_RADIUS,
@@ -19,22 +20,6 @@ export const UserProfileWrapper = styled.div`
   p {
     font-size: 16px;
     font-weight: bold;
-  }
-
-  a {
-    font-size: 15px;
-    padding: 2px 10px;
-    background-color: ${COLORS.gray};
-    border-radius: ${CORNER_RADIUS};
-    border: 2px solid ${COLORS.gray};
-    text-decoration: none;
-    color: ${COLORS.lightGray};
-    transition: ${TRANSITION_TIME};
-  }
-
-  a:hover {
-    background-color: ${COLORS.lightGray};
-    color: ${COLORS.gray};
   }
 
   i {

@@ -10,6 +10,7 @@ import {
   SysDiaPuls,
   SysAndDiaColored,
   Btns,
+  Btn,
 } from "./DailyTest.css";
 
 enum sysDiaType {
@@ -82,10 +83,10 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
+          <Btn onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
             Edytuj
-          </button>
-          <button onClick={() => {}}>Pomiń</button>
+          </Btn>
+          <Btn onClick={() => {}}>Pomiń</Btn>
         </Btns>
       </FieldsetStyled>
 
@@ -119,10 +120,10 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
+          <Btn onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
             Edytuj
-          </button>
-          <button onClick={() => {}}>Pomiń</button>
+          </Btn>
+          <Btn onClick={() => {}}>Pomiń</Btn>
         </Btns>
       </FieldsetStyled>
     </Wrapper>

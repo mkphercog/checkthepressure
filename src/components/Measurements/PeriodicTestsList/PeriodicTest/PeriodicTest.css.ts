@@ -99,25 +99,6 @@ export const Btns = styled.div`
   width: 90%;
 `;
 
-export const DetailsBtn = styled.button`
-  padding: 0 8px;
-  font-size: 12px;
-  color: ${COLORS.white};
-  border: none;
-  border-radius: ${CORNER_RADIUS};
-  background-color: ${COLORS.gray};
-
-  @media (min-width: 1024px) {
-    font-size: 14px;
-    transition: ${TRANSITION_TIME};
-    cursor: pointer;
-    :hover {
-      color: ${COLORS.gray};
-      background-color: ${COLORS.white};
-    }
-  }
-`;
-
 export const DeleteBtn = styled.button`
   background-color: transparent;
   border: none;

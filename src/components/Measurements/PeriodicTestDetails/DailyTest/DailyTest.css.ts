@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { GrayButton } from "../../../../styles/mixins";
 import {
   COLORS,
   CORNER_RADIUS,
@@ -74,26 +75,10 @@ export const Btns = styled.div`
   width: 100%;
   margin-top: 10px;
   margin-bottom: 5px;
+`;
 
-  button {
-    margin-top: 5px;
-    padding: 3px 10px;
-    font-size: 14px;
-    color: ${COLORS.white};
-    border: none;
-    border-radius: ${CORNER_RADIUS};
-    background-color: ${COLORS.darkGray};
-    text-transform: uppercase;
-
-    @media (min-width: 1024px) {
-      font-size: 14px;
-      transition: ${TRANSITION_TIME};
-      cursor: pointer;
-      :hover {
-        background-color: ${COLORS.gray};
-      }
-    }
-  }
+export const Btn = styled(GrayButton)`
+  margin-top: 5px;
 `;
 
 interface Props {
