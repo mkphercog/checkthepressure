@@ -1,14 +1,10 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS, TRANSITION_TIME } from "../../styles/variables";
+import { FieldsetStyled } from "../../styles/mixins";
+import { COLORS, TRANSITION_TIME } from "../../styles/variables";
 
-export const ProfilesSelectorStyled = styled.div`
-  position: relative;
+export const ProfilesSelectorStyled = styled(FieldsetStyled)`
   width: 90%;
   height: 70%;
-  border-radius: ${CORNER_RADIUS};
-  background-color: ${COLORS.white};
-  border: 2px solid ${COLORS.gray};
-  opacity: 0.95;
 
   @media (orientation: landscape) {
     width: 70%;
@@ -28,6 +24,18 @@ export const ProfilesSelectorStyled = styled.div`
   @media (min-width: 1024px) {
     width: 40%;
     height: 75%;
+  }
+
+  ul {
+    height: 80%;
+
+    @media (orientation: landscape) {
+      height: 75%;
+    }
+
+    @media (min-width: 768px) {
+      height: 85%;
+    }
   }
 `;
 

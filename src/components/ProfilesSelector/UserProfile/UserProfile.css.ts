@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { GrayButton } from "../../../styles/mixins";
 import {
   COLORS,
   CORNER_RADIUS,
   TRANSITION_TIME,
 } from "../../../styles/variables";
 
-export const UserProfileWrapper = styled.div`
+export const UserProfileWrapper = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
   padding: 0 5px;
   margin: 5px 10px;
   border-radius: ${CORNER_RADIUS};

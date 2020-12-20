@@ -4,6 +4,7 @@ import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { Wrapper, AddTestBtn } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
+import { FieldsetStyled, LegendStyled } from "./../../../styles/mixins";
 
 export const PeriodicTestsList: React.FC<Props> = ({
   userID,
@@ -25,14 +26,14 @@ export const PeriodicTestsList: React.FC<Props> = ({
 
   return (
     <Wrapper>
-      <fieldset>
-        <legend>
+      <FieldsetStyled>
+        <LegendStyled>
           {userID === -1
             ? "Brak użytkownika"
             : renderPeriodicTests.length
             ? "Twoje pomiary okresowe"
             : "Dodaj swój pierwszy pomiar"}
-        </legend>
+        </LegendStyled>
         {renderPeriodicTests.length ? <ul>{renderPeriodicTests}</ul> : null}
         <AddTestBtn
           disabled={userID === -1}
@@ -52,7 +53,7 @@ export const PeriodicTestsList: React.FC<Props> = ({
         {isPortalOpen ? (
           <Portal target={PortalTarget.MODAL}>{popup}</Portal>
         ) : null}
-      </fieldset>
+      </FieldsetStyled>
     </Wrapper>
   );
 };

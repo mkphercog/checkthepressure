@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { GrayButton } from "../../../../styles/mixins";
 import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "../../../../styles/variables";
+  GrayButton,
+  FieldsetStyled,
+  LegendStyled,
+} from "../../../../styles/mixins";
+import { COLORS, CORNER_RADIUS } from "../../../../styles/variables";
 
 export const Wrapper = styled.li`
   display: flex;
@@ -39,17 +39,17 @@ export const Wrapper = styled.li`
   }
 `;
 
-export const MorningEvening = styled.legend`
+export const Fieldset = styled(FieldsetStyled)`
+  margin-bottom: 10px;
+  border-color: ${({ sys, dia, pulse }: Props) =>
+    sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
+`;
+
+export const MorningEvening = styled(LegendStyled)`
   p {
     color: ${({ sys, dia, pulse }: Props) =>
       sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};
   }
-`;
-
-export const FieldsetStyled = styled.fieldset`
-  border-color: ${({ sys, dia, pulse }: Props) =>
-    sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
-  margin-bottom: 10px;
 `;
 
 export const SysDiaPuls = styled.div`
