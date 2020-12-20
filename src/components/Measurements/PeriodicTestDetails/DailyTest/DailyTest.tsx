@@ -22,6 +22,7 @@ export const DailyTest: React.FC<Props> = ({
   userID,
   dailyTest,
   editDailyTest,
+  setOmittedDaily,
 }) => {
   const { id, date, morning, evening } = dailyTest;
   const userBloodPressureBasedOnAge = useSelector(
@@ -53,11 +54,17 @@ export const DailyTest: React.FC<Props> = ({
         Dzień {id} - (<span>{date}</span>)
       </h4>
 
-      <Fieldset sys={morning.SYS} dia={morning.DIA} pulse={morning.PULSE}>
+      <Fieldset
+        sys={morning.SYS}
+        dia={morning.DIA}
+        pulse={morning.PULSE}
+        omitted={morning.omitted}
+      >
         <MorningEvening
           sys={morning.SYS}
           dia={morning.DIA}
           pulse={morning.PULSE}
+          omitted={morning.omitted}
         >
           <p>{morning.timeOfDay}</p>
         </MorningEvening>
@@ -65,7 +72,11 @@ export const DailyTest: React.FC<Props> = ({
           <p>
             SYS:{" "}
             <SysAndDiaColored
-              color={getSysDiaColor(morning.SYS, sysDiaType.SYS)}
+              color={
+                morning.omitted
+                  ? COLORS.gray
+                  : getSysDiaColor(morning.SYS, sysDiaType.SYS)
+              }
             >
               {morning.SYS}
             </SysAndDiaColored>
@@ -73,7 +84,11 @@ export const DailyTest: React.FC<Props> = ({
           <p>
             DIA:{" "}
             <SysAndDiaColored
-              color={getSysDiaColor(morning.DIA, sysDiaType.DIA)}
+              color={
+                morning.omitted
+                  ? COLORS.gray
+                  : getSysDiaColor(morning.DIA, sysDiaType.DIA)
+              }
             >
               {morning.DIA}
             </SysAndDiaColored>
@@ -83,18 +98,33 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <Btn onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
+          <Btn
+            onClick={() => editDailyTest(id, morning.timeOfDay, date)}
+            disabled={morning.omitted}
+          >
             Edytuj
           </Btn>
-          <Btn onClick={() => {}}>Pomiń</Btn>
+          <Btn
+            onClick={() =>
+              setOmittedDaily(id, morning.timeOfDay, !morning.omitted)
+            }
+          >
+            {morning.omitted ? "Przywróć" : "Pomiń"}
+          </Btn>
         </Btns>
       </Fieldset>
 
-      <Fieldset sys={evening.SYS} dia={evening.DIA} pulse={evening.PULSE}>
+      <Fieldset
+        sys={evening.SYS}
+        dia={evening.DIA}
+        pulse={evening.PULSE}
+        omitted={evening.omitted}
+      >
         <MorningEvening
           sys={evening.SYS}
           dia={evening.DIA}
           pulse={evening.PULSE}
+          omitted={evening.omitted}
         >
           <p>{evening.timeOfDay}</p>
         </MorningEvening>
@@ -102,7 +132,11 @@ export const DailyTest: React.FC<Props> = ({
           <p>
             SYS:{" "}
             <SysAndDiaColored
-              color={getSysDiaColor(evening.SYS, sysDiaType.SYS)}
+              color={
+                evening.omitted
+                  ? COLORS.gray
+                  : getSysDiaColor(evening.SYS, sysDiaType.SYS)
+              }
             >
               {evening.SYS}
             </SysAndDiaColored>
@@ -110,7 +144,11 @@ export const DailyTest: React.FC<Props> = ({
           <p>
             DIA:{" "}
             <SysAndDiaColored
-              color={getSysDiaColor(evening.DIA, sysDiaType.DIA)}
+              color={
+                evening.omitted
+                  ? COLORS.gray
+                  : getSysDiaColor(evening.DIA, sysDiaType.DIA)
+              }
             >
               {evening.DIA}
             </SysAndDiaColored>
@@ -120,10 +158,19 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <Btn onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
+          <Btn
+            onClick={() => editDailyTest(id, evening.timeOfDay, date)}
+            disabled={evening.omitted}
+          >
             Edytuj
           </Btn>
-          <Btn onClick={() => {}}>Pomiń</Btn>
+          <Btn
+            onClick={() =>
+              setOmittedDaily(id, evening.timeOfDay, !evening.omitted)
+            }
+          >
+            {evening.omitted ? "Przywróć" : "Pomiń"}
+          </Btn>
         </Btns>
       </Fieldset>
     </Wrapper>
@@ -134,4 +181,5 @@ interface Props {
   userID: number;
   dailyTest: IDailyTest;
   editDailyTest: Function;
+  setOmittedDaily: Function;
 }

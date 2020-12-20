@@ -34,12 +34,15 @@ export const Fieldset = styled(FieldsetStyled)`
   margin-bottom: 10px;
   border-color: ${({ sys, dia, pulse }: Props) =>
     sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
+  border-color: ${({ omitted }: Props) =>
+    omitted ? COLORS.gray : ""} !important;
 `;
 
 export const MorningEvening = styled(LegendStyled)`
   p {
     color: ${({ sys, dia, pulse }: Props) =>
       sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};
+    color: ${({ omitted }: Props) => (omitted ? COLORS.gray : "")} !important;
   }
 `;
 
@@ -76,4 +79,5 @@ interface Props {
   sys: number;
   dia: number;
   pulse: number;
+  omitted?: boolean;
 }

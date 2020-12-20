@@ -21,12 +21,14 @@ export const generateDailyTestList = (dateList: string[]) => {
     date: date,
     morning: {
       timeOfDay: TimeOfDayStates.MORNING,
+      omitted: false,
       SYS: 0,
       DIA: 0,
       PULSE: 0,
     },
     evening: {
       timeOfDay: TimeOfDayStates.EVENING,
+      omitted: false,
       SYS: 0,
       DIA: 0,
       PULSE: 0,

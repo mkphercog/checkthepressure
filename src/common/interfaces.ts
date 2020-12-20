@@ -46,12 +46,14 @@ export interface IDailyTest {
   date: string;
   morning: {
     timeOfDay: TimeOfDayStates.MORNING;
+    omitted: boolean;
     SYS: number;
     DIA: number;
     PULSE: number;
   };
   evening: {
     timeOfDay: TimeOfDayStates.EVENING;
+    omitted: boolean;
     SYS: number;
     DIA: number;
     PULSE: number;

@@ -5,6 +5,7 @@ import {
   ADD_PERIODIC_PRESSURE_TEST,
   DELETE_PERIODIC_PRESSURE_TEST,
   EDIT_DAILY_VALUES,
+  SET_OMITTED_DAILY_TEST,
 } from "./../types/";
 import {
   IUserInterface,
@@ -146,6 +147,35 @@ export const profilesReducer = (state = initialState, action: Action) => {
       return { ...state, users: updatedProfiles };
     }
 
+    case SET_OMITTED_DAILY_TEST: {
+      const updatedProfiles = state.users.map((user) => {
+        if (action.userID === user.id) {
+          user.periodicPressureTests.map((periodicTest) => {
+            if (action.preidoicID === periodicTest.id) {
+              periodicTest.list.map((daily) => {
+                if (
+                  action.dailyID === daily.id &&
+                  action.timeOfDay === daily.morning.timeOfDay
+                ) {
+                  daily.morning.omitted = action.omitted;
+                } else if (
+                  action.dailyID === daily.id &&
+                  action.timeOfDay === daily.evening.timeOfDay
+                ) {
+                  daily.evening.omitted = action.omitted;
+                }
+                return daily;
+              });
+            }
+            return periodicTest;
+          });
+        }
+        return user;
+      });
+      updateLocalStorageProfiles(updatedProfiles);
+      return { ...state, users: updatedProfiles };
+    }
+
     default:
       return state;
   }
@@ -164,4 +194,5 @@ interface Action {
   sys: number;
   dia: number;
   pulse: number;
+  omitted: boolean;
 }

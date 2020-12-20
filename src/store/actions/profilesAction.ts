@@ -5,6 +5,7 @@ import {
   ADD_PERIODIC_PRESSURE_TEST,
   DELETE_PERIODIC_PRESSURE_TEST,
   EDIT_DAILY_VALUES,
+  SET_OMITTED_DAILY_TEST,
 } from "./../types/";
 import {
   IUserInterface,
@@ -58,4 +59,19 @@ export const editDailyValues = (
   sys,
   dia,
   pulse,
+});
+
+export const setOmittedDailyTest = (
+  userID: number,
+  preidoicID: number,
+  dailyID: number,
+  timeOfDay: TimeOfDayStates,
+  omitted: boolean
+) => ({
+  type: SET_OMITTED_DAILY_TEST,
+  userID,
+  preidoicID,
+  dailyID,
+  timeOfDay,
+  omitted,
 });

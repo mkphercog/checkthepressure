@@ -3,12 +3,14 @@ import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
+import { setOmittedDailyTest } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Wrapper, BackArrow } from "./PeriodicTestDetails.css";
 import {
   FieldsetStyled,
   LegendStyled,
 } from "./../../../styles/mixins/Fieldset";
+import { useDispatch } from "react-redux";
 
 export const PeriodicTestDetails: React.FC<Props> = ({
   test,
@@ -17,6 +19,7 @@ export const PeriodicTestDetails: React.FC<Props> = ({
 }) => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [popup, setPopup] = useState<Object>({});
+  const dispach = useDispatch();
   const { list, id: preidoicID } = test;
   const renderList = list.map((item) => (
     <DailyTest
@@ -39,6 +42,15 @@ export const PeriodicTestDetails: React.FC<Props> = ({
           />
         );
         setIsPortalOpen(true);
+      }}
+      setOmittedDaily={(
+        dailyID: number,
+        timeOfDay: TimeOfDayStates,
+        omitted: boolean
+      ) => {
+        dispach(
+          setOmittedDailyTest(userID, preidoicID, dailyID, timeOfDay, omitted)
+        );
       }}
     />
   ));
