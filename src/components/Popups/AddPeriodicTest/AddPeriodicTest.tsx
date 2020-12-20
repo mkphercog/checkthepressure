@@ -7,7 +7,13 @@ import {
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
 import { PeriodicTestStates } from "./../../../common/constants";
-import { Wrapper, Title, Form, ExitButton } from "./AddPeriodicTest.css";
+import {
+  Wrapper,
+  Title,
+  Form,
+  AddTestBtn,
+  ExitButton,
+} from "./AddPeriodicTest.css";
 
 const today = new Date();
 
@@ -63,9 +69,9 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
               {renderOptionsDays}
             </select>
           </div>
-          <button type="submit" onClick={(e) => handleSubmit(e)}>
+          <AddTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
-          </button>
+          </AddTestBtn>
         </form>
       </Form>
       <ExitButton

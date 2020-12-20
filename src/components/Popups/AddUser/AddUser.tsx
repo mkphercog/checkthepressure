@@ -3,6 +3,7 @@ import {
   AddUserWrapper,
   AddUserTitle,
   AddUserContent,
+  AddUserBtn,
   ExitButton,
 } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
@@ -92,9 +93,9 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
               {renderOptionsAge}
             </select>
           </div>
-          <button type="submit" onClick={(e) => handleSubmit(e)}>
+          <AddUserBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
-          </button>
+          </AddUserBtn>
         </form>
       </AddUserContent>
       <ExitButton

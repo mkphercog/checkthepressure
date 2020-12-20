@@ -4,6 +4,7 @@ import {
   CORNER_RADIUS,
   TRANSITION_TIME,
 } from "./../../../styles/variables";
+import { AddButton } from "./../../../styles/mixins";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -57,16 +58,10 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const AddTestBtn = styled.button`
+export const AddTestBtn = styled(AddButton)`
   position: absolute;
   bottom: -10px;
   right: -10px;
-  background-color: ${COLORS.green};
-  border: 2px solid ${COLORS.green};
-  border-radius: 50%;
-  cursor: pointer;
-  transition: ${TRANSITION_TIME};
-  outline-style: none;
 
   @media (min-width: 411px) and (orientation: landscape) {
     bottom: 10px;
@@ -81,37 +76,5 @@ export const AddTestBtn = styled.button`
   @media (min-width: 1024px) {
     bottom: 10px;
     right: 20px;
-  }
-
-  i {
-    padding: 5px 6px;
-    font-size: 26px;
-    color: ${COLORS.white};
-
-    @media (min-width: 1024px) {
-      font-size: 30px;
-    }
-  }
-
-  :focus {
-    border: 2px solid ${COLORS.orange};
-  }
-
-  @media (min-width: 1024px) {
-    :hover {
-      background-color: ${COLORS.white};
-      i {
-        color: ${COLORS.green};
-      }
-    }
-  }
-
-  :disabled {
-    background-color: ${COLORS.gray};
-
-    border: 2px solid ${COLORS.gray};
-    i {
-      color: ${COLORS.lightGray};
-    }
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AddButton } from "../../../styles/mixins";
 import {
   COLORS,
   CORNER_RADIUS,
@@ -145,38 +146,11 @@ export const AddUserContent = styled.div`
       font-weight: bold;
       border-bottom: 3px solid ${COLORS.orange};
     }
-
-    button {
-      align-self: flex-end;
-      background-color: ${COLORS.green};
-      border: 2px solid ${COLORS.green};
-      border-radius: 50%;
-      cursor: pointer;
-      transition: ${TRANSITION_TIME};
-      outline-style: none;
-
-      i {
-        padding: 5px 6px;
-        font-size: 26px;
-        color: ${COLORS.white};
-
-        @media (min-width: 1024px) {
-          font-size: 30px;
-        }
-      }
-    }
-
-    button:focus {
-      border: 2px solid ${COLORS.orange};
-    }
-
-    button:hover {
-      background-color: ${COLORS.white};
-      i {
-        color: ${COLORS.green};
-      }
-    }
   }
+`;
+
+export const AddUserBtn = styled(AddButton)`
+  align-self: flex-end;
 `;
 
 export const ExitButton = styled.i`

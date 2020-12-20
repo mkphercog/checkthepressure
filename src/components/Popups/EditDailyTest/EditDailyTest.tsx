@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Wrapper, Title, Content, ExitButton } from "./EditDailyTest.css";
+import {
+  Wrapper,
+  Title,
+  Content,
+  EditTestBtn,
+  ExitButton,
+} from "./EditDailyTest.css";
 import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { editDailyValues } from "./../../../store/actions/profilesAction";
@@ -110,9 +116,9 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
               onChange={(e) => setPulse(e.target.value)}
             />
           </div>
-          <button type="submit" onClick={(e) => handleSubmit(e)}>
+          <EditTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
-          </button>
+          </EditTestBtn>
         </form>
       </Content>
       <ExitButton
