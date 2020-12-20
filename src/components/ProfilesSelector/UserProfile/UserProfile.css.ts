@@ -1,30 +1,8 @@
 import styled from "styled-components";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "../../../styles/variables";
+import { COLORS, TRANSITION_TIME } from "../../../styles/variables";
+import { LiElement } from "./../../../styles/mixins/LiElement";
 
-export const UserProfileWrapper = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  padding: 0 5px;
-  margin: 5px 10px;
-  border-radius: ${CORNER_RADIUS};
-  background-color: ${COLORS.lightGray};
-
-  p {
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  i {
-    color: ${COLORS.red};
-  }
-`;
+export const Wrapper = styled(LiElement)``;
 
 export const UserData = styled.div`
   display: flex;
@@ -32,7 +10,16 @@ export const UserData = styled.div`
   align-items: center;
   width: 100%;
   padding: 10px;
-  border-bottom: 2px solid ${COLORS.gray};
+  border-bottom: 2px solid ${COLORS.darkGray};
+
+  p {
+    font-size: 14px;
+    font-weight: bold;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
 `;
 
 export const Options = styled.div`
@@ -43,12 +30,16 @@ export const Options = styled.div`
   padding: 10px;
 
   i {
+    color: ${COLORS.red};
     font-size: 22px;
-    cursor: pointer;
-    transition: ${TRANSITION_TIME};
-  }
 
-  i:hover {
-    transform: scale(1.2);
+    @media (min-width: 1024px) {
+      cursor: pointer;
+      transition: ${TRANSITION_TIME};
+
+      :hover {
+        transform: scale(1.2);
+      }
+    }
   }
 `;

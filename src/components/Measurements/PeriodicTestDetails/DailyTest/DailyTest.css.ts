@@ -4,19 +4,10 @@ import {
   FieldsetStyled,
   LegendStyled,
 } from "./../../../../styles/mixins/Fieldset";
-import { COLORS, CORNER_RADIUS } from "../../../../styles/variables";
+import { LiElement } from "./../../../../styles/mixins/LiElement";
+import { COLORS } from "../../../../styles/variables";
 
-export const Wrapper = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  margin-bottom: 20px;
-  padding: 10px;
-  list-style: none;
-  background-color: ${COLORS.lightGray};
-  border-radius: ${CORNER_RADIUS};
-
+export const Wrapper = styled(LiElement)`
   @media (orientation: landscape) {
     width: 60%;
   }

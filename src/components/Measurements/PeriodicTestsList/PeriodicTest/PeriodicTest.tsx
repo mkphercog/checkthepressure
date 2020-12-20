@@ -9,8 +9,7 @@ import {
   Wrapper,
   Title,
   Subtitle,
-  Duration,
-  Status,
+  Info,
   Btns,
   DeleteBtn,
 } from "./PeriodicTest.css";
@@ -35,13 +34,13 @@ export const PeriodicTest: React.FC<Props> = ({
         </p>
       </Subtitle>
 
-      <Status>
+      <Info>
         Status: <span>{state}</span>
-      </Status>
+      </Info>
 
-      <Duration>
+      <Info>
         Ilość dni: <span>{days}</span>
-      </Duration>
+      </Info>
 
       <Btns>
         <GrayButton onClick={() => findTestsList(id)}>Szczegóły...</GrayButton>

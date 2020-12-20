@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { IUserInterface } from "./../../../common/interfaces";
 import { GrayButton } from "./../../../styles/mixins/Buttons";
-import { UserProfileWrapper, UserData, Options } from "./UserProfile.css";
+import { Wrapper, UserData, Options } from "./UserProfile.css";
 
 export const UserProfile: React.FC<UserProfileProps> = ({
   id,
@@ -13,7 +13,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
 }) => {
   const history = useHistory();
   return (
-    <UserProfileWrapper>
+    <Wrapper>
       <UserData>
         <p>{name}</p>
         <p>wiek: {age}</p>
@@ -29,7 +29,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         </GrayButton>
         <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
       </Options>
-    </UserProfileWrapper>
+    </Wrapper>
   );
 };
 
