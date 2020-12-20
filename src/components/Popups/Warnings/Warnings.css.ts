@@ -65,6 +65,18 @@ export const Content = styled(PopupContentWrapper)`
     transition: ${TRANSITION_TIME};
     color: ${COLORS.red};
 
+    @media (min-width: 1024px) {
+      :hover {
+        background-color: ${COLORS.red};
+        color: ${COLORS.white};
+      }
+    }
+
+    :focus {
+      box-shadow: 0 0 10px ${COLORS.gray};
+      outline: none;
+    }
+
     i {
       font-weight: bold;
 
@@ -75,16 +87,6 @@ export const Content = styled(PopupContentWrapper)`
       @media (min-width: 1024px) {
         font-size: 16px;
       }
-    }
-
-    :hover {
-      background-color: ${COLORS.red};
-      color: ${COLORS.white};
-    }
-
-    :focus {
-      box-shadow: 0 0 10px ${COLORS.gray};
-      outline: none;
     }
   }
 `;
@@ -112,11 +114,11 @@ export const ApplyBtn = styled.button`
 
   @media (min-width: 1024px) {
     font-size: 16px;
-  }
 
-  :hover {
-    background-color: ${COLORS.green} !important;
-    color: ${COLORS.white} !important;
+    :hover {
+      background-color: ${COLORS.green} !important;
+      color: ${COLORS.white} !important;
+    }
   }
 
   :focus {
@@ -129,9 +131,11 @@ export const DenyBtn = styled(ApplyBtn)`
   color: ${COLORS.red} !important;
   border: 2px solid ${COLORS.red} !important;
 
-  :hover {
-    background-color: ${COLORS.red} !important;
-    color: ${COLORS.white} !important;
+  @media (min-width: 1024px) {
+    :hover {
+      background-color: ${COLORS.red} !important;
+      color: ${COLORS.white} !important;
+    }
   }
 
   :focus {

@@ -64,10 +64,11 @@ export const AddUserIcon = styled.i`
   right: 15px;
   font-size: 35px;
   color: ${COLORS.green};
-  cursor: pointer;
-  transition: ${TRANSITION_TIME};
 
   @media (min-width: 1024px) {
+    cursor: pointer;
+    transition: ${TRANSITION_TIME};
+
     :hover {
       transform: scale(1.2);
     }
