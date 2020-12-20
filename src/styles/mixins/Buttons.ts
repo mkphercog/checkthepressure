@@ -8,15 +8,6 @@ export const AddButton = styled.button`
   border-radius: 50%;
   outline-style: none;
 
-  i {
-    font-size: 26px;
-    color: ${COLORS.white};
-
-    @media (min-width: 1024px) {
-      font-size: 30px;
-    }
-  }
-
   @media (min-width: 1024px) {
     cursor: pointer;
     transition: ${TRANSITION_TIME};
@@ -34,7 +25,21 @@ export const AddButton = styled.button`
   :disabled {
     background-color: ${COLORS.gray};
     border: 2px solid ${COLORS.gray};
-    i {
+
+    @media (min-width: 1024px) {
+      cursor: no-drop;
+    }
+  }
+
+  i {
+    font-size: 26px;
+    color: ${COLORS.white};
+
+    @media (min-width: 1024px) {
+      font-size: 30px;
+    }
+
+    :disabled {
       color: ${COLORS.lightGray};
     }
   }
@@ -57,6 +62,15 @@ export const GrayButton = styled.button`
 
     :hover {
       background-color: ${COLORS.gray};
+    }
+  }
+
+  :disabled {
+    background-color: ${COLORS.grayWithOpacity};
+    color: ${COLORS.lightGray};
+
+    @media (min-width: 1024px) {
+      cursor: no-drop;
     }
   }
 `;
