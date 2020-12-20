@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS } from "../../styles/variables";
+import { COLORS, CORNER_RADIUS } from "./../variables";
 
-export const Wrapper = styled.div`
-  position: relative;
+export const PageWrapperWithImageInBG = styled.div`
   flex-grow: 1;
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: ${COLORS.white};
   border-bottom-left-radius: ${CORNER_RADIUS};
   border-bottom-right-radius: ${CORNER_RADIUS};
-  z-index: 1;
   overflow: hidden;
+  z-index: 1;
 
   img {
     position: absolute;

@@ -5,6 +5,10 @@ import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Wrapper, BackArrow } from "./PeriodicTestDetails.css";
+import {
+  FieldsetStyled,
+  LegendStyled,
+} from "./../../../styles/mixins/Fieldset";
 
 export const PeriodicTestDetails: React.FC<Props> = ({
   test,
@@ -41,10 +45,10 @@ export const PeriodicTestDetails: React.FC<Props> = ({
 
   return (
     <Wrapper>
-      <fieldset>
-        <legend>
+      <FieldsetStyled>
+        <LegendStyled>
           Pomiar okresowy <span>#{preidoicID}</span>
-        </legend>
+        </LegendStyled>
         <ul>
           {renderList}
 
@@ -53,7 +57,7 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         <button onClick={() => backToList()}>
           <BackArrow className="fas fa-long-arrow-alt-left"></BackArrow>
         </button>
-      </fieldset>
+      </FieldsetStyled>
       {isPortalOpen ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}

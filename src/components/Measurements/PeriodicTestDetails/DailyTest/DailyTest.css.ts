@@ -1,21 +1,13 @@
 import styled from "styled-components";
+import { GrayButton } from "./../../../../styles/mixins/Buttons";
 import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "../../../../styles/variables";
+  FieldsetStyled,
+  LegendStyled,
+} from "./../../../../styles/mixins/Fieldset";
+import { LiElement } from "./../../../../styles/mixins/LiElement";
+import { COLORS } from "../../../../styles/variables";
 
-export const Wrapper = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  margin-bottom: 20px;
-  padding: 10px;
-  list-style: none;
-  background-color: ${COLORS.lightGray};
-  border-radius: ${CORNER_RADIUS};
-
+export const Wrapper = styled(LiElement)`
   @media (orientation: landscape) {
     width: 60%;
   }
@@ -38,17 +30,17 @@ export const Wrapper = styled.li`
   }
 `;
 
-export const MorningEvening = styled.legend`
+export const Fieldset = styled(FieldsetStyled)`
+  margin-bottom: 10px;
+  border-color: ${({ sys, dia, pulse }: Props) =>
+    sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
+`;
+
+export const MorningEvening = styled(LegendStyled)`
   p {
     color: ${({ sys, dia, pulse }: Props) =>
       sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};
   }
-`;
-
-export const FieldsetStyled = styled.fieldset`
-  border-color: ${({ sys, dia, pulse }: Props) =>
-    sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
-  margin-bottom: 10px;
 `;
 
 export const SysDiaPuls = styled.div`
@@ -74,26 +66,10 @@ export const Btns = styled.div`
   width: 100%;
   margin-top: 10px;
   margin-bottom: 5px;
+`;
 
-  button {
-    margin-top: 5px;
-    padding: 3px 10px;
-    font-size: 14px;
-    color: ${COLORS.white};
-    border: none;
-    border-radius: ${CORNER_RADIUS};
-    background-color: ${COLORS.darkGray};
-    text-transform: uppercase;
-
-    @media (min-width: 1024px) {
-      font-size: 14px;
-      transition: ${TRANSITION_TIME};
-      cursor: pointer;
-      :hover {
-        background-color: ${COLORS.gray};
-      }
-    }
-  }
+export const Btn = styled(GrayButton)`
+  margin-top: 5px;
 `;
 
 interface Props {

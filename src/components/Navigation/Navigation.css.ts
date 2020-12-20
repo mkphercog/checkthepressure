@@ -97,14 +97,17 @@ export const Nav = styled.nav`
 
       @media (min-width: 1024px) {
         font-size: 18px;
+        cursor: pointer;
+        transition: ${TRANSITION_TIME};
+
+        :hover {
+          color: ${COLORS.orange};
+        }
       }
     }
+
     .active {
       border-bottom: 3px solid ${COLORS.orange};
-    }
-
-    a:hover {
-      color: ${COLORS.orange};
     }
   }
 `;
@@ -123,10 +126,10 @@ export const MenuIcon = styled.i`
 
 export const BackArrowIcon = styled.i`
   margin-right: 15px;
-  transform: rotate(180deg);
-  font-size: 25px;
-  cursor: pointer;
   color: ${COLORS.orange};
+  font-size: 25px;
+  transform: rotate(180deg);
+  cursor: pointer;
   animation: ${opacityAnimation} linear 0.5s;
 
   @media (min-width: ${widthWithoutMenuIcon}) {

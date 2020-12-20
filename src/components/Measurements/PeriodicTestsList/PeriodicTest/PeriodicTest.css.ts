@@ -1,23 +1,8 @@
 import styled from "styled-components";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "../../../../styles/variables";
+import { COLORS, TRANSITION_TIME } from "../../../../styles/variables";
+import { LiElement } from "./../../../../styles/mixins/LiElement";
 
-export const Wrapper = styled.li`
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: ${COLORS.lightGray};
-  border-radius: ${CORNER_RADIUS};
-  list-style: none;
-
+export const Wrapper = styled(LiElement)`
   @media (orientation: landscape) {
     width: 55%;
   }
@@ -36,27 +21,30 @@ export const Wrapper = styled.li`
 `;
 
 export const Title = styled.h2`
+  margin-bottom: 10px;
   font-size: 16px;
   color: ${COLORS.black};
-  margin-bottom: 10px;
-  span {
-    font-size: 18px;
-    color: ${COLORS.blue};
-  }
 
   @media (min-width: 1024px) {
     font-size: 18px;
-    span {
+  }
+
+  span {
+    font-size: 18px;
+    color: ${COLORS.blue};
+
+    @media (min-width: 1024px) {
       font-size: 20px;
     }
   }
 `;
 
 export const Subtitle = styled.div`
+  margin-bottom: 5px;
+  padding: 4px 10px;
   border-bottom: 2px solid ${COLORS.blue};
   border-top: 2px solid ${COLORS.blue};
-  padding: 4px 10px;
-  margin-bottom: 5px;
+
   p {
     color: ${COLORS.black};
     font-size: 12px;
@@ -70,25 +58,15 @@ export const Subtitle = styled.div`
   }
 `;
 
-export const Duration = styled.p`
+export const Info = styled.p`
   font-size: 12px;
-  span {
-    font-weight: bold;
-  }
 
   @media (min-width: 1024px) {
     font-size: 14px;
   }
-`;
 
-export const Status = styled.p`
-  font-size: 12px;
   span {
     font-weight: bold;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 14px;
   }
 `;
 
@@ -99,29 +77,18 @@ export const Btns = styled.div`
   width: 90%;
 `;
 
-export const DetailsBtn = styled.button`
-  padding: 0 8px;
-  font-size: 12px;
-  color: ${COLORS.white};
-  border: none;
-  border-radius: ${CORNER_RADIUS};
-  background-color: ${COLORS.gray};
-
-  @media (min-width: 1024px) {
-    font-size: 14px;
-    transition: ${TRANSITION_TIME};
-    cursor: pointer;
-    :hover {
-      color: ${COLORS.gray};
-      background-color: ${COLORS.white};
-    }
-  }
-`;
-
 export const DeleteBtn = styled.button`
   background-color: transparent;
   border: none;
   padding: 4px;
+
+  @media (min-width: 1024px) {
+    cursor: pointer;
+    transition: ${TRANSITION_TIME};
+    :hover {
+      transform: scale(1.3);
+    }
+  }
 
   i {
     font-size: 16px;
@@ -129,14 +96,6 @@ export const DeleteBtn = styled.button`
 
     @media (min-width: 1024px) {
       font-size: 18px;
-      cursor: pointer;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    transition: ${TRANSITION_TIME};
-    :hover {
-      transform: scale(1.3);
     }
   }
 `;

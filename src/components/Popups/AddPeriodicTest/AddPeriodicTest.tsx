@@ -7,7 +7,13 @@ import {
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
 import { PeriodicTestStates } from "./../../../common/constants";
-import { Wrapper, Title, Form, ExitButton } from "./AddPeriodicTest.css";
+import { ExitIcon } from "./../../../styles/mixins/Buttons";
+import {
+  PopupContentWrapper,
+  PopupTitleGreen,
+  PopupSelect,
+} from "./../../../styles/mixins/Popups";
+import { Wrapper, FormStyled, AddTestBtn } from "./AddPeriodicTest.css";
 
 const today = new Date();
 
@@ -39,11 +45,11 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
 
   return (
     <Wrapper>
-      <Title>
+      <PopupTitleGreen>
         <p>Nowy pomiar okresowy</p>
-      </Title>
-      <Form>
-        <form>
+      </PopupTitleGreen>
+      <PopupContentWrapper>
+        <FormStyled>
           <div>
             <label htmlFor="dateStart">Dzień rozpoczęcia: </label>
             <input
@@ -55,23 +61,23 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
           </div>
           <div>
             <label htmlFor="days">Ilość dni: </label>
-            <select
+            <PopupSelect
               value={days}
               id="days"
               onChange={(e) => setDays(Number(e.target.value))}
             >
               {renderOptionsDays}
-            </select>
+            </PopupSelect>
           </div>
-          <button type="submit" onClick={(e) => handleSubmit(e)}>
+          <AddTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
-          </button>
-        </form>
-      </Form>
-      <ExitButton
+          </AddTestBtn>
+        </FormStyled>
+      </PopupContentWrapper>
+      <ExitIcon
         className="fas fa-times"
         onClick={() => closePopup(false)}
-      ></ExitButton>
+      ></ExitIcon>
     </Wrapper>
   );
 };

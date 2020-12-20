@@ -1,7 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { IUserInterface } from "./../../../common/interfaces";
-import { UserProfileWrapper, UserData, Options } from "./UserProfile.css";
+import { GrayButton } from "./../../../styles/mixins/Buttons";
+import { Wrapper, UserData, Options } from "./UserProfile.css";
 
 export const UserProfile: React.FC<UserProfileProps> = ({
   id,
@@ -9,20 +10,28 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   age,
   deleteProfile,
   selectUserID,
-}) => (
-  <UserProfileWrapper>
-    <UserData>
-      <p>{name}</p>
-      <p>wiek: {age}</p>
-    </UserData>
-    <Options>
-      <NavLink to="/measurements" onClick={() => selectUserID(id)}>
-        Otwórz profil
-      </NavLink>
-      <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
-    </Options>
-  </UserProfileWrapper>
-);
+}) => {
+  const history = useHistory();
+  return (
+    <Wrapper>
+      <UserData>
+        <p>{name}</p>
+        <p>wiek: {age}</p>
+      </UserData>
+      <Options>
+        <GrayButton
+          onClick={() => {
+            selectUserID(id);
+            history.push("/measurements");
+          }}
+        >
+          Otwórz profil
+        </GrayButton>
+        <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
+      </Options>
+    </Wrapper>
+  );
+};
 
 interface UserProfileProps extends IUserInterface {
   deleteProfile: Function;

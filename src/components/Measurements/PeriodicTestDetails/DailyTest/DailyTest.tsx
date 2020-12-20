@@ -5,11 +5,12 @@ import { COLORS } from "../../../../styles/variables";
 import { IDailyTest, IGlobalState } from "./../../../../common/interfaces";
 import {
   Wrapper,
+  Fieldset,
   MorningEvening,
-  FieldsetStyled,
   SysDiaPuls,
   SysAndDiaColored,
   Btns,
+  Btn,
 } from "./DailyTest.css";
 
 enum sysDiaType {
@@ -52,7 +53,7 @@ export const DailyTest: React.FC<Props> = ({
         Dzień {id} - (<span>{date}</span>)
       </h4>
 
-      <FieldsetStyled sys={morning.SYS} dia={morning.DIA} pulse={morning.PULSE}>
+      <Fieldset sys={morning.SYS} dia={morning.DIA} pulse={morning.PULSE}>
         <MorningEvening
           sys={morning.SYS}
           dia={morning.DIA}
@@ -82,14 +83,14 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
+          <Btn onClick={() => editDailyTest(id, morning.timeOfDay, date)}>
             Edytuj
-          </button>
-          <button onClick={() => {}}>Pomiń</button>
+          </Btn>
+          <Btn onClick={() => {}}>Pomiń</Btn>
         </Btns>
-      </FieldsetStyled>
+      </Fieldset>
 
-      <FieldsetStyled sys={evening.SYS} dia={evening.DIA} pulse={evening.PULSE}>
+      <Fieldset sys={evening.SYS} dia={evening.DIA} pulse={evening.PULSE}>
         <MorningEvening
           sys={evening.SYS}
           dia={evening.DIA}
@@ -119,12 +120,12 @@ export const DailyTest: React.FC<Props> = ({
           </p>
         </SysDiaPuls>
         <Btns>
-          <button onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
+          <Btn onClick={() => editDailyTest(id, evening.timeOfDay, date)}>
             Edytuj
-          </button>
-          <button onClick={() => {}}>Pomiń</button>
+          </Btn>
+          <Btn onClick={() => {}}>Pomiń</Btn>
         </Btns>
-      </FieldsetStyled>
+      </Fieldset>
     </Wrapper>
   );
 };

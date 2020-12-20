@@ -7,7 +7,7 @@ import {
 } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { emptyPeriodicTest } from "./../../common/constants";
-import { Wrapper } from "./Measurements.css";
+import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 
 export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
   const [selectedPeriodicTest, setSelectedPeriodicTest] = useState<
@@ -27,7 +27,7 @@ export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
   };
 
   return (
-    <Wrapper>
+    <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
       {isDetailsOpen ? (
         <PeriodicTestDetails
@@ -43,7 +43,7 @@ export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
           findTestsList={handleFindTest}
         />
       )}
-    </Wrapper>
+    </PageWrapperWithImageInBG>
   );
 };
 

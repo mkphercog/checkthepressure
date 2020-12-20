@@ -4,15 +4,14 @@ import { IPeriodicPressureTests } from "../../../../common/interfaces";
 import { deletePeriodicPressureTest } from "../../../../store/actions/profilesAction";
 import { Portal, PortalTarget } from "./../../../../common/Portal/Portal";
 import { WarningsYesNo } from "./../../../Popups/Warnings/Warnings";
+import { GrayButton } from "./../../../../styles/mixins/Buttons";
 import {
   Wrapper,
   Title,
   Subtitle,
-  Duration,
-  Status,
+  Info,
   Btns,
   DeleteBtn,
-  DetailsBtn,
 } from "./PeriodicTest.css";
 
 export const PeriodicTest: React.FC<Props> = ({
@@ -35,16 +34,16 @@ export const PeriodicTest: React.FC<Props> = ({
         </p>
       </Subtitle>
 
-      <Status>
+      <Info>
         Status: <span>{state}</span>
-      </Status>
+      </Info>
 
-      <Duration>
+      <Info>
         Ilość dni: <span>{days}</span>
-      </Duration>
+      </Info>
 
       <Btns>
-        <DetailsBtn onClick={() => findTestsList(id)}>Szczegóły...</DetailsBtn>
+        <GrayButton onClick={() => findTestsList(id)}>Szczegóły...</GrayButton>
         <DeleteBtn
           onClick={() => {
             setIsPortalOpen(true);

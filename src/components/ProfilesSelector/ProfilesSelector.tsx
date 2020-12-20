@@ -12,12 +12,9 @@ import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 
 import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
-import {
-  Wrapper,
-  ProfilesSelectorStyled,
-  AddUserIcon,
-  UsersWrapper,
-} from "./ProfilesSelector.css";
+import { ProfilesSelectorStyled, AddUserIcon } from "./ProfilesSelector.css";
+import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
+import { LegendStyled } from "./../../styles/mixins/Fieldset";
 
 export const ProfilesSelector: React.FC = () => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
@@ -58,12 +55,13 @@ export const ProfilesSelector: React.FC = () => {
   );
 
   return (
-    <Wrapper>
+    <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
       <ProfilesSelectorStyled>
-        <UsersWrapper>
-          {renderUsers.length ? renderUsers : "Brak użytkowników."}
-        </UsersWrapper>
+        <LegendStyled>
+          {renderUsers.length ? "Profile" : "Brak użytkowników"}
+        </LegendStyled>
+        <ul>{renderUsers.length ? renderUsers : []}</ul>
         <AddUserIcon
           className="fas fa-user-plus"
           onClick={() => {
@@ -75,6 +73,6 @@ export const ProfilesSelector: React.FC = () => {
       {isPortalOpen ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
-    </Wrapper>
+    </PageWrapperWithImageInBG>
   );
 };
