@@ -4,7 +4,7 @@ import { IPeriodicPressureTests } from "../../../../common/interfaces";
 import { deletePeriodicPressureTest } from "../../../../store/actions/profilesAction";
 import { Portal, PortalTarget } from "./../../../../common/Portal/Portal";
 import { WarningsYesNo } from "./../../../Popups/Warnings/Warnings";
-import { GrayButton } from "./../../../../styles/mixins";
+import { GrayButton } from "./../../../../styles/mixins/Buttons";
 import {
   Wrapper,
   Title,

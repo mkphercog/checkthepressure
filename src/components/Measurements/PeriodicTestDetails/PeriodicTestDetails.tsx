@@ -5,7 +5,10 @@ import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Wrapper, BackArrow } from "./PeriodicTestDetails.css";
-import { FieldsetStyled, LegendStyled } from "./../../../styles/mixins";
+import {
+  FieldsetStyled,
+  LegendStyled,
+} from "./../../../styles/mixins/Fieldset";
 
 export const PeriodicTestDetails: React.FC<Props> = ({
   test,

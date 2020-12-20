@@ -7,7 +7,7 @@ import {
 } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { emptyPeriodicTest } from "./../../common/constants";
-import { PageWrapperWithImageInBG } from "../../styles/mixins";
+import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 
 export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
   const [selectedPeriodicTest, setSelectedPeriodicTest] = useState<

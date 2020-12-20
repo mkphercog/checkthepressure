@@ -1,25 +1,25 @@
 import React from "react";
 import {
-  WarningWrapper,
-  WarningTitle,
-  WarningMessage,
+  Wrapper,
+  Title,
+  Content,
   BtnWrapper,
   ApplyBtn,
   DenyBtn,
 } from "./Warnings.css";
 
 export const Warnings: React.FC<WarningsProps> = ({ message, close }) => (
-  <WarningWrapper>
-    <WarningTitle>
+  <Wrapper>
+    <Title>
       <p>Uwaga!</p>
-    </WarningTitle>
-    <WarningMessage>
+    </Title>
+    <Content>
       <p>{message}</p>
       <button onClick={() => close(false)} autoFocus>
         <i className="fas fa-check"></i>
       </button>
-    </WarningMessage>
-  </WarningWrapper>
+    </Content>
+  </Wrapper>
 );
 
 export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
@@ -27,11 +27,11 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
   close,
   response,
 }) => (
-  <WarningWrapper>
-    <WarningTitle>
+  <Wrapper>
+    <Title>
       <p>Uwaga!</p>
-    </WarningTitle>
-    <WarningMessage>
+    </Title>
+    <Content>
       <p>{message}</p>
       <BtnWrapper>
         <DenyBtn
@@ -52,8 +52,8 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
           Tak
         </ApplyBtn>
       </BtnWrapper>
-    </WarningMessage>
-  </WarningWrapper>
+    </Content>
+  </Wrapper>
 );
 
 interface WarningsProps {

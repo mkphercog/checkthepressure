@@ -4,7 +4,10 @@ import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { Wrapper, AddTestBtn } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
-import { FieldsetStyled, LegendStyled } from "./../../../styles/mixins";
+import {
+  FieldsetStyled,
+  LegendStyled,
+} from "./../../../styles/mixins/Fieldset";
 
 export const PeriodicTestsList: React.FC<Props> = ({
   userID,

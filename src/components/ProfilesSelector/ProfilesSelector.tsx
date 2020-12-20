@@ -13,7 +13,8 @@ import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { ProfilesSelectorStyled, AddUserIcon } from "./ProfilesSelector.css";
-import { LegendStyled, PageWrapperWithImageInBG } from "../../styles/mixins";
+import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
+import { LegendStyled } from "./../../styles/mixins/Fieldset";
 
 export const ProfilesSelector: React.FC = () => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);

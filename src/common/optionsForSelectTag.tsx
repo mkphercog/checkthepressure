@@ -1,3 +1,5 @@
+import { PopupSelectOption } from "./../styles/mixins/Popups";
+
 export const numRangeOptions = (minValue: number, maxValue: number) => {
   let numbers = [];
 
@@ -6,9 +8,9 @@ export const numRangeOptions = (minValue: number, maxValue: number) => {
   }
 
   return numbers.map((item) => (
-    <option key={item} value={item}>
+    <PopupSelectOption key={item} value={item}>
       {item}
-    </option>
+    </PopupSelectOption>
   ));
 };
 
@@ -20,8 +22,8 @@ export const elementsListOptions = (elementsList: any[]) => {
   }
 
   return elements.map((item) => (
-    <option key={item} value={item}>
+    <PopupSelectOption key={item} value={item}>
       {item}
-    </option>
+    </PopupSelectOption>
   ));
 };

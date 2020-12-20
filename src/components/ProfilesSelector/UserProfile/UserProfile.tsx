@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { IUserInterface } from "./../../../common/interfaces";
-import { GrayButton } from "./../../../styles/mixins";
+import { GrayButton } from "./../../../styles/mixins/Buttons";
 import { UserProfileWrapper, UserData, Options } from "./UserProfile.css";
 
 export const UserProfile: React.FC<UserProfileProps> = ({

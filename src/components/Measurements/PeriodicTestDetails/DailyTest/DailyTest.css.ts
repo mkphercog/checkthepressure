@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { GrayButton } from "./../../../../styles/mixins/Buttons";
 import {
-  GrayButton,
   FieldsetStyled,
   LegendStyled,
-} from "../../../../styles/mixins";
+} from "./../../../../styles/mixins/Fieldset";
 import { COLORS, CORNER_RADIUS } from "../../../../styles/variables";
 
 export const Wrapper = styled.li`

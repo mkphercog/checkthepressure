@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import {
+  PopupWrapper,
+  PopupTitleRed,
+  PopupContentWrapper,
+} from "./../../../styles/mixins/Popups";
+import {
   COLORS,
   CORNER_RADIUS,
   TRANSITION_TIME,
 } from "../../../styles/variables";
 
-export const WarningWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+export const Wrapper = styled(PopupWrapper)`
   width: 80%;
   height: 25%;
-  border-radius: ${CORNER_RADIUS};
-  box-shadow: 0 0 5px ${COLORS.black};
 
   @media (orientation: landscape) {
     width: 60%;
@@ -21,49 +20,27 @@ export const WarningWrapper = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 60%;
+    width: 50%;
     height: 20%;
   }
 
+  @media (min-width: 768px) and (orientation: landscape) {
+    width: 50%;
+    height: 40%;
+  }
+
   @media (min-width: 1024px) {
-    width: 40%;
+    width: 30%;
     height: 25%;
   }
 `;
 
-export const WarningTitle = styled.div`
+export const Title = styled(PopupTitleRed)`
   flex-basis: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: ${COLORS.red};
-  border-top-left-radius: ${CORNER_RADIUS};
-  border-top-right-radius: ${CORNER_RADIUS};
-
-  p {
-    font-size: 20px;
-    font-weight: bold;
-    color: ${COLORS.white};
-    text-transform: uppercase;
-
-    @media (min-width: 768px) {
-      font-size: 22px;
-    }
-  }
 `;
 
-export const WarningMessage = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+export const Content = styled(PopupContentWrapper)`
   justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  padding: 0 15px;
-  background-color: ${COLORS.white};
-  border-bottom-left-radius: ${CORNER_RADIUS};
-  border-bottom-right-radius: ${CORNER_RADIUS};
 
   p {
     text-align: center;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { ExitIcon } from "./../../../styles/mixins";
+import { ExitIcon } from "./../../../styles/mixins/Buttons";
 import {
-  AddUserWrapper,
-  AddUserTitle,
-  AddUserContent,
-  AddUserBtn,
-} from "./AddUser.css";
+  PopupContentWrapper,
+  PopupTitleGreen,
+  PopupSelect,
+} from "./../../../styles/mixins/Popups";
+import { Wrapper, FormStyled, AddUserBtn } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
 import { IGlobalState, IUserInterface } from "./../../../common/interfaces";
@@ -66,12 +66,12 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
   };
 
   return (
-    <AddUserWrapper>
-      <AddUserTitle>
+    <Wrapper>
+      <PopupTitleGreen>
         <p>Nowy profil</p>
-      </AddUserTitle>
-      <AddUserContent>
-        <form>
+      </PopupTitleGreen>
+      <PopupContentWrapper>
+        <FormStyled>
           <div>
             <label htmlFor="name">Imię: </label>
             <input
@@ -84,26 +84,26 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
           </div>
           <div>
             <label htmlFor="age">Wiek: </label>
-            <select
+            <PopupSelect
               value={age}
               id="age"
               onChange={(e) => setAge(parseInt(e.target.value))}
               name="age"
             >
               {renderOptionsAge}
-            </select>
+            </PopupSelect>
           </div>
           <AddUserBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
           </AddUserBtn>
-        </form>
-      </AddUserContent>
+        </FormStyled>
+      </PopupContentWrapper>
       <ExitIcon
         className="fas fa-times"
         onClick={() => closeAddUserPopup(false)}
       ></ExitIcon>
       {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
-    </AddUserWrapper>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, TRANSITION_TIME, CORNER_RADIUS } from "./variables";
+import { COLORS, TRANSITION_TIME, CORNER_RADIUS } from "./../variables";
 
 export const AddButton = styled.button`
   padding: 5px 6px;
@@ -82,67 +82,5 @@ export const ExitIcon = styled.i`
     :hover {
       color: ${COLORS.darkGray};
     }
-  }
-`;
-
-export const PageWrapperWithImageInBG = styled.div`
-  flex-grow: 1;
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${COLORS.white};
-  border-bottom-left-radius: ${CORNER_RADIUS};
-  border-bottom-right-radius: ${CORNER_RADIUS};
-  overflow: hidden;
-  z-index: 1;
-
-  img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.15;
-  }
-`;
-
-export const FieldsetStyled = styled.fieldset`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  border: 2px solid ${COLORS.gray};
-  border-radius: ${CORNER_RADIUS};
-  overflow: hidden;
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: nowrap;
-    height: 100%;
-    margin: 10px 0;
-    overflow: auto;
-  }
-`;
-
-export const LegendStyled = styled.legend`
-  padding: 0 5px;
-  font-size: 16px;
-  text-align: center;
-  font-weight: bold;
-  color: ${COLORS.darkGray};
-
-  @media (min-width: 768px) {
-    font-size: 18px;
-  }
-
-  span {
-    color: ${COLORS.blue};
   }
 `;

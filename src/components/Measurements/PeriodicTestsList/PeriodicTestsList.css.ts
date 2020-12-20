@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AddButton } from "./../../../styles/mixins";
+import { AddButton } from "./../../../styles/mixins/Buttons";
 
 export const Wrapper = styled.div`
   display: flex;

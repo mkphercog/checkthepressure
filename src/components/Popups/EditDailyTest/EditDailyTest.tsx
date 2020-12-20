@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { ExitIcon } from "./../../../styles/mixins";
-import { Wrapper, Title, Content, EditTestBtn } from "./EditDailyTest.css";
+import { ExitIcon } from "./../../../styles/mixins/Buttons";
+import {
+  PopupTitleGreen,
+  PopupContentWrapper,
+} from "./../../../styles/mixins/Popups";
+import { Wrapper, FormStyled, EditTestBtn } from "./EditDailyTest.css";
 import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { editDailyValues } from "./../../../store/actions/profilesAction";
@@ -74,15 +78,15 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
 
   return (
     <Wrapper>
-      <Title>
+      <PopupTitleGreen>
         <p>{`${
           timeOfDay === TimeOfDayStates.MORNING
             ? TimeOfDayStates.MORNING
             : TimeOfDayStates.EVENING
         } ${date}`}</p>
-      </Title>
-      <Content>
-        <form>
+      </PopupTitleGreen>
+      <PopupContentWrapper>
+        <FormStyled>
           <div>
             <label htmlFor="sys">SYS: </label>
             <input
@@ -114,8 +118,8 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
           <EditTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
             <i className="fas fa-plus"></i>
           </EditTestBtn>
-        </form>
-      </Content>
+        </FormStyled>
+      </PopupContentWrapper>
       <ExitIcon
         className="fas fa-times"
         onClick={() => close(false)}
