@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { AddButton } from "../../../styles/mixins";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "../../../styles/variables";
+import { COLORS, CORNER_RADIUS } from "../../../styles/variables";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -156,25 +152,4 @@ export const Form = styled.div`
 
 export const AddTestBtn = styled(AddButton)`
   align-self: flex-end;
-`;
-
-export const ExitButton = styled.i`
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  font-weight: bold;
-  color: ${COLORS.white};
-  font-size: 18px;
-  cursor: pointer;
-  transition: ${TRANSITION_TIME};
-
-  @media (min-width: 411px) {
-    font-size: 20px;
-  }
-
-  :hover {
-    color: ${COLORS.darkGray};
-  }
 `;

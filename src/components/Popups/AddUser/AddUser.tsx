@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { ExitIcon } from "./../../../styles/mixins";
 import {
   AddUserWrapper,
   AddUserTitle,
   AddUserContent,
   AddUserBtn,
-  ExitButton,
 } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,10 +98,10 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
           </AddUserBtn>
         </form>
       </AddUserContent>
-      <ExitButton
+      <ExitIcon
         className="fas fa-times"
         onClick={() => closeAddUserPopup(false)}
-      ></ExitButton>
+      ></ExitIcon>
       {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
     </AddUserWrapper>
   );

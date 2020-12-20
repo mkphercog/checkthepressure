@@ -7,13 +7,8 @@ import {
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
 import { PeriodicTestStates } from "./../../../common/constants";
-import {
-  Wrapper,
-  Title,
-  Form,
-  AddTestBtn,
-  ExitButton,
-} from "./AddPeriodicTest.css";
+import { ExitIcon } from "./../../../styles/mixins";
+import { Wrapper, Title, Form, AddTestBtn } from "./AddPeriodicTest.css";
 
 const today = new Date();
 
@@ -74,10 +69,10 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
           </AddTestBtn>
         </form>
       </Form>
-      <ExitButton
+      <ExitIcon
         className="fas fa-times"
         onClick={() => closePopup(false)}
-      ></ExitButton>
+      ></ExitIcon>
     </Wrapper>
   );
 };

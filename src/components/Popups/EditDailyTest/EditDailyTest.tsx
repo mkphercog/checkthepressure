@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import {
-  Wrapper,
-  Title,
-  Content,
-  EditTestBtn,
-  ExitButton,
-} from "./EditDailyTest.css";
+import { ExitIcon } from "./../../../styles/mixins";
+import { Wrapper, Title, Content, EditTestBtn } from "./EditDailyTest.css";
 import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { editDailyValues } from "./../../../store/actions/profilesAction";
@@ -121,10 +116,10 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
           </EditTestBtn>
         </form>
       </Content>
-      <ExitButton
+      <ExitIcon
         className="fas fa-times"
         onClick={() => close(false)}
-      ></ExitButton>
+      ></ExitIcon>
       {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
     </Wrapper>
   );
