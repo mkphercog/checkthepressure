@@ -12,34 +12,11 @@ import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { PeriodicTestStates } from "./../../common/constants";
 import {
   updateLocalStorageProfiles,
-  checkLocalProfiles,
-  getLocalProfiles,
-  setLocalEmptyProfiles,
   updateLocalSelectedUserID,
-  getLocalSelectedUserID,
-  setLocalSelectedUserID,
+  configInitialStateWithLocalStorage,
 } from "./../../common/localStorage";
 
-const isLocalProfiles = checkLocalProfiles();
-
-let localProfiles: IUser[] = [];
-let localID = 0;
-let localSelectedUserID = 0;
-
-if (isLocalProfiles) {
-  localProfiles = getLocalProfiles();
-  localID = localProfiles[localProfiles.length - 1]["id"] + 1;
-  localSelectedUserID = getLocalSelectedUserID();
-} else {
-  setLocalEmptyProfiles();
-  setLocalSelectedUserID();
-}
-
-const initialState = {
-  users: localProfiles,
-  nextAvailableUserID: localID,
-  selectedUserID: localSelectedUserID,
-};
+const initialState = configInitialStateWithLocalStorage();
 
 export const profilesReducer = (state = initialState, action: Action) => {
   switch (action.type) {

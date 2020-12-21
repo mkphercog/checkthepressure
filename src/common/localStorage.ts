@@ -26,3 +26,25 @@ export const getLocalSelectedUserID = () =>
 
 export const setLocalSelectedUserID = () =>
   localStorage.setItem(LOCAL_SELECTED_USER_ID, "0");
+
+export const configInitialStateWithLocalStorage = () => {
+  const isLocalProfiles = checkLocalProfiles();
+  let localProfiles: IUser[] = [];
+  let localID = 0;
+  let localSelectedUserID = 0;
+
+  if (isLocalProfiles) {
+    localProfiles = getLocalProfiles();
+    localID = localProfiles[localProfiles.length - 1]["id"] + 1;
+    localSelectedUserID = getLocalSelectedUserID();
+  } else {
+    setLocalEmptyProfiles();
+    setLocalSelectedUserID();
+  }
+
+  return {
+    users: localProfiles,
+    nextAvailableUserID: localID,
+    selectedUserID: localSelectedUserID,
+  };
+};
