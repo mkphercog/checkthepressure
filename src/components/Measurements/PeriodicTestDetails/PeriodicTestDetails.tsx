@@ -3,7 +3,10 @@ import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
-import { setOmittedDailyTest } from "./../../../store/actions/profilesAction";
+import {
+  setOmittedDailyTest,
+  updateNumbersOfTestsTotalAndDone,
+} from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import {
   Wrapper,
@@ -13,6 +16,7 @@ import {
   SummaryBtn,
   PdfBtn,
 } from "./PeriodicTestDetails.css";
+import { PeriodicTestStates } from "./../../../common/constants";
 import { Legend } from "./../../../styles/mixins/Fieldset";
 import { useDispatch } from "react-redux";
 
@@ -23,32 +27,12 @@ export const PeriodicTestDetails: React.FC<Props> = ({
 }) => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [popup, setPopup] = useState<Object>({});
-  const dispach = useDispatch();
-  const { list, id: preidoicID } = test;
-
-  // change to separate files
-  let total = 0;
-  let totalWithNumbers = 0;
-
-  list.forEach((dailyTest) => {
-    if (!dailyTest.morning.omitted) total++;
-    if (!dailyTest.evening.omitted) total++;
-    if (
-      dailyTest.morning.SYS !== 0 &&
-      dailyTest.morning.DIA !== 0 &&
-      dailyTest.morning.PULSE !== 0 &&
-      !dailyTest.morning.omitted
-    )
-      totalWithNumbers++;
-    if (
-      dailyTest.evening.SYS !== 0 &&
-      dailyTest.evening.DIA !== 0 &&
-      dailyTest.evening.PULSE !== 0 &&
-      !dailyTest.evening.omitted
-    )
-      totalWithNumbers++;
-  });
-  // -----------------------
+  const dispatch = useDispatch();
+  const { list, id: preidoicID, state, totalNumberOfTests } = test;
+  const testIsDone =
+    state === PeriodicTestStates.DONE && totalNumberOfTests !== 0
+      ? true
+      : false;
 
   const renderList = list.map((item) => (
     <DailyTest
@@ -77,9 +61,10 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         timeOfDay: TimeOfDayStates,
         omitted: boolean
       ) => {
-        dispach(
+        dispatch(
           setOmittedDailyTest(userID, preidoicID, dailyID, timeOfDay, omitted)
         );
+        dispatch(updateNumbersOfTestsTotalAndDone(userID, preidoicID));
       }}
     />
   ));
@@ -94,10 +79,8 @@ export const PeriodicTestDetails: React.FC<Props> = ({
           <BackArrow onClick={() => backToList()}>
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
-          <SummaryBtn disabled={totalWithNumbers === total ? false : true}>
-            Podsumowanie
-          </SummaryBtn>
-          <PdfBtn disabled={totalWithNumbers === total ? false : true}>
+          <SummaryBtn disabled={!testIsDone}>Podsumowanie</SummaryBtn>
+          <PdfBtn disabled={!testIsDone}>
             <i className="fas fa-file-pdf"></i> Generuj pdf
           </PdfBtn>
         </ControlPanel>

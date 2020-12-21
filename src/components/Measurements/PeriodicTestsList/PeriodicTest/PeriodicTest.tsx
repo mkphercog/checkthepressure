@@ -22,7 +22,15 @@ export const PeriodicTest: React.FC<Props> = ({
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [popup, setPopup] = useState<Object>({});
   const dispatch = useDispatch();
-  const { id, start, end, days, state } = test;
+  const {
+    id,
+    start,
+    end,
+    days,
+    state,
+    totalNumberOfTests,
+    numberOfTestsDone,
+  } = test;
   return (
     <Wrapper>
       <Title>
@@ -35,11 +43,16 @@ export const PeriodicTest: React.FC<Props> = ({
       </Subtitle>
 
       <Info>
-        Status: <span>{state}</span>
+        Ilość dni: <span>{days}</span>
       </Info>
 
       <Info>
-        Ilość dni: <span>{days}</span>
+        Wykonane testy: <span>{numberOfTestsDone}</span>/
+        <span>{totalNumberOfTests}</span>
+      </Info>
+
+      <Info>
+        Status: <span>{state}</span>
       </Info>
 
       <Btns>

@@ -1,5 +1,7 @@
+import { IPeriodicPressureTests, IUserInterface } from "./interfaces";
+
 export enum PeriodicTestStates {
-  DONE = "Zakończony",
+  DONE = "Zakończono",
   IN_PROGRESS = "W realizacji",
 }
 
@@ -8,16 +10,18 @@ export enum TimeOfDayStates {
   EVENING = "Wieczór",
 }
 
-export const emptyPeriodicTest = {
+export const emptyPeriodicTest: IPeriodicPressureTests = {
   id: 0,
   start: "",
   end: "",
   days: 0,
   state: "",
+  totalNumberOfTests: 0,
+  numberOfTestsDone: 0,
   list: [],
 };
 
-export const anonymous = {
+export const anonymous: IUserInterface = {
   id: -1,
   name: "Anonim",
   age: 0,

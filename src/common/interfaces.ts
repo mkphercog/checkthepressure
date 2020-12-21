@@ -38,6 +38,8 @@ export interface IPeriodicPressureTests {
   end: string;
   days: number;
   state: string;
+  totalNumberOfTests: number;
+  numberOfTestsDone: number;
   list: IDailyTest[];
 }
 

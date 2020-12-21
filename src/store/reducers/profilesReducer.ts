@@ -6,11 +6,13 @@ import {
   DELETE_PERIODIC_PRESSURE_TEST,
   EDIT_DAILY_VALUES,
   SET_OMITTED_DAILY_TEST,
+  UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
 } from "./../types/";
 import {
   IUserInterface,
   IPeriodicPressureTests,
 } from "./../../common/interfaces";
+import { PeriodicTestStates } from "./../../common/constants";
 import {
   updateLocalStorageProfiles,
   checkLocalProfiles,
@@ -163,6 +165,54 @@ export const profilesReducer = (state = initialState, action: Action) => {
                   action.timeOfDay === daily.evening.timeOfDay
                 ) {
                   daily.evening.omitted = action.omitted;
+                }
+                return daily;
+              });
+            }
+            return periodicTest;
+          });
+        }
+        return user;
+      });
+      updateLocalStorageProfiles(updatedProfiles);
+      return { ...state, users: updatedProfiles };
+    }
+
+    case UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE: {
+      let total = 0;
+      let done = 0;
+      const updatedProfiles = state.users.map((user) => {
+        if (action.userID === user.id) {
+          user.periodicPressureTests.map((periodicTest) => {
+            if (action.preidoicID === periodicTest.id) {
+              periodicTest.list.forEach((daily) => {
+                if (!daily.morning.omitted) total++;
+                if (!daily.evening.omitted) total++;
+                if (
+                  daily.morning.SYS !== 0 &&
+                  daily.morning.DIA !== 0 &&
+                  daily.morning.PULSE !== 0 &&
+                  !daily.morning.omitted
+                )
+                  done++;
+                if (
+                  daily.evening.SYS !== 0 &&
+                  daily.evening.DIA !== 0 &&
+                  daily.evening.PULSE !== 0 &&
+                  !daily.evening.omitted
+                )
+                  done++;
+
+                periodicTest.totalNumberOfTests = total;
+                periodicTest.numberOfTestsDone = done;
+
+                if (
+                  periodicTest.totalNumberOfTests ===
+                  periodicTest.numberOfTestsDone
+                ) {
+                  periodicTest.state = PeriodicTestStates.DONE;
+                } else {
+                  periodicTest.state = PeriodicTestStates.IN_PROGRESS;
                 }
                 return daily;
               });

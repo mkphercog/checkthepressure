@@ -37,6 +37,8 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
       end: getDateArray[getDateArray.length - 1],
       days: days,
       state: PeriodicTestStates.IN_PROGRESS,
+      totalNumberOfTests: days * 2,
+      numberOfTestsDone: 0,
       list: getDailyTestList,
     };
     dispatch(addPeriodicPressureTest(userID, newPeriodicTest));
