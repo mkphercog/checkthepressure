@@ -5,7 +5,7 @@ import { COLORS } from "../../../../styles/variables";
 import { IDailyTest, IGlobalState } from "./../../../../common/interfaces";
 import {
   Wrapper,
-  Fieldset,
+  FieldsetStyled,
   MorningEvening,
   SysDiaPuls,
   SysAndDiaColored,
@@ -54,7 +54,7 @@ export const DailyTest: React.FC<Props> = ({
         Dzień {id} - (<span>{date}</span>)
       </h4>
 
-      <Fieldset
+      <FieldsetStyled
         sys={morning.SYS}
         dia={morning.DIA}
         pulse={morning.PULSE}
@@ -112,9 +112,9 @@ export const DailyTest: React.FC<Props> = ({
             {morning.omitted ? "Przywróć" : "Pomiń"}
           </Btn>
         </Btns>
-      </Fieldset>
+      </FieldsetStyled>
 
-      <Fieldset
+      <FieldsetStyled
         sys={evening.SYS}
         dia={evening.DIA}
         pulse={evening.PULSE}
@@ -172,7 +172,7 @@ export const DailyTest: React.FC<Props> = ({
             {evening.omitted ? "Przywróć" : "Pomiń"}
           </Btn>
         </Btns>
-      </Fieldset>
+      </FieldsetStyled>
     </Wrapper>
   );
 };

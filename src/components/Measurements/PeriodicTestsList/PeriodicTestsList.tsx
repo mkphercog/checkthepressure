@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { AddPeriodicTest } from "../../Popups/AddPeriodicTest/AddPeriodicTest";
 import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
-import { Wrapper, AddTestBtn } from "./PeriodicTestsList.css";
+import { Wrapper, AddTestBtn, FieldsetStyled } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
-import {
-  FieldsetStyled,
-  LegendStyled,
-} from "./../../../styles/mixins/Fieldset";
+import { Legend } from "./../../../styles/mixins/Fieldset";
 
 export const PeriodicTestsList: React.FC<Props> = ({
   userID,
@@ -30,13 +27,13 @@ export const PeriodicTestsList: React.FC<Props> = ({
   return (
     <Wrapper>
       <FieldsetStyled>
-        <LegendStyled>
+        <Legend>
           {userID === -1
             ? "Brak użytkownika"
             : renderPeriodicTests.length
             ? "Twoje pomiary okresowe"
             : "Dodaj swój pierwszy pomiar"}
-        </LegendStyled>
+        </Legend>
         {renderPeriodicTests.length ? <ul>{renderPeriodicTests}</ul> : null}
         <AddTestBtn
           disabled={userID === -1}

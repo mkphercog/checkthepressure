@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { GrayButton } from "./../../../../styles/mixins/Buttons";
-import {
-  FieldsetStyled,
-  LegendStyled,
-} from "./../../../../styles/mixins/Fieldset";
+import { Fieldset, Legend } from "./../../../../styles/mixins/Fieldset";
 import { LiElement } from "./../../../../styles/mixins/LiElement";
 import { COLORS } from "../../../../styles/variables";
 
@@ -30,7 +27,7 @@ export const Wrapper = styled(LiElement)`
   }
 `;
 
-export const Fieldset = styled(FieldsetStyled)`
+export const FieldsetStyled = styled(Fieldset)`
   margin-bottom: 10px;
   border-color: ${({ sys, dia, pulse }: Props) =>
     sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
@@ -38,7 +35,7 @@ export const Fieldset = styled(FieldsetStyled)`
     omitted ? COLORS.gray : ""} !important;
 `;
 
-export const MorningEvening = styled(LegendStyled)`
+export const MorningEvening = styled(Legend)`
   p {
     color: ${({ sys, dia, pulse }: Props) =>
       sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};

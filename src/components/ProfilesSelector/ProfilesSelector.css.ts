@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { FieldsetStyled } from "../../styles/mixins/Fieldset";
+import { Fieldset } from "../../styles/mixins/Fieldset";
 import { COLORS, TRANSITION_TIME } from "../../styles/variables";
 
-export const ProfilesSelectorStyled = styled(FieldsetStyled)`
+export const ProfilesSelectorStyled = styled(Fieldset)`
   width: 90%;
   height: 70%;
 

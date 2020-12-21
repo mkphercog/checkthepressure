@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Fieldset } from "./../../../styles/mixins/Fieldset";
 import { AddButton } from "./../../../styles/mixins/Buttons";
 
 export const Wrapper = styled.div`
@@ -18,6 +19,10 @@ export const Wrapper = styled.div`
   @media (min-width: 1024px) {
     width: 60%;
   }
+`;
+
+export const FieldsetStyled = styled(Fieldset)`
+  padding-bottom: 15px;
 `;
 
 export const AddTestBtn = styled(AddButton)`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLORS, CORNER_RADIUS } from "../variables";
 
-export const FieldsetStyled = styled.fieldset`
+export const Fieldset = styled.fieldset`
   position: relative;
   width: 100%;
   height: 100%;
@@ -22,7 +22,7 @@ export const FieldsetStyled = styled.fieldset`
   }
 `;
 
-export const LegendStyled = styled.legend`
+export const Legend = styled.legend`
   padding: 0 5px;
   font-size: 16px;
   text-align: center;

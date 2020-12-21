@@ -14,7 +14,7 @@ import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { ProfilesSelectorStyled, AddUserIcon } from "./ProfilesSelector.css";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
-import { LegendStyled } from "./../../styles/mixins/Fieldset";
+import { Legend } from "./../../styles/mixins/Fieldset";
 
 export const ProfilesSelector: React.FC = () => {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
@@ -58,9 +58,7 @@ export const ProfilesSelector: React.FC = () => {
     <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
       <ProfilesSelectorStyled>
-        <LegendStyled>
-          {renderUsers.length ? "Profile" : "Brak użytkowników"}
-        </LegendStyled>
+        <Legend>{renderUsers.length ? "Profile" : "Brak użytkowników"}</Legend>
         <ul>{renderUsers.length ? renderUsers : []}</ul>
         <AddUserIcon
           className="fas fa-user-plus"
