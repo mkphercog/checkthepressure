@@ -8,7 +8,7 @@ import {
 import { Wrapper, FormStyled, AddUserBtn } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
-import { IGlobalState, IUserInterface } from "./../../../common/interfaces";
+import { IGlobalState, IUser } from "./../../../common/interfaces";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import { addProfile } from "./../../../store/actions/profilesAction";
 import { findUserBloodPressureBasedOnAge } from "./../../../common/bloodPressureTable";
@@ -46,7 +46,7 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
         findUserBloodPressureBasedOnAge(age) ||
         anonymous.userBloodPressureBasedOnAge;
 
-      const newProfile: IUserInterface = {
+      const newProfile: IUser = {
         id: nextAvailableUserID,
         name: name,
         age: age,

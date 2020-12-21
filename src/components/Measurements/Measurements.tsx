@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { PeriodicTestsList } from "./PeriodicTestsList/PeriodicTestsList";
 import { PeriodicTestDetails } from "./PeriodicTestDetails/PeriodicTestDetails";
-import {
-  IUserInterface,
-  IPeriodicPressureTests,
-} from "./../../common/interfaces";
+import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { emptyPeriodicTest } from "./../../common/constants";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
@@ -48,5 +45,5 @@ export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
 };
 
 interface MeasurementsProps {
-  selectedUser: IUserInterface;
+  selectedUser: IUser;
 }

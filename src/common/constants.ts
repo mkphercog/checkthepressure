@@ -1,4 +1,4 @@
-import { IPeriodicPressureTests, IUserInterface } from "./interfaces";
+import { IPeriodicPressureTests, IUser } from "./interfaces";
 
 export enum PeriodicTestStates {
   DONE = "Zakończono",
@@ -21,7 +21,7 @@ export const emptyPeriodicTest: IPeriodicPressureTests = {
   list: [],
 };
 
-export const anonymous: IUserInterface = {
+export const anonymous: IUser = {
   id: -1,
   name: "Anonim",
   age: 0,

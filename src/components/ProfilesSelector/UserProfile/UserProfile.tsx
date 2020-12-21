@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { IUserInterface } from "./../../../common/interfaces";
+import { IUser } from "./../../../common/interfaces";
 import { GrayButton } from "./../../../styles/mixins/Buttons";
 import { Wrapper, UserData, Options } from "./UserProfile.css";
 
@@ -33,7 +33,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   );
 };
 
-interface UserProfileProps extends IUserInterface {
+interface UserProfileProps extends IUser {
   deleteProfile: Function;
   selectUserID: Function;
 }

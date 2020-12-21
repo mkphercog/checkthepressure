@@ -8,10 +8,7 @@ import {
   SET_OMITTED_DAILY_TEST,
   UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
 } from "./../types/";
-import {
-  IUserInterface,
-  IPeriodicPressureTests,
-} from "./../../common/interfaces";
+import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { PeriodicTestStates } from "./../../common/constants";
 import {
   updateLocalStorageProfiles,
@@ -25,7 +22,7 @@ import {
 
 const isLocalProfiles = checkLocalProfiles();
 
-let localProfiles: IUserInterface[] = [];
+let localProfiles: IUser[] = [];
 let localID = 0;
 let localSelectedUserID = 0;
 
@@ -233,7 +230,7 @@ export const profilesReducer = (state = initialState, action: Action) => {
 
 interface Action {
   type: string;
-  newUser: IUserInterface;
+  newUser: IUser;
   idToDelete: number;
   selectedUserID: number;
   userID: number;

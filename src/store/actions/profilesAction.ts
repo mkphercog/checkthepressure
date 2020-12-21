@@ -8,13 +8,10 @@ import {
   SET_OMITTED_DAILY_TEST,
   UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
 } from "./../types/";
-import {
-  IUserInterface,
-  IPeriodicPressureTests,
-} from "./../../common/interfaces";
+import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { TimeOfDayStates } from "../../common/constants";
 
-export const addProfile = (newProfile: IUserInterface) => ({
+export const addProfile = (newProfile: IUser) => ({
   type: ADD_PROFILE,
   newUser: newProfile,
 });

@@ -3,12 +3,12 @@ import { TimeOfDayStates } from "./constants";
 export interface IGlobalState {
   profiles: {
     nextAvailableUserID: number;
-    users: IUserInterface[];
+    users: IUser[];
     selectedUserID: number;
   };
 }
 
-export interface IUserInterface {
+export interface IUser {
   id: number;
   name: string;
   age: number;
