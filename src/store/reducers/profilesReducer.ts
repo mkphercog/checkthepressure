@@ -6,49 +6,58 @@ import {
   DELETE_PERIODIC_PRESSURE_TEST,
   EDIT_DAILY_VALUES,
   SET_OMITTED_DAILY_TEST,
-  UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
+  UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
 } from "./../types/";
 import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
-import { PeriodicTestStates } from "./../../common/constants";
+import { TimeOfDayStates } from "./../../common/constants";
 import {
   updateLocalStorageProfiles,
   updateLocalSelectedUserID,
   configInitialStateWithLocalStorage,
 } from "./../../common/localStorage";
+import {
+  addPeriodicPressureTest,
+  deletePeriodicPressureTest,
+  editDailyTestValues,
+  setOmittedDailyTest,
+  updateNumberOfTotalAndDoneTestsAndState,
+} from "./profilesReducerFunctions";
 
 const initialState = configInitialStateWithLocalStorage();
 
-export const profilesReducer = (state = initialState, action: Action) => {
+export const profilesReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case ADD_PROFILE: {
-      const newProfiles = [...state.users, action.newUser];
-      updateLocalStorageProfiles(newProfiles);
+      const updatedProfiles = [...state.users, action.newUser];
+      updateLocalStorageProfiles(updatedProfiles);
       updateLocalSelectedUserID(action.newUser.id);
       return {
         ...state,
-        nextAvailableUserID: state.nextAvailableUserID + 1,
-        users: newProfiles,
+        users: updatedProfiles,
         selectedUserID: action.newUser.id,
+        nextAvailableUserID: state.nextAvailableUserID + 1,
       };
     }
 
     case DELETE_PROFILE: {
-      const newProfiles = state.users.filter(
+      const updatedProfiles = state.users.filter(
         (user) => user.id !== action.idToDelete
       );
-      updateLocalStorageProfiles(newProfiles);
       if (action.idToDelete === state.selectedUserID) {
-        const availableID = newProfiles.length ? newProfiles[0]["id"] : 0;
+        const availableID = updatedProfiles.length
+          ? updatedProfiles[0]["id"]
+          : 0;
         updateLocalSelectedUserID(availableID);
         return {
           ...state,
-          users: newProfiles,
+          users: updatedProfiles,
           selectedUserID: availableID,
         };
       }
+      updateLocalStorageProfiles(updatedProfiles);
       return {
         ...state,
-        users: newProfiles,
+        users: updatedProfiles,
       };
     }
 
@@ -58,144 +67,34 @@ export const profilesReducer = (state = initialState, action: Action) => {
     }
 
     case ADD_PERIODIC_PRESSURE_TEST: {
-      const updatedProfiles = state.users.map((user) => {
-        if (action.userID === user.id) {
-          user.periodicPressureTests = [
-            ...user.periodicPressureTests,
-            action.newPeriodicTest,
-          ];
-          user.nextAvailablePeriodicTestID += 1;
-        }
-        return user;
-      });
+      const updatedProfiles = addPeriodicPressureTest(state.users, action);
       updateLocalStorageProfiles(updatedProfiles);
       return { ...state, users: updatedProfiles };
     }
 
     case DELETE_PERIODIC_PRESSURE_TEST: {
-      const updatedProfiles = state.users.map((user) => {
-        if (action.userID === user.id) {
-          user.periodicPressureTests = user.periodicPressureTests.filter(
-            (test) => action.idToDelete !== test.id
-          );
-          user.nextAvailablePeriodicTestID = user.periodicPressureTests.length
-            ? user.periodicPressureTests[user.periodicPressureTests.length - 1][
-                "id"
-              ] + 1
-            : 1;
-        }
-        return user;
-      });
+      const updatedProfiles = deletePeriodicPressureTest(state.users, action);
       updateLocalStorageProfiles(updatedProfiles);
       return { ...state, users: updatedProfiles };
     }
 
     case EDIT_DAILY_VALUES: {
-      const updatedProfiles = state.users.map((user) => {
-        if (action.userID === user.id) {
-          user.periodicPressureTests.map((periodicTest) => {
-            if (action.preidoicID === periodicTest.id) {
-              periodicTest.list.map((daily) => {
-                if (
-                  action.dailyID === daily.id &&
-                  action.timeOfDay === daily.morning.timeOfDay
-                ) {
-                  daily.morning.SYS = action.sys;
-                  daily.morning.DIA = action.dia;
-                  daily.morning.PULSE = action.pulse;
-                } else if (
-                  action.dailyID === daily.id &&
-                  action.timeOfDay === daily.evening.timeOfDay
-                ) {
-                  daily.evening.SYS = action.sys;
-                  daily.evening.DIA = action.dia;
-                  daily.evening.PULSE = action.pulse;
-                }
-                return daily;
-              });
-            }
-            return periodicTest;
-          });
-        }
-        return user;
-      });
+      const updatedProfiles = editDailyTestValues(state.users, action);
       updateLocalStorageProfiles(updatedProfiles);
       return { ...state, users: updatedProfiles };
     }
 
     case SET_OMITTED_DAILY_TEST: {
-      const updatedProfiles = state.users.map((user) => {
-        if (action.userID === user.id) {
-          user.periodicPressureTests.map((periodicTest) => {
-            if (action.preidoicID === periodicTest.id) {
-              periodicTest.list.map((daily) => {
-                if (
-                  action.dailyID === daily.id &&
-                  action.timeOfDay === daily.morning.timeOfDay
-                ) {
-                  daily.morning.omitted = action.omitted;
-                } else if (
-                  action.dailyID === daily.id &&
-                  action.timeOfDay === daily.evening.timeOfDay
-                ) {
-                  daily.evening.omitted = action.omitted;
-                }
-                return daily;
-              });
-            }
-            return periodicTest;
-          });
-        }
-        return user;
-      });
+      const updatedProfiles = setOmittedDailyTest(state.users, action);
       updateLocalStorageProfiles(updatedProfiles);
       return { ...state, users: updatedProfiles };
     }
 
-    case UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE: {
-      let total = 0;
-      let done = 0;
-      const updatedProfiles = state.users.map((user) => {
-        if (action.userID === user.id) {
-          user.periodicPressureTests.map((periodicTest) => {
-            if (action.preidoicID === periodicTest.id) {
-              periodicTest.list.forEach((daily) => {
-                if (!daily.morning.omitted) total++;
-                if (!daily.evening.omitted) total++;
-                if (
-                  daily.morning.SYS !== 0 &&
-                  daily.morning.DIA !== 0 &&
-                  daily.morning.PULSE !== 0 &&
-                  !daily.morning.omitted
-                )
-                  done++;
-                if (
-                  daily.evening.SYS !== 0 &&
-                  daily.evening.DIA !== 0 &&
-                  daily.evening.PULSE !== 0 &&
-                  !daily.evening.omitted
-                )
-                  done++;
-
-                periodicTest.totalNumberOfTests = total;
-                periodicTest.numberOfTestsDone = done;
-
-                if (
-                  periodicTest.totalNumberOfTests ===
-                  periodicTest.numberOfTestsDone
-                ) {
-                  periodicTest.state = PeriodicTestStates.DONE;
-                } else {
-                  periodicTest.state = PeriodicTestStates.IN_PROGRESS;
-                }
-                return daily;
-              });
-            }
-            return periodicTest;
-          });
-        }
-        return user;
-      });
+    case UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE: {
+      const updatedProfiles = updateNumberOfTotalAndDoneTestsAndState(
+        state.users,
+        action
+      );
       updateLocalStorageProfiles(updatedProfiles);
       return { ...state, users: updatedProfiles };
     }
@@ -205,16 +104,16 @@ export const profilesReducer = (state = initialState, action: Action) => {
   }
 };
 
-interface Action {
+export interface IAction {
   type: string;
   newUser: IUser;
-  idToDelete: number;
-  selectedUserID: number;
   userID: number;
-  newPeriodicTest: IPeriodicPressureTests;
+  selectedUserID: number;
   preidoicID: number;
   dailyID: number;
-  timeOfDay: string;
+  idToDelete: number;
+  newPeriodicTest: IPeriodicPressureTests;
+  timeOfDay: TimeOfDayStates;
   sys: number;
   dia: number;
   pulse: number;

@@ -6,7 +6,7 @@ import {
   DELETE_PERIODIC_PRESSURE_TEST,
   EDIT_DAILY_VALUES,
   SET_OMITTED_DAILY_TEST,
-  UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
+  UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
 } from "./../types/";
 import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { TimeOfDayStates } from "../../common/constants";
@@ -74,11 +74,11 @@ export const setOmittedDailyTest = (
   omitted,
 });
 
-export const updateNumbersOfTestsTotalAndDone = (
+export const updateNumberOfTotalAndDoneTestsAndState = (
   userID: number,
   preidoicID: number
 ) => ({
-  type: UPDATE_NUMBER_OF_TESTS_TOTAL_AND_DONE_AND_STATE,
+  type: UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
   userID,
   preidoicID,
 });

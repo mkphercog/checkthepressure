@@ -5,7 +5,7 @@ import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
 import { DailyTest } from "./DailyTest/DailyTest";
 import {
   setOmittedDailyTest,
-  updateNumbersOfTestsTotalAndDone,
+  updateNumberOfTotalAndDoneTestsAndState,
 } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import {
@@ -64,7 +64,7 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         dispatch(
           setOmittedDailyTest(userID, preidoicID, dailyID, timeOfDay, omitted)
         );
-        dispatch(updateNumbersOfTestsTotalAndDone(userID, preidoicID));
+        dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, preidoicID));
       }}
     />
   ));

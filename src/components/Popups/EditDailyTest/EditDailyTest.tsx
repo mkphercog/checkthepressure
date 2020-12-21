@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import {
   editDailyValues,
-  updateNumbersOfTestsTotalAndDone,
+  updateNumberOfTotalAndDoneTestsAndState,
 } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
@@ -75,7 +75,7 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
           Number(pulse)
         )
       );
-      dispatch(updateNumbersOfTestsTotalAndDone(userID, preidoicID));
+      dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, preidoicID));
       close(false);
     }
   };
