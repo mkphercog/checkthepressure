@@ -43,6 +43,7 @@ export const profilesReducer = (state = initialState, action: IAction) => {
       const updatedProfiles = state.users.filter(
         (user) => user.id !== action.idToDelete
       );
+      updateLocalStorageProfiles(updatedProfiles);
       if (action.idToDelete === state.selectedUserID) {
         const availableID = updatedProfiles.length
           ? updatedProfiles[0]["id"]
@@ -54,7 +55,6 @@ export const profilesReducer = (state = initialState, action: IAction) => {
           selectedUserID: availableID,
         };
       }
-      updateLocalStorageProfiles(updatedProfiles);
       return {
         ...state,
         users: updatedProfiles,
