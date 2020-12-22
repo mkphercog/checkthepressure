@@ -11,6 +11,7 @@ export const COLORS = {
   grayWithOpacity: "rgba(150, 150, 150, 0.45)",
   darkGray: "rgb(80,80,80)",
   black: "rgb(0,0,0)",
+  transparent: "transparent",
 };
 
 export const CORNER_RADIUS = "15px";

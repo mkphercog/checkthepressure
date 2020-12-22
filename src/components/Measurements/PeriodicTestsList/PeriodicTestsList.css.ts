@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Fieldset } from "./../../../styles/mixins/Fieldset";
-import { AddButton } from "./../../../styles/mixins/Buttons";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -23,25 +22,4 @@ export const Wrapper = styled.div`
 
 export const FieldsetStyled = styled(Fieldset)`
   padding-bottom: 15px;
-`;
-
-export const AddTestBtn = styled(AddButton)`
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-
-  @media (min-width: 411px) and (orientation: landscape) {
-    bottom: 10px;
-    right: 10px;
-  }
-
-  @media (min-width: 768px) {
-    bottom: 10px;
-    right: 10px;
-  }
-
-  @media (min-width: 1024px) {
-    bottom: 10px;
-    right: 20px;
-  }
 `;

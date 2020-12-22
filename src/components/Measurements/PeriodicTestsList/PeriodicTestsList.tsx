@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { AddPeriodicTest } from "../../Popups/AddPeriodicTest/AddPeriodicTest";
 import { IPeriodicPressureTests } from "../../../common/interfaces";
 import { Portal, PortalTarget } from "../../../common/Portal/Portal";
-import { Wrapper, AddTestBtn, FieldsetStyled } from "./PeriodicTestsList.css";
+import { Wrapper, FieldsetStyled } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
 import { Legend } from "./../../../styles/mixins/Fieldset";
+import { SharedAddButton } from "../../SharedAddButton/SharedAddButton";
 
 export const PeriodicTestsList: React.FC<IProps> = ({
   userID,
@@ -24,6 +25,17 @@ export const PeriodicTestsList: React.FC<IProps> = ({
     />
   ));
 
+  const handleAddPeriodicTest = () => {
+    setPopup(
+      <AddPeriodicTest
+        userID={userID}
+        nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
+        setIsOpenAddPeriodicTestPopup={setIsOpenPortal}
+      />
+    );
+    setIsOpenPortal(true);
+  };
+
   return (
     <Wrapper>
       <FieldsetStyled>
@@ -35,21 +47,11 @@ export const PeriodicTestsList: React.FC<IProps> = ({
             : "Dodaj swój pierwszy pomiar"}
         </Legend>
         {renderPeriodicTests.length ? <ul>{renderPeriodicTests}</ul> : null}
-        <AddTestBtn
+        <SharedAddButton
+          addFunction={() => handleAddPeriodicTest()}
+          hoverDescription={"Dodaj nowy pomiar"}
           disabled={userID === -1}
-          onClick={() => {
-            setPopup(
-              <AddPeriodicTest
-                userID={userID}
-                nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
-                setIsOpenAddPeriodicTestPopup={setIsOpenPortal}
-              />
-            );
-            setIsOpenPortal(true);
-          }}
-        >
-          <i className="fas fa-plus"></i>
-        </AddTestBtn>
+        />
         {isOpenPortal ? (
           <Portal target={PortalTarget.MODAL}>{popup}</Portal>
         ) : null}

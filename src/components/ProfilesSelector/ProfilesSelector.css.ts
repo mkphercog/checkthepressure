@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Fieldset } from "../../styles/mixins/Fieldset";
-import { COLORS, TRANSITION_TIME } from "../../styles/variables";
 
 export const ProfilesSelectorStyled = styled(Fieldset)`
   width: 90%;
@@ -55,22 +54,5 @@ export const UsersWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: 85%;
-  }
-`;
-
-export const AddUserIcon = styled.i`
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  font-size: 35px;
-  color: ${COLORS.green};
-
-  @media (min-width: 1024px) {
-    cursor: pointer;
-    transition: ${TRANSITION_TIME};
-
-    :hover {
-      transform: scale(1.2);
-    }
   }
 `;

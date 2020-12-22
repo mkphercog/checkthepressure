@@ -12,9 +12,10 @@ import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 
 import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
-import { ProfilesSelectorStyled, AddUserIcon } from "./ProfilesSelector.css";
+import { ProfilesSelectorStyled } from "./ProfilesSelector.css";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 import { Legend } from "./../../styles/mixins/Fieldset";
+import { SharedAddButton } from "../SharedAddButton/SharedAddButton";
 
 export const ProfilesSelector: React.FC = () => {
   const [isOpenPortal, setIsOpenPortal] = useState(false);
@@ -54,19 +55,21 @@ export const ProfilesSelector: React.FC = () => {
     )
   );
 
+  const handleAddNewProfile = () => {
+    setPopup(<AddUser setIsOpenAddUserPopup={setIsOpenPortal} />);
+    setIsOpenPortal(true);
+  };
+
   return (
     <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
       <ProfilesSelectorStyled>
         <Legend>{renderUsers.length ? "Profile" : "Brak użytkowników"}</Legend>
         <ul>{renderUsers.length ? renderUsers : []}</ul>
-        <AddUserIcon
-          className="fas fa-user-plus"
-          onClick={() => {
-            setPopup(<AddUser setIsOpenAddUserPopup={setIsOpenPortal} />);
-            setIsOpenPortal(true);
-          }}
-        ></AddUserIcon>
+        <SharedAddButton
+          addFunction={() => handleAddNewProfile()}
+          hoverDescription={"Dodaj nowy profil"}
+        />
       </ProfilesSelectorStyled>
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>

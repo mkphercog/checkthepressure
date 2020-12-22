@@ -5,7 +5,7 @@ export const ExitButtonStyled = styled.button`
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: transparent;
+  background-color: ${COLORS.transparent};
   border: none;
   outline: none;
 
