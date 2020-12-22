@@ -20,6 +20,7 @@ import {
 import { PeriodicTestStates } from "./../../../common/constants";
 import { Legend } from "./../../../styles/mixins/Fieldset";
 import { useDispatch } from "react-redux";
+import { AverageResults } from "../../Popups/AverageResults/AverageResults";
 
 export const PeriodicTestDetails: React.FC<Props> = ({
   test,
@@ -81,9 +82,17 @@ export const PeriodicTestDetails: React.FC<Props> = ({
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
           <SummaryBtn
-            onClick={() =>
-              dispatch(calculateAverageResults(userID, periodicID))
-            }
+            onClick={() => {
+              dispatch(calculateAverageResults(userID, periodicID));
+              setPopup(
+                <AverageResults
+                  userID={userID}
+                  periodicTest={test}
+                  close={setIsPortalOpen}
+                />
+              );
+              setIsPortalOpen(true);
+            }}
             disabled={!testIsDone}
           >
             Podsumowanie
