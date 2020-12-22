@@ -16,7 +16,7 @@ import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 
 export const EditDailyTest: React.FC<AddUserProps> = ({
   userID,
-  preidoicID,
+  periodicID,
   dailyID,
   timeOfDay,
   close,
@@ -67,7 +67,7 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
       dispatch(
         editDailyValues(
           userID,
-          preidoicID,
+          periodicID,
           dailyID,
           timeOfDay,
           Number(sys),
@@ -75,7 +75,7 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
           Number(pulse)
         )
       );
-      dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, preidoicID));
+      dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, periodicID));
       close(false);
     }
   };
@@ -135,7 +135,7 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
 
 interface AddUserProps {
   userID: number;
-  preidoicID: number;
+  periodicID: number;
   dailyID: number;
   timeOfDay: TimeOfDayStates;
   close: Function;

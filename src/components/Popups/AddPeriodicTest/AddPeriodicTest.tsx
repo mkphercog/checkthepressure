@@ -39,6 +39,23 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
       state: PeriodicTestStates.IN_PROGRESS,
       totalNumberOfTests: days * 2,
       numberOfTestsDone: 0,
+      averageResults: {
+        morning: {
+          SYS: 0,
+          DIA: 0,
+          PULSE: 0,
+        },
+        evening: {
+          SYS: 0,
+          DIA: 0,
+          PULSE: 0,
+        },
+        total: {
+          SYS: 0,
+          DIA: 0,
+          PULSE: 0,
+        },
+      },
       list: getDailyTestList,
     };
     dispatch(addPeriodicPressureTest(userID, newPeriodicTest));

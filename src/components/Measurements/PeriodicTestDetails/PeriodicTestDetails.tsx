@@ -6,6 +6,7 @@ import { DailyTest } from "./DailyTest/DailyTest";
 import {
   setOmittedDailyTest,
   updateNumberOfTotalAndDoneTestsAndState,
+  calculateAverageResults,
 } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import {
@@ -28,7 +29,7 @@ export const PeriodicTestDetails: React.FC<Props> = ({
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [popup, setPopup] = useState<Object>({});
   const dispatch = useDispatch();
-  const { list, id: preidoicID, state, totalNumberOfTests } = test;
+  const { list, id: periodicID, state, totalNumberOfTests } = test;
   const testIsDone =
     state === PeriodicTestStates.DONE && totalNumberOfTests !== 0
       ? true
@@ -47,7 +48,7 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         setPopup(
           <EditDailyTest
             userID={userID}
-            preidoicID={preidoicID}
+            periodicID={periodicID}
             dailyID={dailyID}
             timeOfDay={timeOfDay}
             close={setIsPortalOpen}
@@ -62,9 +63,9 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         omitted: boolean
       ) => {
         dispatch(
-          setOmittedDailyTest(userID, preidoicID, dailyID, timeOfDay, omitted)
+          setOmittedDailyTest(userID, periodicID, dailyID, timeOfDay, omitted)
         );
-        dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, preidoicID));
+        dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, periodicID));
       }}
     />
   ));
@@ -73,13 +74,20 @@ export const PeriodicTestDetails: React.FC<Props> = ({
     <Wrapper>
       <FieldsetStyled>
         <Legend>
-          Pomiar okresowy <span>#{preidoicID}</span>
+          Pomiar okresowy <span>#{periodicID}</span>
         </Legend>
         <ControlPanel>
           <BackArrow onClick={() => backToList()}>
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
-          <SummaryBtn disabled={!testIsDone}>Podsumowanie</SummaryBtn>
+          <SummaryBtn
+            onClick={() =>
+              dispatch(calculateAverageResults(userID, periodicID))
+            }
+            disabled={!testIsDone}
+          >
+            Podsumowanie
+          </SummaryBtn>
           <PdfBtn disabled={!testIsDone}>
             <i className="fas fa-file-pdf"></i> Generuj pdf
           </PdfBtn>

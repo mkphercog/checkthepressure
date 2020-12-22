@@ -18,6 +18,23 @@ export const emptyPeriodicTest: IPeriodicPressureTests = {
   state: "",
   totalNumberOfTests: 0,
   numberOfTestsDone: 0,
+  averageResults: {
+    morning: {
+      SYS: 0,
+      DIA: 0,
+      PULSE: 0,
+    },
+    evening: {
+      SYS: 0,
+      DIA: 0,
+      PULSE: 0,
+    },
+    total: {
+      SYS: 0,
+      DIA: 0,
+      PULSE: 0,
+    },
+  },
   list: [],
 };
 

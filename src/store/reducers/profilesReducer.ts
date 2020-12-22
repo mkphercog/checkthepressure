@@ -7,6 +7,7 @@ import {
   EDIT_DAILY_VALUES,
   SET_OMITTED_DAILY_TEST,
   UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
+  CALCULATE_AVERAGE_RESULTS,
 } from "./../types/";
 import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { TimeOfDayStates } from "./../../common/constants";
@@ -21,6 +22,7 @@ import {
   editDailyTestValues,
   setOmittedDailyTest,
   updateNumberOfTotalAndDoneTestsAndState,
+  calculateAverageResults,
 } from "./profilesReducerFunctions";
 
 const initialState = configInitialStateWithLocalStorage();
@@ -99,6 +101,12 @@ export const profilesReducer = (state = initialState, action: IAction) => {
       return { ...state, users: updatedProfiles };
     }
 
+    case CALCULATE_AVERAGE_RESULTS: {
+      const updatedProfiles = calculateAverageResults(state.users, action);
+      updateLocalStorageProfiles(updatedProfiles);
+      return { ...state, users: updatedProfiles };
+    }
+
     default:
       return state;
   }
@@ -109,7 +117,7 @@ export interface IAction {
   newUser: IUser;
   userID: number;
   selectedUserID: number;
-  preidoicID: number;
+  periodicID: number;
   dailyID: number;
   idToDelete: number;
   newPeriodicTest: IPeriodicPressureTests;

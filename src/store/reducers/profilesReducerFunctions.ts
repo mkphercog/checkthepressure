@@ -40,11 +40,11 @@ export const deletePeriodicPressureTest = (
 };
 
 export const editDailyTestValues = (usersList: IUser[], action: IAction) => {
-  const { userID, preidoicID, dailyID, timeOfDay, sys, dia, pulse } = action;
+  const { userID, periodicID, dailyID, timeOfDay, sys, dia, pulse } = action;
   return usersList.map((user) => {
     if (user.id === userID) {
       user.periodicPressureTests.map((periodicTest) => {
-        if (periodicTest.id === preidoicID) {
+        if (periodicTest.id === periodicID) {
           periodicTest.list.map((daily) => {
             if (daily.id === dailyID && daily.morning.timeOfDay === timeOfDay) {
               daily.morning.SYS = sys;
@@ -69,12 +69,12 @@ export const editDailyTestValues = (usersList: IUser[], action: IAction) => {
 };
 
 export const setOmittedDailyTest = (usersList: IUser[], action: IAction) => {
-  const { userID, preidoicID, dailyID, timeOfDay, omitted } = action;
+  const { userID, periodicID, dailyID, timeOfDay, omitted } = action;
 
   return usersList.map((user) => {
     if (user.id === userID) {
       user.periodicPressureTests.map((periodicTest) => {
-        if (periodicTest.id === preidoicID) {
+        if (periodicTest.id === periodicID) {
           periodicTest.list.map((daily) => {
             if (daily.id === dailyID && daily.morning.timeOfDay === timeOfDay) {
               daily.morning.omitted = omitted;
@@ -98,14 +98,14 @@ export const updateNumberOfTotalAndDoneTestsAndState = (
   usersList: IUser[],
   action: IAction
 ) => {
-  const { userID, preidoicID } = action;
+  const { userID, periodicID } = action;
   let total = 0;
   let done = 0;
 
   return usersList.map((user) => {
     if (user.id === userID) {
       user.periodicPressureTests.map((periodicTest) => {
-        if (periodicTest.id === preidoicID) {
+        if (periodicTest.id === periodicID) {
           periodicTest.list.forEach((daily) => {
             if (!daily.morning.omitted) total++;
             if (!daily.evening.omitted) total++;
@@ -136,6 +136,78 @@ export const updateNumberOfTotalAndDoneTestsAndState = (
             }
             return daily;
           });
+        }
+        return periodicTest;
+      });
+    }
+    return user;
+  });
+};
+
+const calculateAverageValue = (arr: number[]) => {
+  if (arr.length === 0) return 0;
+  else if (arr.length === 1) return arr[0];
+  return Math.round(arr.reduce((acu, value) => acu + value) / arr.length);
+};
+
+export const calculateAverageResults = (
+  usersList: IUser[],
+  action: IAction
+) => {
+  const { userID, periodicID } = action;
+  const morningValuesOfSys: number[] = [];
+  const morningValuesOfDia: number[] = [];
+  const morningValuesOfPulse: number[] = [];
+  const eveningValuesOfSys: number[] = [];
+  const eveningValuesOfDia: number[] = [];
+  const eveningValuesOfPulse: number[] = [];
+
+  return usersList.map((user) => {
+    if (user.id === userID) {
+      user.periodicPressureTests.map((periodicTest) => {
+        if (periodicTest.id === periodicID) {
+          periodicTest.list.forEach((daily) => {
+            if (!daily.morning.omitted) {
+              morningValuesOfSys.push(daily.morning.SYS);
+              morningValuesOfDia.push(daily.morning.DIA);
+              morningValuesOfPulse.push(daily.morning.PULSE);
+            }
+            if (!daily.evening.omitted) {
+              eveningValuesOfSys.push(daily.evening.SYS);
+              eveningValuesOfDia.push(daily.evening.DIA);
+              eveningValuesOfPulse.push(daily.evening.PULSE);
+            }
+          });
+          periodicTest.averageResults.morning.SYS = calculateAverageValue(
+            morningValuesOfSys
+          );
+          periodicTest.averageResults.morning.DIA = calculateAverageValue(
+            morningValuesOfDia
+          );
+          periodicTest.averageResults.morning.PULSE = calculateAverageValue(
+            morningValuesOfPulse
+          );
+          periodicTest.averageResults.evening.SYS = calculateAverageValue(
+            eveningValuesOfSys
+          );
+          periodicTest.averageResults.evening.DIA = calculateAverageValue(
+            eveningValuesOfDia
+          );
+          periodicTest.averageResults.evening.PULSE = calculateAverageValue(
+            eveningValuesOfPulse
+          );
+          periodicTest.averageResults.total.SYS = calculateAverageValue([
+            ...morningValuesOfSys,
+            ...eveningValuesOfSys,
+          ]);
+          periodicTest.averageResults.total.DIA = calculateAverageValue([
+            ...morningValuesOfDia,
+            ...eveningValuesOfDia,
+          ]);
+          periodicTest.averageResults.total.PULSE = calculateAverageValue([
+            ...morningValuesOfPulse,
+            ...eveningValuesOfPulse,
+          ]);
         }
         return periodicTest;
       });

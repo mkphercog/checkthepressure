@@ -7,6 +7,7 @@ import {
   EDIT_DAILY_VALUES,
   SET_OMITTED_DAILY_TEST,
   UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
+  CALCULATE_AVERAGE_RESULTS,
 } from "./../types/";
 import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
 import { TimeOfDayStates } from "../../common/constants";
@@ -42,7 +43,7 @@ export const deletePeriodicPressureTest = (
 
 export const editDailyValues = (
   userID: number,
-  preidoicID: number,
+  periodicID: number,
   dailyID: number,
   timeOfDay: TimeOfDayStates,
   sys: number,
@@ -51,7 +52,7 @@ export const editDailyValues = (
 ) => ({
   type: EDIT_DAILY_VALUES,
   userID,
-  preidoicID,
+  periodicID,
   dailyID,
   timeOfDay,
   sys,
@@ -61,14 +62,14 @@ export const editDailyValues = (
 
 export const setOmittedDailyTest = (
   userID: number,
-  preidoicID: number,
+  periodicID: number,
   dailyID: number,
   timeOfDay: TimeOfDayStates,
   omitted: boolean
 ) => ({
   type: SET_OMITTED_DAILY_TEST,
   userID,
-  preidoicID,
+  periodicID,
   dailyID,
   timeOfDay,
   omitted,
@@ -76,9 +77,18 @@ export const setOmittedDailyTest = (
 
 export const updateNumberOfTotalAndDoneTestsAndState = (
   userID: number,
-  preidoicID: number
+  periodicID: number
 ) => ({
   type: UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
   userID,
-  preidoicID,
+  periodicID,
+});
+
+export const calculateAverageResults = (
+  userID: number,
+  periodicID: number
+) => ({
+  type: CALCULATE_AVERAGE_RESULTS,
+  userID,
+  periodicID,
 });

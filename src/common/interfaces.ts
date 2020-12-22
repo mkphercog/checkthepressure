@@ -40,6 +40,23 @@ export interface IPeriodicPressureTests {
   state: string;
   totalNumberOfTests: number;
   numberOfTestsDone: number;
+  averageResults: {
+    morning: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+    evening: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+    total: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+  };
   list: IDailyTest[];
 }
 
