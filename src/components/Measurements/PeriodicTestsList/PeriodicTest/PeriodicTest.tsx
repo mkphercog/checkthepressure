@@ -14,7 +14,7 @@ import {
   DeleteBtn,
 } from "./PeriodicTest.css";
 
-export const PeriodicTest: React.FC<Props> = ({
+export const PeriodicTest: React.FC<IProps> = ({
   test,
   userID,
   findTestsList,
@@ -63,7 +63,7 @@ export const PeriodicTest: React.FC<Props> = ({
             setPopup(
               <WarningsYesNo
                 message={`Usunąć pomiar okresowy #${id}?`}
-                close={setIsPortalOpen}
+                setIsOpen={setIsPortalOpen}
                 response={(res: boolean) =>
                   res && dispatch(deletePeriodicPressureTest(userID, id))
                 }
@@ -81,7 +81,7 @@ export const PeriodicTest: React.FC<Props> = ({
   );
 };
 
-interface Props {
+interface IProps {
   test: IPeriodicPressureTests;
   userID: number;
   findTestsList: Function;

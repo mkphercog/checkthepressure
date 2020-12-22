@@ -22,12 +22,12 @@ import { Legend } from "./../../../styles/mixins/Fieldset";
 import { useDispatch } from "react-redux";
 import { AverageResults } from "../../Popups/AverageResults/AverageResults";
 
-export const PeriodicTestDetails: React.FC<Props> = ({
+export const PeriodicTestDetails: React.FC<IProps> = ({
   test,
   userID,
   backToList,
 }) => {
-  const [isPortalOpen, setIsPortalOpen] = useState(false);
+  const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState<Object>({});
   const dispatch = useDispatch();
   const { list, id: periodicID, state, totalNumberOfTests } = test;
@@ -52,11 +52,11 @@ export const PeriodicTestDetails: React.FC<Props> = ({
             periodicID={periodicID}
             dailyID={dailyID}
             timeOfDay={timeOfDay}
-            close={setIsPortalOpen}
+            setIsOpenEditDailyTestPopup={setIsOpenPortal}
             date={date}
           />
         );
-        setIsPortalOpen(true);
+        setIsOpenPortal(true);
       }}
       setOmittedDaily={(
         dailyID: number,
@@ -88,10 +88,10 @@ export const PeriodicTestDetails: React.FC<Props> = ({
                 <AverageResults
                   userID={userID}
                   periodicTest={test}
-                  close={setIsPortalOpen}
+                  setIsOpenAverageResultsPopup={setIsOpenPortal}
                 />
               );
-              setIsPortalOpen(true);
+              setIsOpenPortal(true);
             }}
             disabled={!testIsDone}
           >
@@ -103,14 +103,14 @@ export const PeriodicTestDetails: React.FC<Props> = ({
         </ControlPanel>
         <ul>{renderList}</ul>
       </FieldsetStyled>
-      {isPortalOpen ? (
+      {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
     </Wrapper>
   );
 };
 
-interface Props {
+interface IProps {
   test: IPeriodicPressureTests;
   userID: number;
   backToList: Function;

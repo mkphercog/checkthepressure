@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ExitIcon } from "./../../../styles/mixins/Buttons";
 import {
   PopupTitleGreen,
   PopupContentWrapper,
@@ -13,16 +12,17 @@ import {
 } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
+import { SharedExitButton } from "../../SharedExitButton/SharedExitButton";
 
-export const EditDailyTest: React.FC<AddUserProps> = ({
+export const EditDailyTest: React.FC<IProps> = ({
   userID,
   periodicID,
   dailyID,
   timeOfDay,
-  close,
+  setIsOpenEditDailyTestPopup,
   date,
 }) => {
-  const [portalOpen, setPortalOpen] = useState(false);
+  const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState(Object);
   const [sys, setSys] = useState("");
   const [dia, setDia] = useState("");
@@ -36,18 +36,18 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
       setPopup(
         <Warnings
           message="Conajmniej jedno pole zawiera ujemną wartość."
-          close={setPortalOpen}
+          setIsOpen={setIsOpenPortal}
         />
       );
-      setPortalOpen(true);
+      setIsOpenPortal(true);
     } else if (Number(sys) > 300 || Number(dia) > 300 || Number(pulse) > 300) {
       setPopup(
         <Warnings
           message="Conajmniej jedno pole zawiera zbyt dużą wartość."
-          close={setPortalOpen}
+          setIsOpen={setIsOpenPortal}
         />
       );
-      setPortalOpen(true);
+      setIsOpenPortal(true);
     } else if (
       /\D/gi.test(sys) ||
       /\D/gi.test(dia) ||
@@ -59,10 +59,10 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
       setPopup(
         <Warnings
           message="Conajmniej jedno pole ma nieprawidłową wartość."
-          close={setPortalOpen}
+          setIsOpen={setIsOpenPortal}
         />
       );
-      setPortalOpen(true);
+      setIsOpenPortal(true);
     } else {
       dispatch(
         editDailyValues(
@@ -76,7 +76,7 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
         )
       );
       dispatch(updateNumberOfTotalAndDoneTestsAndState(userID, periodicID));
-      close(false);
+      setIsOpenEditDailyTestPopup(false);
     }
   };
 
@@ -124,20 +124,19 @@ export const EditDailyTest: React.FC<AddUserProps> = ({
           </EditTestBtn>
         </FormStyled>
       </PopupContentWrapper>
-      <ExitIcon
-        className="fas fa-times"
-        onClick={() => close(false)}
-      ></ExitIcon>
-      {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
+      <SharedExitButton setIsOpen={setIsOpenEditDailyTestPopup} />
+      {isOpenPortal ? (
+        <Portal target={PortalTarget.MODAL}>{popup}</Portal>
+      ) : null}
     </Wrapper>
   );
 };
 
-interface AddUserProps {
+interface IProps {
   userID: number;
   periodicID: number;
   dailyID: number;
   timeOfDay: TimeOfDayStates;
-  close: Function;
+  setIsOpenEditDailyTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
   date: string;
 }

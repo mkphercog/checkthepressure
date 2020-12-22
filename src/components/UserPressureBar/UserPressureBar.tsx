@@ -8,7 +8,7 @@ import {
   PressureMax,
 } from "./UserPressureBar.css";
 
-export const UserPressureBar: React.FC<Props> = ({
+export const UserPressureBar: React.FC<IProps> = ({
   name,
   age,
   userBloodPressureBasedOnAge,
@@ -44,7 +44,7 @@ export const UserPressureBar: React.FC<Props> = ({
   );
 };
 
-interface Props {
+interface IProps {
   name: string;
   age: number;
   userBloodPressureBasedOnAge: IBloodPressureBasedOnAge;

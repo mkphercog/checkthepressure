@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ExitIcon } from "./../../../styles/mixins/Buttons";
 import {
   PopupContentWrapper,
   PopupTitleGreen,
@@ -14,14 +13,15 @@ import { addProfile } from "./../../../store/actions/profilesAction";
 import { findUserBloodPressureBasedOnAge } from "./../../../common/bloodPressureTable";
 import { anonymous } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
+import { SharedExitButton } from "../../SharedExitButton/SharedExitButton";
 
-export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
+export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState(1);
   const dispatch = useDispatch();
   const profiles = useSelector((state: IGlobalState) => state.profiles);
   const { nextAvailableUserID } = profiles;
-  const [portalOpen, setPortalOpen] = useState(false);
+  const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState(Object);
   const renderOptionsAge = numRangeOptions(1, 120);
 
@@ -30,17 +30,20 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
 
     if (name === "") {
       setPopup(
-        <Warnings message="Puste pole, podaj imię :)" close={setPortalOpen} />
+        <Warnings
+          message="Puste pole, podaj imię :)"
+          setIsOpen={setIsOpenPortal}
+        />
       );
-      setPortalOpen(true);
+      setIsOpenPortal(true);
     } else if (name.length >= 15) {
       setPopup(
         <Warnings
           message="Podane imię jest za długie. (max 15 znaków)"
-          close={setPortalOpen}
+          setIsOpen={setIsOpenPortal}
         />
       );
-      setPortalOpen(true);
+      setIsOpenPortal(true);
     } else {
       const getUserBloodPressure =
         findUserBloodPressureBasedOnAge(age) ||
@@ -61,7 +64,7 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
       setName("");
       setAge(1);
       dispatch(addProfile(newProfile));
-      closeAddUserPopup(false);
+      setIsOpenAddUserPopup(false);
     }
   };
 
@@ -98,15 +101,14 @@ export const AddUser: React.FC<AddUserProps> = ({ closeAddUserPopup }) => {
           </AddUserBtn>
         </FormStyled>
       </PopupContentWrapper>
-      <ExitIcon
-        className="fas fa-times"
-        onClick={() => closeAddUserPopup(false)}
-      ></ExitIcon>
-      {portalOpen ? <Portal target={PortalTarget.MODAL}>{popup}</Portal> : null}
+      <SharedExitButton setIsOpen={setIsOpenAddUserPopup} />
+      {isOpenPortal ? (
+        <Portal target={PortalTarget.MODAL}>{popup}</Portal>
+      ) : null}
     </Wrapper>
   );
 };
 
-interface AddUserProps {
-  closeAddUserPopup: Function;
+interface IProps {
+  setIsOpenAddUserPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }

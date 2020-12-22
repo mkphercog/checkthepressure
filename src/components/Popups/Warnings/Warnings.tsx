@@ -8,23 +8,23 @@ import {
   DenyBtn,
 } from "./Warnings.css";
 
-export const Warnings: React.FC<WarningsProps> = ({ message, close }) => (
+export const Warnings: React.FC<IProps> = ({ message, setIsOpen }) => (
   <Wrapper>
     <Title>
       <p>Uwaga!</p>
     </Title>
     <Content>
       <p>{message}</p>
-      <button onClick={() => close(false)} autoFocus>
+      <button onClick={() => setIsOpen(false)} autoFocus>
         <i className="fas fa-check"></i>
       </button>
     </Content>
   </Wrapper>
 );
 
-export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
+export const WarningsYesNo: React.FC<IPropsYesNo> = ({
   message,
-  close,
+  setIsOpen,
   response,
 }) => (
   <Wrapper>
@@ -37,7 +37,7 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
         <DenyBtn
           onClick={() => {
             response(false);
-            close(false);
+            setIsOpen(false);
           }}
           autoFocus
         >
@@ -46,7 +46,7 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
         <ApplyBtn
           onClick={() => {
             response(true);
-            close(false);
+            setIsOpen(false);
           }}
         >
           Tak
@@ -56,13 +56,11 @@ export const WarningsYesNo: React.FC<WarningsYesNoProps> = ({
   </Wrapper>
 );
 
-interface WarningsProps {
+interface IProps {
   message: string;
-  close: Function;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface WarningsYesNoProps {
-  message: string;
-  close: Function;
+interface IPropsYesNo extends IProps {
   response: Function;
 }

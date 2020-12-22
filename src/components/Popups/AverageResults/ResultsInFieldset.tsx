@@ -12,7 +12,7 @@ export enum resultNameType {
   total = "total",
 }
 
-export const ResultsInFieldset: React.FC<Props> = ({
+export const ResultsInFieldset: React.FC<IProps> = ({
   timeOfDayName,
   averageResults,
   resultName,
@@ -42,7 +42,7 @@ export const ResultsInFieldset: React.FC<Props> = ({
   </FieldsetStyled>
 );
 
-interface Props {
+interface IProps {
   timeOfDayName: string;
   averageResults: {
     morning: {

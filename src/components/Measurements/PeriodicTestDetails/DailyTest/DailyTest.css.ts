@@ -29,17 +29,17 @@ export const Wrapper = styled(LiElement)`
 
 export const FieldsetStyled = styled(Fieldset)`
   margin-bottom: 10px;
-  border-color: ${({ sys, dia, pulse }: Props) =>
+  border-color: ${({ sys, dia, pulse }: IProps) =>
     sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red} !important;
-  border-color: ${({ omitted }: Props) =>
+  border-color: ${({ omitted }: IProps) =>
     omitted ? COLORS.gray : ""} !important;
 `;
 
 export const MorningEvening = styled(Legend)`
   p {
-    color: ${({ sys, dia, pulse }: Props) =>
+    color: ${({ sys, dia, pulse }: IProps) =>
       sys > 0 && dia > 0 && pulse > 0 ? COLORS.darkGreen : COLORS.red};
-    color: ${({ omitted }: Props) => (omitted ? COLORS.gray : "")} !important;
+    color: ${({ omitted }: IProps) => (omitted ? COLORS.gray : "")} !important;
   }
 `;
 
@@ -72,7 +72,7 @@ export const Btn = styled(GrayButton)`
   margin-top: 5px;
 `;
 
-interface Props {
+interface IProps {
   sys: number;
   dia: number;
   pulse: number;

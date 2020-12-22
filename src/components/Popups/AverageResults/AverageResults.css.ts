@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ExitIcon } from "../../../styles/mixins/Buttons";
 import { Fieldset, Legend } from "./../../../styles/mixins/Fieldset";
 import {
   PopupWrapper,
@@ -58,8 +57,6 @@ export const FieldsetStyled = styled(Fieldset)`
 `;
 
 export const LegendStyled = styled(Legend)``;
-
-export const Exit = styled(ExitIcon)``;
 
 export const SysAndDiaColored = styled.span`
   color: ${(props: { color: string }) => props.color};

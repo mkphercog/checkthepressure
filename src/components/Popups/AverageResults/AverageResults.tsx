@@ -6,18 +6,19 @@ import {
   IGlobalState,
   IPeriodicPressureTests,
 } from "../../../common/interfaces";
+import { SharedExitButton } from "./../../SharedExitButton/SharedExitButton";
 import { COLORS } from "../../../styles/variables";
-import { Wrapper, Title, Content, Exit } from "./AverageResults.css";
+import { Wrapper, Title, Content } from "./AverageResults.css";
 
 export enum sysDiaType {
   SYS = "SYS",
   DIA = "DIA",
 }
 
-export const AverageResults: React.FC<Props> = ({
+export const AverageResults: React.FC<IProps> = ({
   userID,
   periodicTest,
-  close,
+  setIsOpenAverageResultsPopup,
 }) => {
   const { id, averageResults } = periodicTest;
 
@@ -70,13 +71,13 @@ export const AverageResults: React.FC<Props> = ({
           getSysDiaColor={getSysDiaColor}
         />
       </Content>
-      <Exit className="fas fa-times" onClick={() => close(false)} />
+      <SharedExitButton setIsOpen={setIsOpenAverageResultsPopup} />
     </Wrapper>
   );
 };
 
-interface Props {
+interface IProps {
   userID: number;
   periodicTest: IPeriodicPressureTests;
-  close: Function;
+  setIsOpenAverageResultsPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -74,27 +74,3 @@ export const GrayButton = styled.button`
     }
   }
 `;
-
-export const ExitIcon = styled.i`
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: ${COLORS.white};
-  background-color: transparent;
-  border: none;
-
-  @media (min-width: 411px) {
-    font-size: 20px;
-  }
-
-  @media (min-width: 1024px) {
-    cursor: pointer;
-    transition: ${TRANSITION_TIME};
-
-    :hover {
-      color: ${COLORS.darkGray};
-    }
-  }
-`;

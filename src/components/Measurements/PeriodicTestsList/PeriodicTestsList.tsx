@@ -6,13 +6,13 @@ import { Wrapper, AddTestBtn, FieldsetStyled } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
 import { Legend } from "./../../../styles/mixins/Fieldset";
 
-export const PeriodicTestsList: React.FC<Props> = ({
+export const PeriodicTestsList: React.FC<IProps> = ({
   userID,
   tests,
   nextAvailablePeriodicTestID,
   findTestsList,
 }) => {
-  const [isPortalOpen, setIsPortalOpen] = useState(false);
+  const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState<Object>({});
 
   const renderPeriodicTests = tests.map((test) => (
@@ -42,15 +42,15 @@ export const PeriodicTestsList: React.FC<Props> = ({
               <AddPeriodicTest
                 userID={userID}
                 nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
-                closePopup={setIsPortalOpen}
+                setIsOpenAddPeriodicTestPopup={setIsOpenPortal}
               />
             );
-            setIsPortalOpen(true);
+            setIsOpenPortal(true);
           }}
         >
           <i className="fas fa-plus"></i>
         </AddTestBtn>
-        {isPortalOpen ? (
+        {isOpenPortal ? (
           <Portal target={PortalTarget.MODAL}>{popup}</Portal>
         ) : null}
       </FieldsetStyled>
@@ -58,7 +58,7 @@ export const PeriodicTestsList: React.FC<Props> = ({
   );
 };
 
-interface Props {
+interface IProps {
   userID: number;
   nextAvailablePeriodicTestID: number;
   tests: IPeriodicPressureTests[];

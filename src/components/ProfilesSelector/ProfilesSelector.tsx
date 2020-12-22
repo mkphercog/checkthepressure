@@ -17,7 +17,7 @@ import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 import { Legend } from "./../../styles/mixins/Fieldset";
 
 export const ProfilesSelector: React.FC = () => {
-  const [isPortalOpen, setIsPortalOpen] = useState(false);
+  const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState<Object>({});
   const users = useSelector((state: IGlobalState) => state.profiles.users);
   const dispatch = useDispatch();
@@ -41,11 +41,11 @@ export const ProfilesSelector: React.FC = () => {
           setPopup(
             <WarningsYesNo
               message={`Usunąć użytkownika ${name}?`}
-              close={setIsPortalOpen}
+              setIsOpen={setIsOpenPortal}
               response={(res: boolean) => res && dispatch(deleteProfile(id))}
             />
           );
-          setIsPortalOpen(true);
+          setIsOpenPortal(true);
         }}
         selectUserID={(id: number) => dispatch(setSelectedUserID(id))}
         nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
@@ -63,12 +63,12 @@ export const ProfilesSelector: React.FC = () => {
         <AddUserIcon
           className="fas fa-user-plus"
           onClick={() => {
-            setPopup(<AddUser closeAddUserPopup={setIsPortalOpen} />);
-            setIsPortalOpen(true);
+            setPopup(<AddUser setIsOpenAddUserPopup={setIsOpenPortal} />);
+            setIsOpenPortal(true);
           }}
         ></AddUserIcon>
       </ProfilesSelectorStyled>
-      {isPortalOpen ? (
+      {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
     </PageWrapperWithImageInBG>

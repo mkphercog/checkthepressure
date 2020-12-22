@@ -6,7 +6,7 @@ import BackGround from "./../../images/BG.jpg";
 import { emptyPeriodicTest } from "./../../common/constants";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 
-export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
+export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
   const [selectedPeriodicTest, setSelectedPeriodicTest] = useState<
     IPeriodicPressureTests | undefined
   >(emptyPeriodicTest);
@@ -44,6 +44,6 @@ export const Measurements: React.FC<MeasurementsProps> = ({ selectedUser }) => {
   );
 };
 
-interface MeasurementsProps {
+interface IProps {
   selectedUser: IUser;
 }

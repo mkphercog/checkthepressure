@@ -7,7 +7,7 @@ export enum PortalTarget {
   ROOT = "root",
 }
 
-export const Portal: React.FC<PortalProps> = ({ target, children }) => {
+export const Portal: React.FC<IProps> = ({ target, children }) => {
   const domElement = document.getElementById(target);
 
   return domElement
@@ -15,6 +15,6 @@ export const Portal: React.FC<PortalProps> = ({ target, children }) => {
     : null;
 };
 
-interface PortalProps {
+interface IProps {
   target: PortalTarget;
 }

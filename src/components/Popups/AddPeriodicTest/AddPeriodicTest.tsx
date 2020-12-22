@@ -7,7 +7,7 @@ import {
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
 import { PeriodicTestStates } from "./../../../common/constants";
-import { ExitIcon } from "./../../../styles/mixins/Buttons";
+import { SharedExitButton } from "./../../SharedExitButton/SharedExitButton";
 import {
   PopupContentWrapper,
   PopupTitleGreen,
@@ -17,10 +17,10 @@ import { Wrapper, FormStyled, AddTestBtn } from "./AddPeriodicTest.css";
 
 const today = new Date();
 
-export const AddPeriodicTest: React.FC<AddUserProps> = ({
+export const AddPeriodicTest: React.FC<IProps> = ({
   userID,
   nextAvailablePeriodicTestID,
-  closePopup,
+  setIsOpenAddPeriodicTestPopup,
 }) => {
   const [startDay, setStartDay] = useState(today.toISOString().slice(0, 10));
   const [days, setDays] = useState(4);
@@ -59,7 +59,7 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
       list: getDailyTestList,
     };
     dispatch(addPeriodicPressureTest(userID, newPeriodicTest));
-    closePopup(false);
+    setIsOpenAddPeriodicTestPopup(false);
   };
 
   return (
@@ -93,16 +93,13 @@ export const AddPeriodicTest: React.FC<AddUserProps> = ({
           </AddTestBtn>
         </FormStyled>
       </PopupContentWrapper>
-      <ExitIcon
-        className="fas fa-times"
-        onClick={() => closePopup(false)}
-      ></ExitIcon>
+      <SharedExitButton setIsOpen={setIsOpenAddPeriodicTestPopup} />
     </Wrapper>
   );
 };
 
-interface AddUserProps {
+interface IProps {
   userID: number;
   nextAvailablePeriodicTestID: number;
-  closePopup: Function;
+  setIsOpenAddPeriodicTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
