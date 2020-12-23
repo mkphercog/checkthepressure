@@ -5,7 +5,7 @@ import { Portal, PortalTarget } from "../../../common/Portal/Portal";
 import { Wrapper, FieldsetStyled } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
 import { Legend } from "./../../../styles/mixins/Fieldset";
-import { SharedAddButton } from "../../SharedAddButton/SharedAddButton";
+import { SharedAddButton } from "../../Buttons/SharedAddButton/SharedAddButton";
 import { deletePeriodicPressureTest } from "./../../../store/actions/profilesAction";
 import { useDispatch } from "react-redux";
 import { WarningsYesNo } from "./../../Popups/Warnings/Warnings";

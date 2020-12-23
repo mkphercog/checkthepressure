@@ -4,6 +4,7 @@ export const COLORS = {
   darkGreen: "rgb(94, 150, 59)",
   orange: "rgb(255, 187, 13)",
   red: "rgb(235,96,26)",
+  darkRed: "rgb(163,67,18)",
   white: "rgb(255,255,255)",
   whiteOpacity: "rgba(255,255,255,0.4)",
   lightGray: "rgb(230,230,230)",

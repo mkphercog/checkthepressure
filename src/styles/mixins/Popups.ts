@@ -44,8 +44,9 @@ export const PopupTitleRed = styled(PopupTitleGreen)`
 export const PopupContentWrapper = styled.div`
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   padding: 0 15px;

@@ -6,7 +6,7 @@ import {
   IGlobalState,
   IPeriodicPressureTests,
 } from "../../../common/interfaces";
-import { SharedExitButton } from "./../../SharedExitButton/SharedExitButton";
+import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import { COLORS } from "../../../styles/variables";
 import { Wrapper, Title, Content } from "./AverageResults.css";
 

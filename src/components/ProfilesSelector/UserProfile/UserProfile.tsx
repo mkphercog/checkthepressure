@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { SharedDeleteButton } from "../../SharedDeleteButton/SharedDeleteButton";
+import { SharedDeleteButton } from "../../Buttons/SharedDeleteButton/SharedDeleteButton";
 import { GrayButton } from "./../../../styles/mixins/Buttons";
 import { Wrapper, UserData, Options } from "./UserProfile.css";
 

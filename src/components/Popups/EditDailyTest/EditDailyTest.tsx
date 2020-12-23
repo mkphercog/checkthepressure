@@ -3,7 +3,7 @@ import {
   PopupTitleGreen,
   PopupContentWrapper,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled, EditTestBtn } from "./EditDailyTest.css";
+import { Wrapper, FormStyled } from "./EditDailyTest.css";
 import { useDispatch } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import {
@@ -12,7 +12,11 @@ import {
 } from "./../../../store/actions/profilesAction";
 import { TimeOfDayStates } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
-import { SharedExitButton } from "../../SharedExitButton/SharedExitButton";
+import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
+import {
+  SharedApplyButton,
+  SharedApplyButtonType,
+} from "../../Buttons/SharedApplyButton/SharedApplyButton";
 
 export const EditDailyTest: React.FC<IProps> = ({
   userID,
@@ -119,9 +123,12 @@ export const EditDailyTest: React.FC<IProps> = ({
               onChange={(e) => setPulse(e.target.value)}
             />
           </div>
-          <EditTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
-            <i className="fas fa-plus"></i>
-          </EditTestBtn>
+          <div className="apply-button">
+            <SharedApplyButton
+              type={SharedApplyButtonType.submit}
+              submitFunction={handleSubmit}
+            />
+          </div>
         </FormStyled>
       </PopupContentWrapper>
       <SharedExitButton setIsOpen={setIsOpenEditDailyTestPopup} />

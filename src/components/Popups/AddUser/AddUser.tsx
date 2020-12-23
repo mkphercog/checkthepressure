@@ -4,7 +4,7 @@ import {
   PopupTitleGreen,
   PopupSelect,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled, AddUserBtn } from "./AddUser.css";
+import { Wrapper, FormStyled } from "./AddUser.css";
 import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
 import { IGlobalState, IUser } from "./../../../common/interfaces";
@@ -13,7 +13,11 @@ import { addProfile } from "./../../../store/actions/profilesAction";
 import { findUserBloodPressureBasedOnAge } from "./../../../common/bloodPressureTable";
 import { anonymous } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
-import { SharedExitButton } from "../../SharedExitButton/SharedExitButton";
+import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
+import {
+  SharedApplyButton,
+  SharedApplyButtonType,
+} from "../../Buttons/SharedApplyButton/SharedApplyButton";
 
 export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
   const [name, setName] = useState("");
@@ -75,7 +79,7 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
       </PopupTitleGreen>
       <PopupContentWrapper>
         <FormStyled>
-          <div>
+          <div className="label-input">
             <label htmlFor="name">Imię: </label>
             <input
               type="text"
@@ -85,7 +89,7 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
               autoFocus
             />
           </div>
-          <div>
+          <div className="label-input">
             <label htmlFor="age">Wiek: </label>
             <PopupSelect
               value={age}
@@ -96,9 +100,12 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
               {renderOptionsAge}
             </PopupSelect>
           </div>
-          <AddUserBtn type="submit" onClick={(e) => handleSubmit(e)}>
-            <i className="fas fa-plus"></i>
-          </AddUserBtn>
+          <div className="apply-button">
+            <SharedApplyButton
+              type={SharedApplyButtonType.submit}
+              submitFunction={handleSubmit}
+            />
+          </div>
         </FormStyled>
       </PopupContentWrapper>
       <SharedExitButton setIsOpen={setIsOpenAddUserPopup} />

@@ -7,13 +7,17 @@ import {
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
 import { PeriodicTestStates } from "./../../../common/constants";
-import { SharedExitButton } from "./../../SharedExitButton/SharedExitButton";
+import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
   PopupContentWrapper,
   PopupTitleGreen,
   PopupSelect,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled, AddTestBtn } from "./AddPeriodicTest.css";
+import { Wrapper, FormStyled } from "./AddPeriodicTest.css";
+import {
+  SharedApplyButton,
+  SharedApplyButtonType,
+} from "../../Buttons/SharedApplyButton/SharedApplyButton";
 
 const today = new Date();
 
@@ -88,9 +92,12 @@ export const AddPeriodicTest: React.FC<IProps> = ({
               {renderOptionsDays}
             </PopupSelect>
           </div>
-          <AddTestBtn type="submit" onClick={(e) => handleSubmit(e)}>
-            <i className="fas fa-plus"></i>
-          </AddTestBtn>
+          <div className="apply-button">
+            <SharedApplyButton
+              type={SharedApplyButtonType.submit}
+              submitFunction={handleSubmit}
+            />
+          </div>
         </FormStyled>
       </PopupContentWrapper>
       <SharedExitButton setIsOpen={setIsOpenAddPeriodicTestPopup} />

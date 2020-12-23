@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Wrapper,
-  Title,
-  Content,
-  BtnWrapper,
-  ApplyBtn,
-  DenyBtn,
-} from "./Warnings.css";
+import { SharedApplyButton } from "../../Buttons/SharedApplyButton/SharedApplyButton";
+import { SharedDenyButton } from "../../Buttons/SharedDenyButton/SharedDenyButton";
+import { Wrapper, Title, Content, BtnWrapper } from "./Warnings.css";
 
 export const Warnings: React.FC<IProps> = ({ message, setIsOpen }) => (
   <Wrapper>
@@ -15,9 +10,7 @@ export const Warnings: React.FC<IProps> = ({ message, setIsOpen }) => (
     </Title>
     <Content>
       <p>{message}</p>
-      <button onClick={() => setIsOpen(false)} autoFocus>
-        <i className="fas fa-check"></i>
-      </button>
+      <SharedApplyButton setIsOpen={setIsOpen} />
     </Content>
   </Wrapper>
 );
@@ -34,23 +27,8 @@ export const WarningsYesNo: React.FC<IPropsYesNo> = ({
     <Content>
       <p>{message}</p>
       <BtnWrapper>
-        <DenyBtn
-          onClick={() => {
-            response(false);
-            setIsOpen(false);
-          }}
-          autoFocus
-        >
-          Nie
-        </DenyBtn>
-        <ApplyBtn
-          onClick={() => {
-            response(true);
-            setIsOpen(false);
-          }}
-        >
-          Tak
-        </ApplyBtn>
+        <SharedDenyButton setIsOpen={setIsOpen} getResponse={response} />
+        <SharedApplyButton setIsOpen={setIsOpen} getResponse={response} />
       </BtnWrapper>
     </Content>
   </Wrapper>
@@ -62,5 +40,5 @@ interface IProps {
 }
 
 interface IPropsYesNo extends IProps {
-  response: Function;
+  response: (res: boolean) => void;
 }

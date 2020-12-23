@@ -1,7 +1,7 @@
 import React from "react";
 import { IPeriodicPressureTests } from "../../../../common/interfaces";
 import { GrayButton } from "./../../../../styles/mixins/Buttons";
-import { SharedDeleteButton } from "./../../../SharedDeleteButton/SharedDeleteButton";
+import { SharedDeleteButton } from "../../../Buttons/SharedDeleteButton/SharedDeleteButton";
 import { Wrapper, Title, Subtitle, Info, Btns } from "./PeriodicTest.css";
 
 export const PeriodicTest: React.FC<IProps> = ({

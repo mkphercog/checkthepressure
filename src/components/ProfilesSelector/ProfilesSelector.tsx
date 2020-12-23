@@ -13,7 +13,7 @@ import BackGround from "./../../images/BG.jpg";
 import { ProfilesSelectorStyled } from "./ProfilesSelector.css";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 import { Legend } from "./../../styles/mixins/Fieldset";
-import { SharedAddButton } from "../SharedAddButton/SharedAddButton";
+import { SharedAddButton } from "../Buttons/SharedAddButton/SharedAddButton";
 
 export const ProfilesSelector: React.FC = () => {
   const [isOpenPortal, setIsOpenPortal] = useState(false);

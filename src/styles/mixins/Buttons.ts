@@ -1,50 +1,6 @@
 import styled from "styled-components";
 import { COLORS, TRANSITION_TIME, CORNER_RADIUS } from "./../variables";
 
-export const AddButton = styled.button`
-  padding: 5px 6px;
-  background-color: ${COLORS.green};
-  border: 2px solid ${COLORS.green};
-  border-radius: 50%;
-  outline-style: none;
-
-  @media (min-width: 1024px) {
-    cursor: pointer;
-    transition: ${TRANSITION_TIME};
-
-    :hover {
-      background-color: ${COLORS.orange};
-      border: 2px solid ${COLORS.orange};
-    }
-  }
-
-  :focus {
-    border: 2px solid ${COLORS.orange};
-  }
-
-  :disabled {
-    background-color: ${COLORS.gray};
-    border: 2px solid ${COLORS.gray};
-
-    @media (min-width: 1024px) {
-      cursor: no-drop;
-    }
-  }
-
-  i {
-    font-size: 26px;
-    color: ${COLORS.white};
-
-    @media (min-width: 1024px) {
-      font-size: 30px;
-    }
-
-    :disabled {
-      color: ${COLORS.lightGray};
-    }
-  }
-`;
-
 export const GrayButton = styled.button`
   padding: 3px 10px;
   color: ${COLORS.white};

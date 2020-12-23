@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { AddButton } from "../../../styles/mixins/Buttons";
 import { PopupWrapper, PopupForm } from "./../../../styles/mixins/Popups";
 
 export const Wrapper = styled(PopupWrapper)`
@@ -30,7 +29,7 @@ export const Wrapper = styled(PopupWrapper)`
 export const FormStyled = styled(PopupForm)`
   align-items: flex-start;
 
-  div {
+  .label-input {
     justify-content: flex-start;
 
     input {
@@ -39,8 +38,10 @@ export const FormStyled = styled(PopupForm)`
       }
     }
   }
-`;
 
-export const AddUserBtn = styled(AddButton)`
-  align-self: flex-end;
+  .apply-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
 `;

@@ -3,7 +3,7 @@ import {
   COLORS,
   CORNER_RADIUS,
   TRANSITION_TIME,
-} from "./../../styles/variables";
+} from "./../../../styles/variables";
 
 export const AddButtonStyled = styled.button`
   position: absolute;

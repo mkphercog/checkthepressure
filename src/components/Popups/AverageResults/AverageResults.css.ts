@@ -35,7 +35,9 @@ export const Title = styled(PopupTitleGreen)`
   padding: 15px 0;
 `;
 
-export const Content = styled(PopupContentWrapper)``;
+export const Content = styled(PopupContentWrapper)`
+  justify-content: center;
+`;
 
 export const FieldsetStyled = styled(Fieldset)`
   display: flex;
