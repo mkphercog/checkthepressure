@@ -6,24 +6,32 @@ import { Wrapper, FieldsetStyled } from "./PeriodicTestsList.css";
 import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
 import { Legend } from "./../../../styles/mixins/Fieldset";
 import { SharedAddButton } from "../../SharedAddButton/SharedAddButton";
+import { deletePeriodicPressureTest } from "./../../../store/actions/profilesAction";
+import { useDispatch } from "react-redux";
+import { WarningsYesNo } from "./../../Popups/Warnings/Warnings";
 
 export const PeriodicTestsList: React.FC<IProps> = ({
   userID,
   tests,
   nextAvailablePeriodicTestID,
-  findTestsList,
+  openPeriodicTestDetails,
 }) => {
   const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState<Object>({});
+  const dispatch = useDispatch();
 
-  const renderPeriodicTests = tests.map((test) => (
-    <PeriodicTest
-      key={test.id}
-      userID={userID}
-      test={test}
-      findTestsList={findTestsList}
-    />
-  ));
+  const handleDeletePeriodicTest = (id: number) => {
+    setIsOpenPortal(true);
+    setPopup(
+      <WarningsYesNo
+        message={`Usunąć pomiar okresowy #${id}?`}
+        setIsOpen={setIsOpenPortal}
+        response={(res: boolean) =>
+          res && dispatch(deletePeriodicPressureTest(userID, id))
+        }
+      />
+    );
+  };
 
   const handleAddPeriodicTest = () => {
     setPopup(
@@ -36,19 +44,30 @@ export const PeriodicTestsList: React.FC<IProps> = ({
     setIsOpenPortal(true);
   };
 
+  const renderPeriodicTests =
+    tests.map((test) => (
+      <PeriodicTest
+        key={test.id}
+        test={test}
+        openPeriodicTestDetails={openPeriodicTestDetails}
+        deletePeriodicTest={handleDeletePeriodicTest}
+      />
+    )) || [];
+
+  const legendTitle =
+    userID === -1
+      ? "Brak użytkownika"
+      : renderPeriodicTests.length
+      ? "Twoje pomiary okresowe"
+      : "Dodaj swój pierwszy pomiar";
+
   return (
     <Wrapper>
       <FieldsetStyled>
-        <Legend>
-          {userID === -1
-            ? "Brak użytkownika"
-            : renderPeriodicTests.length
-            ? "Twoje pomiary okresowe"
-            : "Dodaj swój pierwszy pomiar"}
-        </Legend>
-        {renderPeriodicTests.length ? <ul>{renderPeriodicTests}</ul> : null}
+        <Legend>{legendTitle}</Legend>
+        <ul>{renderPeriodicTests}</ul>
         <SharedAddButton
-          addFunction={() => handleAddPeriodicTest()}
+          addFunction={handleAddPeriodicTest}
           hoverDescription={"Dodaj nowy pomiar"}
           disabled={userID === -1}
         />
@@ -64,5 +83,5 @@ interface IProps {
   userID: number;
   nextAvailablePeriodicTestID: number;
   tests: IPeriodicPressureTests[];
-  findTestsList: Function;
+  openPeriodicTestDetails: (id: number) => void;
 }

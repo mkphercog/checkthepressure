@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, TRANSITION_TIME } from "../../../styles/variables";
+import { COLORS } from "../../../styles/variables";
 import { LiElement } from "./../../../styles/mixins/LiElement";
 
 export const Wrapper = styled(LiElement)``;
@@ -28,18 +28,4 @@ export const Options = styled.div`
   align-items: center;
   width: 100%;
   padding: 10px;
-
-  i {
-    color: ${COLORS.red};
-    font-size: 22px;
-
-    @media (min-width: 1024px) {
-      cursor: pointer;
-      transition: ${TRANSITION_TIME};
-
-      :hover {
-        transform: scale(1.2);
-      }
-    }
-  }
 `;

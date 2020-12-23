@@ -7,37 +7,42 @@ import { emptyPeriodicTest } from "./../../common/constants";
 import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
 
 export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
-  const [selectedPeriodicTest, setSelectedPeriodicTest] = useState<
-    IPeriodicPressureTests | undefined
-  >(emptyPeriodicTest);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [
+    openedPeriodicTest,
+    setOpenedPeriodicTest,
+  ] = useState<IPeriodicPressureTests>();
+  const [isOpenPeriodicTestDetails, setIsOpenPeriodicTestDetails] = useState(
+    false
+  );
   const {
-    periodicPressureTests,
     id,
+    periodicPressureTests,
     nextAvailablePeriodicTestID,
   } = selectedUser;
 
-  const handleFindTest = (id: number) => {
-    const findedTest = periodicPressureTests.find((test) => id === test.id);
-    setSelectedPeriodicTest(findedTest);
-    setIsDetailsOpen(true);
+  const handleOpenPeriodicTestDetails = (id: number) => {
+    const getOpenedPeriodicTest = periodicPressureTests.find(
+      (test) => id === test.id
+    );
+    setOpenedPeriodicTest(getOpenedPeriodicTest);
+    setIsOpenPeriodicTestDetails(true);
   };
 
   return (
     <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
-      {isDetailsOpen ? (
+      {isOpenPeriodicTestDetails ? (
         <PeriodicTestDetails
-          test={selectedPeriodicTest || emptyPeriodicTest}
+          test={openedPeriodicTest || emptyPeriodicTest}
           userID={id}
-          backToList={() => setIsDetailsOpen(false)}
+          backToPeriodicTestsList={() => setIsOpenPeriodicTestDetails(false)}
         />
       ) : (
         <PeriodicTestsList
           userID={id}
           tests={periodicPressureTests}
           nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
-          findTestsList={handleFindTest}
+          openPeriodicTestDetails={handleOpenPeriodicTestDetails}
         />
       )}
     </PageWrapperWithImageInBG>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { IUser } from "./../../../common/interfaces";
+import { SharedDeleteButton } from "../../SharedDeleteButton/SharedDeleteButton";
 import { GrayButton } from "./../../../styles/mixins/Buttons";
 import { Wrapper, UserData, Options } from "./UserProfile.css";
 
@@ -27,13 +27,16 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         >
           Otwórz profil
         </GrayButton>
-        <i className="fas fa-user-minus" onClick={() => deleteProfile(id)}></i>
+        <SharedDeleteButton deleteFunction={() => deleteProfile(id, name)} />
       </Options>
     </Wrapper>
   );
 };
 
-interface UserProfileProps extends IUser {
-  deleteProfile: Function;
-  selectUserID: Function;
+interface UserProfileProps {
+  id: number;
+  name: string;
+  age: number;
+  deleteProfile: (id: number, name: string) => void;
+  selectUserID: (id: number) => void;
 }

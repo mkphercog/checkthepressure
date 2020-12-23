@@ -25,7 +25,7 @@ import { AverageResults } from "../../Popups/AverageResults/AverageResults";
 export const PeriodicTestDetails: React.FC<IProps> = ({
   test,
   userID,
-  backToList,
+  backToPeriodicTestsList,
 }) => {
   const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState<Object>({});
@@ -78,7 +78,7 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
           Pomiar okresowy <span>#{periodicID}</span>
         </Legend>
         <ControlPanel>
-          <BackArrow onClick={() => backToList()}>
+          <BackArrow onClick={backToPeriodicTestsList}>
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
           <SummaryBtn
@@ -113,5 +113,5 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
 interface IProps {
   test: IPeriodicPressureTests;
   userID: number;
-  backToList: Function;
+  backToPeriodicTestsList: () => void;
 }

@@ -1,27 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { IPeriodicPressureTests } from "../../../../common/interfaces";
-import { deletePeriodicPressureTest } from "../../../../store/actions/profilesAction";
-import { Portal, PortalTarget } from "./../../../../common/Portal/Portal";
-import { WarningsYesNo } from "./../../../Popups/Warnings/Warnings";
 import { GrayButton } from "./../../../../styles/mixins/Buttons";
-import {
-  Wrapper,
-  Title,
-  Subtitle,
-  Info,
-  Btns,
-  DeleteBtn,
-} from "./PeriodicTest.css";
+import { SharedDeleteButton } from "./../../../SharedDeleteButton/SharedDeleteButton";
+import { Wrapper, Title, Subtitle, Info, Btns } from "./PeriodicTest.css";
 
 export const PeriodicTest: React.FC<IProps> = ({
   test,
-  userID,
-  findTestsList,
+  openPeriodicTestDetails,
+  deletePeriodicTest,
 }) => {
-  const [isPortalOpen, setIsPortalOpen] = useState(false);
-  const [popup, setPopup] = useState<Object>({});
-  const dispatch = useDispatch();
   const {
     id,
     start,
@@ -31,6 +18,7 @@ export const PeriodicTest: React.FC<IProps> = ({
     totalNumberOfTests,
     numberOfTestsDone,
   } = test;
+
   return (
     <Wrapper>
       <Title>
@@ -56,33 +44,17 @@ export const PeriodicTest: React.FC<IProps> = ({
       </Info>
 
       <Btns>
-        <GrayButton onClick={() => findTestsList(id)}>Szczegóły...</GrayButton>
-        <DeleteBtn
-          onClick={() => {
-            setIsPortalOpen(true);
-            setPopup(
-              <WarningsYesNo
-                message={`Usunąć pomiar okresowy #${id}?`}
-                setIsOpen={setIsPortalOpen}
-                response={(res: boolean) =>
-                  res && dispatch(deletePeriodicPressureTest(userID, id))
-                }
-              />
-            );
-          }}
-        >
-          <i className="fas fa-trash"></i>
-        </DeleteBtn>
+        <GrayButton onClick={() => openPeriodicTestDetails(id)}>
+          Szczegóły...
+        </GrayButton>
+        <SharedDeleteButton deleteFunction={() => deletePeriodicTest(id)} />
       </Btns>
-      {isPortalOpen ? (
-        <Portal target={PortalTarget.MODAL}>{popup}</Portal>
-      ) : null}
     </Wrapper>
   );
 };
 
 interface IProps {
   test: IPeriodicPressureTests;
-  userID: number;
-  findTestsList: Function;
+  openPeriodicTestDetails: (id: number) => void;
+  deletePeriodicTest: (id: number) => void;
 }

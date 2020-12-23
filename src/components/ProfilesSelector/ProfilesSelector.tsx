@@ -4,12 +4,10 @@ import {
   deleteProfile,
   setSelectedUserID,
 } from "./../../store/actions/profilesAction";
-
 import { UserProfile } from "./UserProfile/UserProfile";
 import { AddUser } from "./../Popups/AddUser/AddUser";
 import { WarningsYesNo } from "./../Popups/Warnings/Warnings";
 import { Portal, PortalTarget } from "./../../common/Portal/Portal";
-
 import { IGlobalState } from "./../../common/interfaces";
 import BackGround from "./../../images/BG.jpg";
 import { ProfilesSelectorStyled } from "./ProfilesSelector.css";
@@ -23,51 +21,46 @@ export const ProfilesSelector: React.FC = () => {
   const users = useSelector((state: IGlobalState) => state.profiles.users);
   const dispatch = useDispatch();
 
-  const renderUsers = users.map(
-    ({
-      name,
-      age,
-      id,
-      userBloodPressureBasedOnAge,
-      nextAvailablePeriodicTestID,
-      periodicPressureTests,
-    }) => (
-      <UserProfile
-        key={id}
-        id={id}
-        name={name}
-        age={age}
-        userBloodPressureBasedOnAge={userBloodPressureBasedOnAge}
-        deleteProfile={() => {
-          setPopup(
-            <WarningsYesNo
-              message={`Usunąć użytkownika ${name}?`}
-              setIsOpen={setIsOpenPortal}
-              response={(res: boolean) => res && dispatch(deleteProfile(id))}
-            />
-          );
-          setIsOpenPortal(true);
-        }}
-        selectUserID={(id: number) => dispatch(setSelectedUserID(id))}
-        nextAvailablePeriodicTestID={nextAvailablePeriodicTestID}
-        periodicPressureTests={periodicPressureTests}
+  const handleDeleteProfile = (id: number, name: string) => {
+    setPopup(
+      <WarningsYesNo
+        message={`Usunąć użytkownika ${name}?`}
+        setIsOpen={setIsOpenPortal}
+        response={(res: boolean) => res && dispatch(deleteProfile(id))}
       />
-    )
-  );
+    );
+    setIsOpenPortal(true);
+  };
 
   const handleAddNewProfile = () => {
     setPopup(<AddUser setIsOpenAddUserPopup={setIsOpenPortal} />);
     setIsOpenPortal(true);
   };
 
+  const handleSelectUserID = (id: number) => dispatch(setSelectedUserID(id));
+
+  const renderUsers =
+    users.map(({ id, name, age }) => (
+      <UserProfile
+        key={id}
+        id={id}
+        name={name}
+        age={age}
+        deleteProfile={handleDeleteProfile}
+        selectUserID={handleSelectUserID}
+      />
+    )) || [];
+
+  const legendTitle = renderUsers.length ? "Profile" : "Brak użytkowników";
+
   return (
     <PageWrapperWithImageInBG>
       <img src={BackGround} alt="Blood Pressure" />
       <ProfilesSelectorStyled>
-        <Legend>{renderUsers.length ? "Profile" : "Brak użytkowników"}</Legend>
-        <ul>{renderUsers.length ? renderUsers : []}</ul>
+        <Legend>{legendTitle}</Legend>
+        <ul>{renderUsers}</ul>
         <SharedAddButton
-          addFunction={() => handleAddNewProfile()}
+          addFunction={handleAddNewProfile}
           hoverDescription={"Dodaj nowy profil"}
         />
       </ProfilesSelectorStyled>

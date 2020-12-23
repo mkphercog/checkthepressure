@@ -15,7 +15,7 @@ export const SharedAddButton: React.FC<IProps> = ({
 );
 
 interface IProps {
-  addFunction: Function;
+  addFunction: () => void;
   hoverDescription: string;
   disabled?: boolean;
 }

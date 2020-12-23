@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, TRANSITION_TIME } from "../../../../styles/variables";
+import { COLORS } from "../../../../styles/variables";
 import { LiElement } from "./../../../../styles/mixins/LiElement";
 
 export const Wrapper = styled(LiElement)`
@@ -75,27 +75,4 @@ export const Btns = styled.div`
   justify-content: space-around;
   margin-top: 10px;
   width: 90%;
-`;
-
-export const DeleteBtn = styled.button`
-  background-color: transparent;
-  border: none;
-  padding: 4px;
-
-  @media (min-width: 1024px) {
-    cursor: pointer;
-    transition: ${TRANSITION_TIME};
-    :hover {
-      transform: scale(1.3);
-    }
-  }
-
-  i {
-    font-size: 16px;
-    color: ${COLORS.red};
-
-    @media (min-width: 1024px) {
-      font-size: 18px;
-    }
-  }
 `;
