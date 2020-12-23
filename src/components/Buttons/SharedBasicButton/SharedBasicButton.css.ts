@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { COLORS, TRANSITION_TIME, CORNER_RADIUS } from "./../variables";
+import {
+  COLORS,
+  TRANSITION_TIME,
+  CORNER_RADIUS,
+} from "./../../../styles/variables";
 
-export const GrayButton = styled.button`
+export const BasicButtonStyled = styled.button`
   padding: 3px 10px;
   color: ${COLORS.white};
   font-size: 12px;

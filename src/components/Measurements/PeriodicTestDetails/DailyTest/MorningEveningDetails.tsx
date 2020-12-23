@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { anonymous } from "../../../../common/constants";
 import { IDailyTest, IGlobalState } from "../../../../common/interfaces";
 import { COLORS } from "../../../../styles/variables";
+import { SharedBasicButton } from "../../../Buttons/SharedBasicButton/SharedBasicButton";
 import {
   FieldsetStyled,
   MorningEvening as MorningEveningStyled,
   SysDiaPuls,
   SysAndDiaColored,
   Btns,
-  Btn,
 } from "./DailyTest.css";
 
 enum sysDiaType {
@@ -93,15 +93,15 @@ export const MorningEveningDetails: React.FC<IProps> = ({
         </p>
       </SysDiaPuls>
       <Btns>
-        <Btn
+        <SharedBasicButton
           onClick={() =>
             editDailyTest(id, dailyTest[timeOfDayType].timeOfDay, date)
           }
-          disabled={dailyTest[timeOfDayType].omitted}
+          isDisabled={dailyTest[timeOfDayType].omitted}
         >
           Edytuj
-        </Btn>
-        <Btn
+        </SharedBasicButton>
+        <SharedBasicButton
           onClick={() =>
             setOmittedDaily(
               id,
@@ -111,7 +111,7 @@ export const MorningEveningDetails: React.FC<IProps> = ({
           }
         >
           {dailyTest[timeOfDayType].omitted ? "Przywróć" : "Pomiń"}
-        </Btn>
+        </SharedBasicButton>
       </Btns>
     </FieldsetStyled>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { SharedBasicButton } from "../../Buttons/SharedBasicButton/SharedBasicButton";
 import { SharedDeleteButton } from "../../Buttons/SharedDeleteButton/SharedDeleteButton";
-import { GrayButton } from "./../../../styles/mixins/Buttons";
 import { Wrapper, UserData, Options } from "./UserProfile.css";
 
 export const UserProfile: React.FC<UserProfileProps> = ({
@@ -19,14 +19,14 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         <p>wiek: {age}</p>
       </UserData>
       <Options>
-        <GrayButton
+        <SharedBasicButton
           onClick={() => {
             selectUserID(id);
             history.push("/measurements");
           }}
         >
           Otwórz profil
-        </GrayButton>
+        </SharedBasicButton>
         <SharedDeleteButton deleteFunction={() => deleteProfile(id, name)} />
       </Options>
     </Wrapper>

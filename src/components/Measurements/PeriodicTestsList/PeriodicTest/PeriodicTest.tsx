@@ -1,6 +1,6 @@
 import React from "react";
 import { IPeriodicPressureTests } from "../../../../common/interfaces";
-import { GrayButton } from "./../../../../styles/mixins/Buttons";
+import { SharedBasicButton } from "./../../../Buttons/SharedBasicButton/SharedBasicButton";
 import { SharedDeleteButton } from "../../../Buttons/SharedDeleteButton/SharedDeleteButton";
 import { Wrapper, Title, Subtitle, Info, Btns } from "./PeriodicTest.css";
 
@@ -44,9 +44,9 @@ export const PeriodicTest: React.FC<IProps> = ({
       </Info>
 
       <Btns>
-        <GrayButton onClick={() => openPeriodicTestDetails(id)}>
+        <SharedBasicButton onClick={() => openPeriodicTestDetails(id)}>
           Szczegóły...
-        </GrayButton>
+        </SharedBasicButton>
         <SharedDeleteButton deleteFunction={() => deletePeriodicTest(id)} />
       </Btns>
     </Wrapper>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { GrayButton } from "./../../../../styles/mixins/Buttons";
 import { Fieldset, Legend } from "./../../../../styles/mixins/Fieldset";
 import { LiElement } from "./../../../../styles/mixins/LiElement";
 import { COLORS } from "../../../../styles/variables";
@@ -66,10 +65,6 @@ export const Btns = styled.div`
   width: 100%;
   margin-top: 10px;
   margin-bottom: 5px;
-`;
-
-export const Btn = styled(GrayButton)`
-  margin-top: 5px;
 `;
 
 interface IProps {

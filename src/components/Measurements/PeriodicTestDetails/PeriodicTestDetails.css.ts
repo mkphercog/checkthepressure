@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { GrayButton } from "../../../styles/mixins/Buttons";
 import { Fieldset } from "./../../../styles/mixins/Fieldset";
 import { COLORS, TRANSITION_TIME } from "./../../../styles/variables";
 
@@ -29,6 +28,16 @@ export const FieldsetStyled = styled(Fieldset)`
 export const ControlPanel = styled.div`
   display: flex;
   padding: 5px 5px 0;
+
+  .buttons-wapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    button {
+      margin-right: 10px;
+    }
+  }
 `;
 
 export const BackArrow = styled.button`
@@ -52,10 +61,10 @@ export const BackArrow = styled.button`
   }
 `;
 
-export const SummaryBtn = styled(GrayButton)`
-  margin-left: auto;
-`;
+// export const SummaryBtn = styled(GrayButton)`
+//   margin-left: auto;
+// `;
 
-export const PdfBtn = styled(GrayButton)`
-  margin-left: 10px;
-`;
+// export const PdfBtn = styled(GrayButton)`
+//   margin-left: 10px;
+// `;

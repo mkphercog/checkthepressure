@@ -14,12 +14,13 @@ import {
   FieldsetStyled,
   ControlPanel,
   BackArrow,
-  SummaryBtn,
-  PdfBtn,
+  // SummaryBtn,
+  // PdfBtn,
 } from "./PeriodicTestDetails.css";
 import { PeriodicTestStates } from "./../../../common/constants";
 import { Legend } from "./../../../styles/mixins/Fieldset";
 import { useDispatch } from "react-redux";
+import { SharedBasicButton } from "./../../Buttons/SharedBasicButton/SharedBasicButton";
 import { AverageResults } from "../../Popups/AverageResults/AverageResults";
 
 export const PeriodicTestDetails: React.FC<IProps> = ({
@@ -81,25 +82,27 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
           <BackArrow onClick={backToPeriodicTestsList}>
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
-          <SummaryBtn
-            onClick={() => {
-              dispatch(calculateAverageResults(userID, periodicID));
-              setPopup(
-                <AverageResults
-                  userID={userID}
-                  periodicTest={test}
-                  setIsOpenAverageResultsPopup={setIsOpenPortal}
-                />
-              );
-              setIsOpenPortal(true);
-            }}
-            disabled={!testIsDone}
-          >
-            Podsumowanie
-          </SummaryBtn>
-          <PdfBtn disabled={!testIsDone}>
-            <i className="fas fa-file-pdf"></i> Generuj pdf
-          </PdfBtn>
+          <div className="buttons-wapper">
+            <SharedBasicButton
+              onClick={() => {
+                dispatch(calculateAverageResults(userID, periodicID));
+                setPopup(
+                  <AverageResults
+                    userID={userID}
+                    periodicTest={test}
+                    setIsOpenAverageResultsPopup={setIsOpenPortal}
+                  />
+                );
+                setIsOpenPortal(true);
+              }}
+              isDisabled={!testIsDone}
+            >
+              Podsumowanie
+            </SharedBasicButton>
+            <SharedBasicButton onClick={() => {}} isDisabled={!testIsDone}>
+              Generuj pdf
+            </SharedBasicButton>
+          </div>
         </ControlPanel>
         <ul>{renderList}</ul>
       </FieldsetStyled>
