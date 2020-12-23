@@ -10,6 +10,8 @@ export enum TimeOfDayStates {
   EVENING = "Wieczór",
 }
 
+export const MAX_SYS_DIA_PULSE_VALUE = 250;
+
 export const emptyPeriodicTest: IPeriodicPressureTests = {
   id: 0,
   start: "",

@@ -10,7 +10,10 @@ import {
   editDailyValues,
   updateNumberOfTotalAndDoneTestsAndState,
 } from "./../../../store/actions/profilesAction";
-import { TimeOfDayStates } from "./../../../common/constants";
+import {
+  TimeOfDayStates,
+  MAX_SYS_DIA_PULSE_VALUE,
+} from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
@@ -44,10 +47,14 @@ export const EditDailyTest: React.FC<IProps> = ({
         />
       );
       setIsOpenPortal(true);
-    } else if (Number(sys) > 300 || Number(dia) > 300 || Number(pulse) > 300) {
+    } else if (
+      Number(sys) > MAX_SYS_DIA_PULSE_VALUE ||
+      Number(dia) > MAX_SYS_DIA_PULSE_VALUE ||
+      Number(pulse) > MAX_SYS_DIA_PULSE_VALUE
+    ) {
       setPopup(
         <Warnings
-          message="Conajmniej jedno pole zawiera zbyt dużą wartość."
+          message={`Conajmniej jedno pole zawiera zbyt dużą wartość. (max ${MAX_SYS_DIA_PULSE_VALUE})`}
           setIsOpen={setIsOpenPortal}
         />
       );
