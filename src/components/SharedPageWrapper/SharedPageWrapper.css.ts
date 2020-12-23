@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS } from "./../variables";
+import { COLORS, CORNER_RADIUS } from "./../../styles/variables";
 
-export const PageWrapperWithImageInBG = styled.div`
+export const PageWrapperStyled = styled.div`
   flex-grow: 1;
   position: relative;
   width: 100%;

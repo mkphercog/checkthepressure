@@ -1,13 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation/Navigation";
 import { UserPressureBar } from "./components/UserPressureBar/UserPressureBar";
 import { ProfilesSelector } from "./components/ProfilesSelector/ProfilesSelector";
 import { Measurements } from "./components/Measurements/Measurements";
-import { IGlobalState } from "./common/interfaces";
-import { GlobalStyles, AppBG, AppWrapper, AppBottomBar } from "./index.css";
-import { useSelector } from "react-redux";
+import { Advices } from "./components/Advices/Advices";
+import { Info } from "./components/Info/Info";
 import { anonymous } from "./common/constants";
+import { IGlobalState } from "./common/interfaces";
+import { AppBG, AppWrapper, AppBottomBar } from "./App.css";
+import { GlobalStyles } from "./index.css";
 
 export const App: React.FC = () => {
   const getProfiles = useSelector((state: IGlobalState) => state.profiles);
@@ -33,6 +36,12 @@ export const App: React.FC = () => {
           </Route>
           <Route path="/measurements">
             <Measurements selectedUser={selectedUser} />
+          </Route>
+          <Route path="/advices">
+            <Advices />
+          </Route>
+          <Route path="/info">
+            <Info />
           </Route>
         </Switch>
       </AppWrapper>

@@ -9,9 +9,8 @@ import { AddUser } from "./../Popups/AddUser/AddUser";
 import { WarningsYesNo } from "./../Popups/Warnings/Warnings";
 import { Portal, PortalTarget } from "./../../common/Portal/Portal";
 import { IGlobalState } from "./../../common/interfaces";
-import BackGround from "./../../images/BG.jpg";
 import { ProfilesSelectorStyled } from "./ProfilesSelector.css";
-import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
+import { SharedPageWrapper } from "./../SharedPageWrapper/SharedPageWrapper";
 import { Legend } from "./../../styles/mixins/Fieldset";
 import { SharedAddButton } from "../Buttons/SharedAddButton/SharedAddButton";
 
@@ -54,8 +53,7 @@ export const ProfilesSelector: React.FC = () => {
   const legendTitle = renderUsers.length ? "Profile" : "Brak użytkowników";
 
   return (
-    <PageWrapperWithImageInBG>
-      <img src={BackGround} alt="Blood Pressure" />
+    <SharedPageWrapper>
       <ProfilesSelectorStyled>
         <Legend>{legendTitle}</Legend>
         <ul>{renderUsers}</ul>
@@ -67,6 +65,6 @@ export const ProfilesSelector: React.FC = () => {
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
-    </PageWrapperWithImageInBG>
+    </SharedPageWrapper>
   );
 };

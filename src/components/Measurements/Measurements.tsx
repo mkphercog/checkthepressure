@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { PeriodicTestsList } from "./PeriodicTestsList/PeriodicTestsList";
 import { PeriodicTestDetails } from "./PeriodicTestDetails/PeriodicTestDetails";
 import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
-import BackGround from "./../../images/BG.jpg";
 import { emptyPeriodicTest } from "./../../common/constants";
-import { PageWrapperWithImageInBG } from "../../styles/mixins/PageBackGround";
+import { SharedPageWrapper } from "./../SharedPageWrapper/SharedPageWrapper";
 
 export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
   const [
@@ -29,8 +28,7 @@ export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
   };
 
   return (
-    <PageWrapperWithImageInBG>
-      <img src={BackGround} alt="Blood Pressure" />
+    <SharedPageWrapper>
       {isOpenPeriodicTestDetails ? (
         <PeriodicTestDetails
           test={openedPeriodicTest || emptyPeriodicTest}
@@ -45,7 +43,7 @@ export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
           openPeriodicTestDetails={handleOpenPeriodicTestDetails}
         />
       )}
-    </PageWrapperWithImageInBG>
+    </SharedPageWrapper>
   );
 };
 
