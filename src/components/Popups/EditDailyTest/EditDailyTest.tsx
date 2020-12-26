@@ -4,22 +4,25 @@ import {
   PopupContentWrapper,
 } from "./../../../styles/mixins/Popups";
 import { Wrapper, FormStyled } from "./EditDailyTest.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import {
   editDailyValues,
   updateNumberOfTotalAndDoneTestsAndState,
 } from "./../../../store/actions/profilesAction";
-import {
-  TimeOfDayStates,
-  MAX_SYS_DIA_PULSE_VALUE,
-} from "./../../../common/constants";
+import { TimeOfDayStates } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
   SharedApplyButton,
   SharedApplyButtonType,
 } from "../../Buttons/SharedApplyButton/SharedApplyButton";
+import { IGlobalState } from "../../../common/interfaces";
+import {
+  getDailyTimeOfDayTestValues,
+  validateValues,
+  ValidateStateTypes,
+} from "./EditDailyTestFunctions";
 
 export const EditDailyTest: React.FC<IProps> = ({
   userID,
@@ -29,52 +32,41 @@ export const EditDailyTest: React.FC<IProps> = ({
   setIsOpenEditDailyTestPopup,
   date,
 }) => {
+  const users = useSelector((state: IGlobalState) => state.profiles.users);
+  const currentTestValuesToRender = getDailyTimeOfDayTestValues(
+    users,
+    userID,
+    periodicID,
+    dailyID,
+    timeOfDay
+  );
+  const { currentSys, currentDia, currentPulse } = currentTestValuesToRender;
+  const [sys, setSys] = useState(currentSys);
+  const [dia, setDia] = useState(currentDia);
+  const [pulse, setPulse] = useState(currentPulse);
   const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState(Object);
-  const [sys, setSys] = useState("");
-  const [dia, setDia] = useState("");
-  const [pulse, setPulse] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-
-    if (Number(sys) < 0 || Number(dia) < 0 || Number(pulse) < 0) {
+    const checkValues = validateValues(sys, dia, pulse);
+    if (checkValues.state === ValidateStateTypes.notEnough) {
       setPopup(
-        <Warnings
-          message="Conajmniej jedno pole zawiera ujemną wartość."
-          setIsOpen={setIsOpenPortal}
-        />
+        <Warnings message={checkValues.message} setIsOpen={setIsOpenPortal} />
       );
       setIsOpenPortal(true);
-    } else if (
-      Number(sys) > MAX_SYS_DIA_PULSE_VALUE ||
-      Number(dia) > MAX_SYS_DIA_PULSE_VALUE ||
-      Number(pulse) > MAX_SYS_DIA_PULSE_VALUE
-    ) {
+    } else if (checkValues.state === ValidateStateTypes.tooMuch) {
       setPopup(
-        <Warnings
-          message={`Conajmniej jedno pole zawiera zbyt dużą wartość. (max ${MAX_SYS_DIA_PULSE_VALUE})`}
-          setIsOpen={setIsOpenPortal}
-        />
+        <Warnings message={checkValues.message} setIsOpen={setIsOpenPortal} />
       );
       setIsOpenPortal(true);
-    } else if (
-      /\D/gi.test(sys) ||
-      /\D/gi.test(dia) ||
-      /\D/gi.test(pulse) ||
-      sys === "" ||
-      dia === "" ||
-      pulse === ""
-    ) {
+    } else if (checkValues.state === ValidateStateTypes.badSign) {
       setPopup(
-        <Warnings
-          message="Conajmniej jedno pole ma nieprawidłową wartość."
-          setIsOpen={setIsOpenPortal}
-        />
+        <Warnings message={checkValues.message} setIsOpen={setIsOpenPortal} />
       );
       setIsOpenPortal(true);
-    } else {
+    } else if (checkValues.state === ValidateStateTypes.correct) {
       dispatch(
         editDailyValues(
           userID,
