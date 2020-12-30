@@ -9,7 +9,8 @@ export const generateDateArray = (startDashDate: string, numOfDays: number) => {
   const dateList = [];
   for (let i = 0; i < numOfDays; i++) {
     const date = Date.UTC(year, month - 1, day + i, 0, 0, 0);
-    const dateWithDots = new Intl.DateTimeFormat("pl").format(date);
+    let dateWithDots = new Intl.DateTimeFormat("pl").format(date);
+    if (dateWithDots[1] === ".") dateWithDots = `0${dateWithDots}`;
     dateList.push(dateWithDots);
   }
   return dateList;

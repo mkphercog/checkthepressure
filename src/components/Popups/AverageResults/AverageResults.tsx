@@ -9,6 +9,7 @@ import {
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import { COLORS } from "../../../styles/variables";
 import { Wrapper, Title, Content } from "./AverageResults.css";
+import { PdfPageGenerator } from "../../../common/PDF/PdfPageGenerator";
 
 export enum sysDiaType {
   SYS = "SYS",
@@ -70,6 +71,7 @@ export const AverageResults: React.FC<IProps> = ({
           resultName={resultNameType.total}
           getSysDiaColor={getSysDiaColor}
         />
+        <PdfPageGenerator userID={userID} periodicID={id} />
       </Content>
       <SharedExitButton setIsOpen={setIsOpenAverageResultsPopup} />
     </Wrapper>

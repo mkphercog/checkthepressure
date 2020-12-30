@@ -14,8 +14,6 @@ import {
   FieldsetStyled,
   ControlPanel,
   BackArrow,
-  // SummaryBtn,
-  // PdfBtn,
 } from "./PeriodicTestDetails.css";
 import { PeriodicTestStates } from "./../../../common/constants";
 import { Legend } from "./../../../styles/mixins/Fieldset";
@@ -98,9 +96,6 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
               isDisabled={!testIsDone}
             >
               Podsumowanie
-            </SharedBasicButton>
-            <SharedBasicButton onClick={() => {}} isDisabled={!testIsDone}>
-              Generuj pdf
             </SharedBasicButton>
           </div>
         </ControlPanel>
