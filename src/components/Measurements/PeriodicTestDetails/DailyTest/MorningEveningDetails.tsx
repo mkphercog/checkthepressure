@@ -65,7 +65,7 @@ export const MorningEveningDetails: React.FC<IProps> = ({
       </MorningEveningStyled>
       <SysDiaPuls>
         <p>
-          SYS:{" "}
+          Ciśnienie:{" "}
           <SysAndDiaColored
             color={
               dailyTest[timeOfDayType].omitted
@@ -75,9 +75,7 @@ export const MorningEveningDetails: React.FC<IProps> = ({
           >
             {dailyTest[timeOfDayType].SYS}
           </SysAndDiaColored>
-        </p>
-        <p>
-          DIA:{" "}
+          /
           <SysAndDiaColored
             color={
               dailyTest[timeOfDayType].omitted
@@ -89,7 +87,7 @@ export const MorningEveningDetails: React.FC<IProps> = ({
           </SysAndDiaColored>
         </p>
         <p>
-          PULS: <span>{dailyTest[timeOfDayType].PULSE}</span>
+          Puls: <span>{dailyTest[timeOfDayType].PULSE}</span>
         </p>
       </SysDiaPuls>
       <Btns>
