@@ -5,7 +5,7 @@ Check The Pressure is a polish website what help people make periodic pressure t
 ## If you want you can copy this app, for that use command:
 
 ```
-git clone
+git clone https://github.com/mkphercog/checkthepressure.git
 ```
 
 ### After that in cloned folder use:
@@ -24,4 +24,4 @@ npm install
 
 ## Launch website here:
 
-[Check the pressure]()
+[Check the pressure](https://mkphercog.github.io/checkthepressure/)
