@@ -21,15 +21,13 @@ export const ResultsInFieldset: React.FC<IProps> = ({
   <FieldsetStyled>
     <LegendStyled>{timeOfDayName}</LegendStyled>
     <p>
-      SYS:{" "}
+      Ciśnienie:{" "}
       <SysAndDiaColored
         color={getSysDiaColor(averageResults[resultName].SYS, sysDiaType.SYS)}
       >
         {averageResults[resultName].SYS}
       </SysAndDiaColored>
-    </p>
-    <p>
-      DIA:{" "}
+      /
       <SysAndDiaColored
         color={getSysDiaColor(averageResults[resultName].DIA, sysDiaType.DIA)}
       >
