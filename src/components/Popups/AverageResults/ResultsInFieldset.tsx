@@ -37,7 +37,7 @@ export const ResultsInFieldset: React.FC<IProps> = ({
       </SysAndDiaColored>
     </p>
     <p>
-      PULSE: <span>{averageResults[resultName].PULSE}</span>
+      PULS: <span>{averageResults[resultName].PULSE}</span>
     </p>
   </FieldsetStyled>
 );

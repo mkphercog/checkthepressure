@@ -66,7 +66,7 @@ export const AverageResults: React.FC<IProps> = ({
           getSysDiaColor={getSysDiaColor}
         />
         <ResultsInFieldset
-          timeOfDayName={"Całkowite"}
+          timeOfDayName={"Łącznie"}
           averageResults={averageResults}
           resultName={resultNameType.total}
           getSysDiaColor={getSysDiaColor}
