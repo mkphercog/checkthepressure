@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "../../styles/variables";
+import { COLORS, TRANSITION_TIME } from "../../styles/variables";
 
 export const Bar = styled.div`
   flex-shrink: 0;
@@ -8,16 +8,18 @@ export const Bar = styled.div`
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  height: 6vh;
+  padding: 4px 0;
   border-bottom: 2px solid ${COLORS.blue};
   background-color: ${COLORS.white};
+  animation: show ${TRANSITION_TIME} linear both;
 
-  @media (min-width: 768px) and (orientation: portrait) {
-    height: 3vh;
-  }
-
-  @media (min-width: 1024px) {
-    height: 3vh;
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 `;
 
@@ -26,13 +28,11 @@ export const UserData = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 5px;
 
   @media (orientation: landscape) {
     width: auto;
-  }
-
-  @media (min-width: 768px) {
-    width: auto;
+    margin-bottom: 0;
   }
 
   p {

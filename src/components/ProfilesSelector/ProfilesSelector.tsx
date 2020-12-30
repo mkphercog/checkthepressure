@@ -50,7 +50,9 @@ export const ProfilesSelector: React.FC = () => {
       />
     )) || [];
 
-  const legendTitle = renderUsers.length ? "Profile" : "Brak użytkowników";
+  const legendTitle = renderUsers.length
+    ? "Użytkownicy"
+    : "Dodaj pierwszego użytkownika";
 
   return (
     <SharedPageWrapper>
@@ -59,7 +61,7 @@ export const ProfilesSelector: React.FC = () => {
         <ul>{renderUsers}</ul>
         <SharedAddButton
           addFunction={handleAddNewProfile}
-          hoverDescription={"Dodaj nowy profil"}
+          hoverDescription={"Dodaj nowego użytkownika"}
         />
       </ProfilesSelectorStyled>
       {isOpenPortal ? (

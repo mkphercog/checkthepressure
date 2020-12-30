@@ -25,11 +25,13 @@ export const App: React.FC = () => {
       <GlobalStyles />
       <AppWrapper>
         <Navigation />
-        <UserPressureBar
-          name={name}
-          age={age}
-          userBloodPressureBasedOnAge={userBloodPressureBasedOnAge}
-        />
+        {selectedUser.id !== -1 ? (
+          <UserPressureBar
+            name={name}
+            age={age}
+            userBloodPressureBasedOnAge={userBloodPressureBasedOnAge}
+          />
+        ) : null}
         <Switch>
           <Route path="/" exact>
             <ProfilesSelector />
