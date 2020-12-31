@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Header, Logo, Nav, MenuIcon, BackArrowIcon } from "./Navigation.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 export const Navigation: React.FC = () => {
   const [menuVisibility, setMenuVisibility] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const history = useHistory();
 
   document.body.onresize = () => setWindowWidth(window.innerWidth);
 
@@ -15,9 +16,13 @@ export const Navigation: React.FC = () => {
   }, [windowWidth]);
 
   return (
-    <Header windowWidth={windowWidth}>
+    <Header>
       {menuVisibility ? null : (
-        <Logo>
+        <Logo
+          onClick={() => {
+            if (history.location.pathname !== "/") history.push("/");
+          }}
+        >
           Badaj <span>ciśnienie</span>
         </Logo>
       )}

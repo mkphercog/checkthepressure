@@ -18,27 +18,17 @@ const opacityAnimation = keyframes`
 export const Header = styled.header`
   flex-shrink: 0;
   display: flex;
-  justify-content: ${(props: { windowWidth: number }) =>
-    props.windowWidth >= 640 ? "center" : "flex-end"};
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 7vh;
+  padding: 8px 0;
   background-color: ${COLORS.blue};
   border-top-right-radius: ${CORNER_RADIUS};
   border-top-left-radius: ${CORNER_RADIUS};
-
-  @media (orientation: landscape) {
-    height: 11vh;
-  }
-
-  @media (min-width: 1024px) {
-    height: 7vh;
-  }
 `;
 
 export const Logo = styled.h1`
-  flex-grow: 1;
-  margin-left: 20px;
+  margin-left: 10px;
   font-size: 18px;
   text-transform: uppercase;
   color: ${COLORS.white};
@@ -53,7 +43,9 @@ export const Logo = styled.h1`
   }
 
   @media (min-width: 1024px) {
+    margin-left: 20px;
     font-size: 28px;
+    cursor: pointer;
   }
 
   span {
@@ -66,6 +58,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   height: 100%;
+  margin: 0 10px;
   animation: ${opacityAnimation} linear 0.5s;
 
   @media (min-width: ${widthWithoutMenuIcon}) {
@@ -73,7 +66,7 @@ export const Nav = styled.nav`
   }
 
   @media (min-width: 1024px) {
-    margin-right: 15px;
+    margin-right: 20px;
   }
 
   li {
