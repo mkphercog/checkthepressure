@@ -11,6 +11,8 @@ export enum TimeOfDayStates {
 }
 
 export const MAX_SYS_DIA_PULSE_VALUE = 250;
+export const NAME_MAX_CHARS = 15;
+export const MAX_AGE = 150;
 
 export const emptyPeriodicTest: IPeriodicPressureTests = {
   id: 0,

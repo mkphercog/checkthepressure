@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import {
   PopupContentWrapper,
   PopupTitleGreen,
-  PopupSelect,
 } from "./../../../styles/mixins/Popups";
 import { Wrapper, FormStyled } from "./AddUser.css";
-import { numRangeOptions } from "./../../../common/optionsForSelectTag";
 import { useDispatch, useSelector } from "react-redux";
 import { IGlobalState, IUser } from "./../../../common/interfaces";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
@@ -18,45 +16,70 @@ import {
   SharedApplyButton,
   SharedApplyButtonType,
 } from "../../Buttons/SharedApplyButton/SharedApplyButton";
+import { NAME_MAX_CHARS, MAX_AGE } from "./../../../common/constants";
 
 export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
   const [name, setName] = useState("");
-  const [age, setAge] = useState(1);
+  const [age, setAge] = useState("");
   const dispatch = useDispatch();
   const profiles = useSelector((state: IGlobalState) => state.profiles);
   const { nextAvailableUserID } = profiles;
   const [isOpenPortal, setIsOpenPortal] = useState(false);
   const [popup, setPopup] = useState(Object);
-  const renderOptionsAge = numRangeOptions(1, 120);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    const parsedAge = parseInt(age);
 
-    if (name === "") {
+    if (name === "" || age === "") {
       setPopup(
         <Warnings
-          message="Puste pole, podaj imię :)"
+          message="Uzupełnij wszystkie pola."
           setIsOpen={setIsOpenPortal}
         />
       );
       setIsOpenPortal(true);
-    } else if (name.length >= 15) {
+    } else if (name.length >= NAME_MAX_CHARS) {
       setPopup(
         <Warnings
-          message="Podane imię jest za długie. (max 15 znaków)"
+          message={`Podane imię jest za długie. (max ${NAME_MAX_CHARS} znaków)`}
+          setIsOpen={setIsOpenPortal}
+        />
+      );
+      setIsOpenPortal(true);
+    } else if (parsedAge < 0) {
+      setPopup(
+        <Warnings
+          message="Wiek nie może być wartością ujemną."
+          setIsOpen={setIsOpenPortal}
+        />
+      );
+      setIsOpenPortal(true);
+    } else if (parsedAge > MAX_AGE) {
+      setPopup(
+        <Warnings
+          message={`Wiek zbyt duży. (max ${MAX_AGE})`}
+          setIsOpen={setIsOpenPortal}
+        />
+      );
+      setIsOpenPortal(true);
+    } else if (/\D/gi.test(age)) {
+      setPopup(
+        <Warnings
+          message="Wiek posiada niepoprawną wartość."
           setIsOpen={setIsOpenPortal}
         />
       );
       setIsOpenPortal(true);
     } else {
       const getUserBloodPressure =
-        findUserBloodPressureBasedOnAge(age) ||
+        findUserBloodPressureBasedOnAge(parsedAge) ||
         anonymous.userBloodPressureBasedOnAge;
 
       const newProfile: IUser = {
         id: nextAvailableUserID,
         name: name,
-        age: age,
+        age: parsedAge,
         userBloodPressureBasedOnAge: {
           MIN: getUserBloodPressure?.MIN,
           NORMAL: getUserBloodPressure?.NORMAL,
@@ -66,7 +89,7 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
         periodicPressureTests: [],
       };
       setName("");
-      setAge(1);
+      setAge("");
       dispatch(addProfile(newProfile));
       setIsOpenAddUserPopup(false);
     }
@@ -91,14 +114,12 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
           </div>
           <div className="label-input">
             <label htmlFor="age">Wiek: </label>
-            <PopupSelect
-              value={age}
+            <input
+              type="text"
               id="age"
-              onChange={(e) => setAge(parseInt(e.target.value))}
-              name="age"
-            >
-              {renderOptionsAge}
-            </PopupSelect>
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
           </div>
           <div className="apply-button">
             <SharedApplyButton
