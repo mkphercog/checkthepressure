@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     padding: "5 10",
   },
   periodicText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "OpenSansBold",
   },
   tableHeaderView: {
@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   },
   tableHeaderText: {
     width: "33%",
-    fontSize: 14,
+    fontSize: 12,
     textAlign: "center",
     fontFamily: "OpenSansBold",
     color: COLORS.white,
@@ -87,7 +87,7 @@ export const styles = StyleSheet.create({
     padding: "5 10",
   },
   averageTitleText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "OpenSansBold",
   },
   freeSpaceView: {
@@ -101,14 +101,14 @@ export const styles = StyleSheet.create({
     borderTopColor: COLORS.darkGray,
   },
   fotterText: {
-    fontSize: 10,
+    fontSize: 9,
     textAlign: "center",
   },
   normalText: {
-    fontSize: 12,
+    fontSize: 11,
   },
   boldText: {
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: "OpenSansBold",
   },
 });

@@ -1,4 +1,5 @@
 import { View, Text } from "@react-pdf/renderer";
+import { COLORS } from "../../../styles/variables";
 import { styles } from "./../PdfPage.styles";
 
 enum PropNames {
@@ -26,9 +27,11 @@ export const AverageResultsView = ({ averageResults }: IProps) => {
 
   const renderAllAverageResults = (
     <View style={styles.tableContentView}>
+      <Text style={{ ...styles.tableContentText, color: COLORS.blue }}>
+        {renderAverageTotal}
+      </Text>
       <Text style={styles.tableContentText}>{renderAverageMorning}</Text>
       <Text style={styles.tableContentText}>{renderAverageEvening}</Text>
-      <Text style={styles.tableContentText}>{renderAverageTotal}</Text>
     </View>
   );
 
@@ -38,9 +41,9 @@ export const AverageResultsView = ({ averageResults }: IProps) => {
         <Text style={styles.averageTitleText}>ŚREDNIE WYNIKI</Text>
       </View>
       <View style={styles.tableHeaderView}>
+        <Text style={styles.tableHeaderText}>ŁĄCZNIE</Text>
         <Text style={styles.tableHeaderText}>RANO</Text>
         <Text style={styles.tableHeaderText}>WIECZÓR</Text>
-        <Text style={styles.tableHeaderText}>ŁĄCZNIE</Text>
       </View>
       {renderAllAverageResults}
     </>
