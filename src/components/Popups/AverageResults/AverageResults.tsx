@@ -21,7 +21,7 @@ export const AverageResults: React.FC<IProps> = ({
   periodicTest,
   setIsOpenAverageResultsPopup,
 }) => {
-  const { id, averageResults } = periodicTest;
+  const { id, averageResults, start, end } = periodicTest;
 
   const userBloodPressureBasedOnAge = useSelector(
     (state: IGlobalState) =>
@@ -71,7 +71,12 @@ export const AverageResults: React.FC<IProps> = ({
           resultName={resultNameType.total}
           getSysDiaColor={getSysDiaColor}
         />
-        <PdfPageGenerator userID={userID} periodicID={id} />
+        <PdfPageGenerator
+          userID={userID}
+          periodicID={id}
+          startDate={start}
+          endDate={end}
+        />
       </Content>
       <SharedExitButton setIsOpen={setIsOpenAverageResultsPopup} />
     </Wrapper>

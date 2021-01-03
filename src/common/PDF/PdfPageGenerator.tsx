@@ -5,7 +5,12 @@ import { IGlobalState } from "../interfaces";
 import { MyDocument } from "./PdfPage";
 import { PDFDownloadLinkStyled } from "./PdfPageGenerator.css";
 
-export const PdfPageGenerator: React.FC<IProps> = ({ userID, periodicID }) => {
+export const PdfPageGenerator: React.FC<IProps> = ({
+  userID,
+  periodicID,
+  startDate,
+  endDate,
+}) => {
   const user = useSelector((state: IGlobalState) =>
     state.profiles.users.find((user) => user.id === userID)
   );
@@ -13,7 +18,7 @@ export const PdfPageGenerator: React.FC<IProps> = ({ userID, periodicID }) => {
   return (
     <PDFDownloadLinkStyled
       document={<MyDocument user={user || anonymous} periodicID={periodicID} />}
-      fileName={`Pomiar_okresowy_#${periodicID}_${user?.name}.pdf`}
+      fileName={`Pomiar ciśnienia #${periodicID} (${startDate} - ${endDate}) - ${user?.name}.pdf`}
     >
       {({ blob, url, loading, error }) =>
         loading ? "Ładowanie..." : "Wygeneruj pdf z wynikami"
@@ -25,4 +30,6 @@ export const PdfPageGenerator: React.FC<IProps> = ({ userID, periodicID }) => {
 interface IProps {
   userID: number;
   periodicID: number;
+  startDate: string;
+  endDate: string;
 }
