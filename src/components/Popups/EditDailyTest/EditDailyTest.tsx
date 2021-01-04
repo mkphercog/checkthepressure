@@ -10,7 +10,7 @@ import {
   editDailyValues,
   updateNumberOfTotalAndDoneTestsAndState,
 } from "./../../../store/actions/profilesAction";
-import { TimeOfDayStates } from "./../../../common/constants";
+import { TimeOfDayStates, TEST_VALUES_INFO } from "./../../../common/constants";
 import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
@@ -23,6 +23,14 @@ import {
   validateValues,
   ValidateStateTypes,
 } from "./EditDailyTestFunctions";
+import { SharedInfoButton } from "../../Buttons/SharedInfoButton/SharedInfoButton";
+import { Information } from "../Information/Information";
+
+enum SysDiaPulse {
+  SYS = "SYS",
+  DIA = "DIA",
+  PULSE = "PULSE",
+}
 
 export const EditDailyTest: React.FC<IProps> = ({
   userID,
@@ -83,6 +91,29 @@ export const EditDailyTest: React.FC<IProps> = ({
     }
   };
 
+  const handleShowInfo = (messageType: SysDiaPulse) => {
+    let messageToShow = "";
+
+    switch (messageType) {
+      case SysDiaPulse.SYS: {
+        messageToShow = TEST_VALUES_INFO.SYS;
+        break;
+      }
+      case SysDiaPulse.DIA: {
+        messageToShow = TEST_VALUES_INFO.DIA;
+        break;
+      }
+      case SysDiaPulse.PULSE: {
+        messageToShow = TEST_VALUES_INFO.PULSE;
+        break;
+      }
+    }
+    setPopup(
+      <Information message={messageToShow} setIsOpen={setIsOpenPortal} />
+    );
+    setIsOpenPortal(true);
+  };
+
   return (
     <Wrapper>
       <PopupTitleGreen>
@@ -103,6 +134,7 @@ export const EditDailyTest: React.FC<IProps> = ({
               onChange={(e) => setSys(e.target.value)}
               autoFocus
             />
+            <SharedInfoButton onClick={() => handleShowInfo(SysDiaPulse.SYS)} />
           </div>
           <div>
             <label htmlFor="dia">DIA: </label>
@@ -112,6 +144,7 @@ export const EditDailyTest: React.FC<IProps> = ({
               value={dia}
               onChange={(e) => setDia(e.target.value)}
             />
+            <SharedInfoButton onClick={() => handleShowInfo(SysDiaPulse.DIA)} />
           </div>
           <div>
             <label htmlFor="pulse">PULS: </label>
@@ -120,6 +153,9 @@ export const EditDailyTest: React.FC<IProps> = ({
               id="pulse"
               value={pulse}
               onChange={(e) => setPulse(e.target.value)}
+            />
+            <SharedInfoButton
+              onClick={() => handleShowInfo(SysDiaPulse.PULSE)}
             />
           </div>
           <div className="apply-button">

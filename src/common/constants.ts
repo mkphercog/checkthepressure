@@ -54,3 +54,12 @@ export const anonymous: IUser = {
   nextAvailablePeriodicTestID: 0,
   periodicPressureTests: [],
 };
+
+export const TEST_VALUES_INFO = {
+  SYS:
+    "SYS (Systole) - oznacza ciśnienie skurczowe, wartość przed ukośnikiem. Przykładowo w wyniku 120/70, wartość 120 będzie wartością SYS.",
+  DIA:
+    "DIA (Diastole) - oznacza ciśnienie rozkurczowe, wartość po ukośniku. Przykładowo w wyniku 120/70, wartość 70 będzie wartością DIA.",
+  PULSE:
+    "PULS (Tętno) - mierząc puls, określamy liczbę uderzeń serca w ciągu jednej minuty.",
+};
