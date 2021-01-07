@@ -38,9 +38,6 @@ export const Navigation: React.FC = () => {
               <NavLink to="/measurements">Pomiary</NavLink>
             </li>
             <li>
-              <NavLink to="/advices">Porady</NavLink>
-            </li>
-            <li>
               <NavLink to="/info">Info</NavLink>
             </li>
           </Nav>

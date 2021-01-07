@@ -5,7 +5,6 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { UserPressureBar } from "./components/UserPressureBar/UserPressureBar";
 import { ProfilesSelector } from "./components/ProfilesSelector/ProfilesSelector";
 import { Measurements } from "./components/Measurements/Measurements";
-import { Advices } from "./components/Advices/Advices";
 import { Info } from "./components/Info/Info";
 import { anonymous } from "./common/constants";
 import { IGlobalState } from "./common/interfaces";
@@ -38,9 +37,6 @@ export const App: React.FC = () => {
           </Route>
           <Route path="/measurements">
             <Measurements selectedUser={selectedUser} />
-          </Route>
-          <Route path="/advices">
-            <Advices />
           </Route>
           <Route path="/info">
             <Info />
