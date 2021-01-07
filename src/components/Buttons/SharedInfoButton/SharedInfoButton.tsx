@@ -3,7 +3,12 @@ import {} from "./../../Popups/Information/Information";
 import { InfoButtonStyled } from "./SharedInfoButton.css";
 
 export const SharedInfoButton: React.FC<IProps> = ({ onClick }) => (
-  <InfoButtonStyled onClick={() => onClick()}>
+  <InfoButtonStyled
+    onClick={(e) => {
+      e.preventDefault();
+      onClick();
+    }}
+  >
     <i className="fas fa-info-circle"></i>
   </InfoButtonStyled>
 );
