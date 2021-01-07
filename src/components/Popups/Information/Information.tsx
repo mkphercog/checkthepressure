@@ -1,16 +1,20 @@
 import React from "react";
 import { SharedApplyButton } from "../../Buttons/SharedApplyButton/SharedApplyButton";
-import { Wrapper, Title, Content } from "./Information.css";
+import {
+  PopupTitleBlue,
+  PopupContentWrapper,
+} from "../../../styles/mixins/Popups";
+import { Wrapper } from "./Information.css";
 
 export const Information: React.FC<IProps> = ({ message, setIsOpen }) => (
   <Wrapper>
-    <Title>
+    <PopupTitleBlue>
       <p>Informacja</p>
-    </Title>
-    <Content>
+    </PopupTitleBlue>
+    <PopupContentWrapper>
       <p>{message}</p>
       <SharedApplyButton setIsOpen={setIsOpen} />
-    </Content>
+    </PopupContentWrapper>
   </Wrapper>
 );
 

@@ -9,11 +9,12 @@ import {
 import { PeriodicTestStates } from "./../../../common/constants";
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
+  PopupWrapper,
   PopupContentWrapper,
   PopupTitleGreen,
   PopupSelect,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled } from "./AddPeriodicTest.css";
+import { FormStyled } from "./AddPeriodicTest.css";
 import {
   SharedApplyButton,
   SharedApplyButtonType,
@@ -67,14 +68,14 @@ export const AddPeriodicTest: React.FC<IProps> = ({
   };
 
   return (
-    <Wrapper>
+    <PopupWrapper>
       <PopupTitleGreen>
         <p>Nowy pomiar okresowy</p>
       </PopupTitleGreen>
       <PopupContentWrapper>
         <FormStyled>
           <div>
-            <label htmlFor="dateStart">Dzień rozpoczęcia: </label>
+            <label htmlFor="dateStart">Start: </label>
             <input
               type="date"
               id="dateStart"
@@ -101,7 +102,7 @@ export const AddPeriodicTest: React.FC<IProps> = ({
         </FormStyled>
       </PopupContentWrapper>
       <SharedExitButton setIsOpen={setIsOpenAddPeriodicTestPopup} />
-    </Wrapper>
+    </PopupWrapper>
   );
 };
 

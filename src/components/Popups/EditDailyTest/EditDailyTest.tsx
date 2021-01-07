@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import {
+  PopupWrapper,
   PopupTitleGreen,
   PopupContentWrapper,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled } from "./EditDailyTest.css";
+import { FormStyled } from "./EditDailyTest.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
 import {
@@ -115,7 +116,7 @@ export const EditDailyTest: React.FC<IProps> = ({
   };
 
   return (
-    <Wrapper>
+    <PopupWrapper>
       <PopupTitleGreen>
         <p>{`${
           timeOfDay === TimeOfDayStates.MORNING
@@ -170,7 +171,7 @@ export const EditDailyTest: React.FC<IProps> = ({
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
-    </Wrapper>
+    </PopupWrapper>
   );
 };
 

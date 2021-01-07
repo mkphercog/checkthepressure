@@ -1,18 +1,23 @@
 import React from "react";
 import { SharedApplyButton } from "../../Buttons/SharedApplyButton/SharedApplyButton";
 import { SharedDenyButton } from "../../Buttons/SharedDenyButton/SharedDenyButton";
-import { Wrapper, Title, Content, BtnWrapper } from "./Warnings.css";
+import {
+  PopupWrapper,
+  PopupTitleRed,
+  PopupContentWrapper,
+} from "./../../../styles/mixins/Popups";
+import { BtnWrapper } from "./Warnings.css";
 
 export const Warnings: React.FC<IProps> = ({ message, setIsOpen }) => (
-  <Wrapper>
-    <Title>
+  <PopupWrapper>
+    <PopupTitleRed>
       <p>Uwaga!</p>
-    </Title>
-    <Content>
+    </PopupTitleRed>
+    <PopupContentWrapper>
       <p>{message}</p>
       <SharedApplyButton setIsOpen={setIsOpen} />
-    </Content>
-  </Wrapper>
+    </PopupContentWrapper>
+  </PopupWrapper>
 );
 
 export const WarningsYesNo: React.FC<IPropsYesNo> = ({
@@ -20,18 +25,18 @@ export const WarningsYesNo: React.FC<IPropsYesNo> = ({
   setIsOpen,
   response,
 }) => (
-  <Wrapper>
-    <Title>
+  <PopupWrapper>
+    <PopupTitleRed>
       <p>Uwaga!</p>
-    </Title>
-    <Content>
+    </PopupTitleRed>
+    <PopupContentWrapper>
       <p>{message}</p>
       <BtnWrapper>
         <SharedDenyButton setIsOpen={setIsOpen} getResponse={response} />
         <SharedApplyButton setIsOpen={setIsOpen} getResponse={response} />
       </BtnWrapper>
-    </Content>
-  </Wrapper>
+    </PopupContentWrapper>
+  </PopupWrapper>
 );
 
 interface IProps {

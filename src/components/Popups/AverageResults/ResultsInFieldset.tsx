@@ -1,10 +1,7 @@
 import React from "react";
 import { sysDiaType } from "./AverageResults";
-import {
-  FieldsetStyled,
-  LegendStyled,
-  SysAndDiaColored,
-} from "./AverageResults.css";
+import { Legend } from "./../../../styles/mixins/Fieldset";
+import { FieldsetStyled, SysAndDiaColored } from "./AverageResults.css";
 
 export enum resultNameType {
   morninig = "morning",
@@ -19,7 +16,7 @@ export const ResultsInFieldset: React.FC<IProps> = ({
   getSysDiaColor,
 }) => (
   <FieldsetStyled>
-    <LegendStyled>{timeOfDayName}</LegendStyled>
+    <Legend>{timeOfDayName}</Legend>
     <p>
       Ciśnienie:{" "}
       <SysAndDiaColored

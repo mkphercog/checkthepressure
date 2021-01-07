@@ -1,52 +1,35 @@
 import styled from "styled-components";
-import { Fieldset, Legend } from "./../../../styles/mixins/Fieldset";
-import {
-  PopupWrapper,
-  PopupTitleGreen,
-  PopupContentWrapper,
-} from "./../../../styles/mixins/Popups";
-
-export const Wrapper = styled(PopupWrapper)`
-  width: 95%;
-
-  @media (orientation: landscape) {
-    width: 60%;
-  }
-
-  @media (min-width: 768px) {
-    width: 55%;
-  }
-
-  @media (min-width: 1024px) {
-    width: 40%;
-  }
-
-  @media (min-width: 1200px) {
-    width: 30%;
-  }
-
-  h1 {
-    margin-top: 10px;
-    font-size: 18px;
-  }
-`;
-
-export const Title = styled(PopupTitleGreen)`
-  padding: 15px 0;
-`;
+import { Fieldset } from "./../../../styles/mixins/Fieldset";
+import { PopupContentWrapper } from "./../../../styles/mixins/Popups";
 
 export const Content = styled(PopupContentWrapper)`
   justify-content: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 18px;
+
+    @media (min-width: 768px) {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 export const FieldsetStyled = styled(Fieldset)`
   display: flex;
   justify-content: space-around;
-  height: auto;
-  margin-bottom: 20px;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 20px;
+  }
 
   p {
+    margin: 5px 15px;
     font-size: 14px;
+    white-space: nowrap;
 
     @media (min-width: 1024px) {
       font-size: 16px;
@@ -57,8 +40,6 @@ export const FieldsetStyled = styled(Fieldset)`
     }
   }
 `;
-
-export const LegendStyled = styled(Legend)``;
 
 export const SysAndDiaColored = styled.span`
   color: ${(props: { color: string }) => props.color};

@@ -8,7 +8,8 @@ import {
 } from "../../../common/interfaces";
 import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import { COLORS } from "../../../styles/variables";
-import { Wrapper, Title, Content } from "./AverageResults.css";
+import { PopupWrapper, PopupTitleGreen } from "./../../../styles/mixins/Popups";
+import { Content } from "./AverageResults.css";
 import { PdfPageGenerator } from "../../../common/PDF/PdfPageGenerator";
 
 export enum sysDiaType {
@@ -47,30 +48,32 @@ export const AverageResults: React.FC<IProps> = ({
   };
 
   return (
-    <Wrapper>
-      <Title>
+    <PopupWrapper>
+      <PopupTitleGreen>
         <p>Podsumowanie pomiaru #{id}</p>
-      </Title>
+      </PopupTitleGreen>
       <Content>
         <h1>Średnie wyniki</h1>
-        <ResultsInFieldset
-          timeOfDayName={"Rano"}
-          averageResults={averageResults}
-          resultName={resultNameType.morninig}
-          getSysDiaColor={getSysDiaColor}
-        />
-        <ResultsInFieldset
-          timeOfDayName={"Wieczór"}
-          averageResults={averageResults}
-          resultName={resultNameType.evening}
-          getSysDiaColor={getSysDiaColor}
-        />
-        <ResultsInFieldset
-          timeOfDayName={"Łącznie"}
-          averageResults={averageResults}
-          resultName={resultNameType.total}
-          getSysDiaColor={getSysDiaColor}
-        />
+        <div>
+          <ResultsInFieldset
+            timeOfDayName={"Rano"}
+            averageResults={averageResults}
+            resultName={resultNameType.morninig}
+            getSysDiaColor={getSysDiaColor}
+          />
+          <ResultsInFieldset
+            timeOfDayName={"Wieczór"}
+            averageResults={averageResults}
+            resultName={resultNameType.evening}
+            getSysDiaColor={getSysDiaColor}
+          />
+          <ResultsInFieldset
+            timeOfDayName={"Łącznie"}
+            averageResults={averageResults}
+            resultName={resultNameType.total}
+            getSysDiaColor={getSysDiaColor}
+          />
+        </div>
         <PdfPageGenerator
           userID={userID}
           periodicID={id}
@@ -79,7 +82,7 @@ export const AverageResults: React.FC<IProps> = ({
         />
       </Content>
       <SharedExitButton setIsOpen={setIsOpenAverageResultsPopup} />
-    </Wrapper>
+    </PopupWrapper>
   );
 };
 

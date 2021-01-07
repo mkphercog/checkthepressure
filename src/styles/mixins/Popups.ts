@@ -12,27 +12,27 @@ export const PopupWrapper = styled.div`
 `;
 
 export const PopupTitleGreen = styled.div`
-  flex-basis: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 5px 30px;
   background-color: ${COLORS.green};
   border-top-left-radius: ${CORNER_RADIUS};
   border-top-right-radius: ${CORNER_RADIUS};
 
   p {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: ${COLORS.white};
     text-transform: uppercase;
 
     @media (min-width: 411px) {
-      font-size: 22px;
+      font-size: 20px;
     }
 
     @media (min-width: 768px) {
-      font-size: 24px;
+      font-size: 22px;
     }
   }
 `;
@@ -41,18 +41,40 @@ export const PopupTitleRed = styled(PopupTitleGreen)`
   background-color: ${COLORS.red};
 `;
 
+export const PopupTitleBlue = styled(PopupTitleGreen)`
+  background-color: ${COLORS.blue};
+`;
+
 export const PopupContentWrapper = styled.div`
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  padding: 0 15px;
+  padding: 10px 15px;
   background-color: ${COLORS.white};
   border-bottom-left-radius: ${CORNER_RADIUS};
   border-bottom-right-radius: ${CORNER_RADIUS};
+
+  p {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: ${COLORS.black};
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+
+  button {
+    margin-top: 20px;
+  }
 `;
 
 export const PopupForm = styled.form`
@@ -65,8 +87,10 @@ export const PopupForm = styled.form`
 
   div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100%;
+    margin-top: 20px;
 
     label {
       margin-right: 10px;
@@ -89,20 +113,23 @@ export const PopupForm = styled.form`
       border-bottom: 3px solid ${COLORS.green};
       outline-style: none;
       font-size: 16px;
+      outline-offset: 0;
 
       @media (min-width: 768px) {
         font-size: 17px;
       }
 
-      @media (min-width: 1024px) {
-        width: 30%;
-      }
-
       :focus {
-        font-weight: bold;
         border-bottom: 3px solid ${COLORS.orange};
       }
     }
+  }
+
+  .apply-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
   }
 `;
 

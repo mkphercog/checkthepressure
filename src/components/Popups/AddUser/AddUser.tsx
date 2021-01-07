@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import {
+  PopupWrapper,
   PopupContentWrapper,
   PopupTitleGreen,
 } from "./../../../styles/mixins/Popups";
-import { Wrapper, FormStyled } from "./AddUser.css";
+import { FormStyled } from "./AddUser.css";
 import { useDispatch, useSelector } from "react-redux";
 import { IGlobalState, IUser } from "./../../../common/interfaces";
 import { Warnings } from "./../../Popups/Warnings/Warnings";
@@ -96,13 +97,13 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
   };
 
   return (
-    <Wrapper>
+    <PopupWrapper>
       <PopupTitleGreen>
         <p>Nowy profil</p>
       </PopupTitleGreen>
       <PopupContentWrapper>
         <FormStyled>
-          <div className="label-input">
+          <div>
             <label htmlFor="name">Imię: </label>
             <input
               type="text"
@@ -112,7 +113,7 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
               autoFocus
             />
           </div>
-          <div className="label-input">
+          <div>
             <label htmlFor="age">Wiek: </label>
             <input
               type="text"
@@ -133,7 +134,7 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
-    </Wrapper>
+    </PopupWrapper>
   );
 };
 
