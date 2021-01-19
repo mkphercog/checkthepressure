@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PopupWrapper } from "../../../styles/mixins/Popups";
+import { PopupWrapper } from "styles/mixins/Popups";
 
 export const Wrapper = styled(PopupWrapper)`
   max-width: 80%;

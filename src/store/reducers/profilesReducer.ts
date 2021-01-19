@@ -8,14 +8,15 @@ import {
   SET_OMITTED_DAILY_TEST,
   UPDATE_NUMBER_OF_TOTAL_AND_DONE_TESTS_AND_STATE,
   CALCULATE_AVERAGE_RESULTS,
-} from "./../types/";
-import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
-import { TimeOfDayStates } from "./../../common/constants";
+} from "store/types/";
+import { IUser, IPeriodicPressureTests } from "common/interfaces";
+import { TimeOfDayStates } from "common/constants";
 import {
   updateLocalStorageProfiles,
   updateLocalSelectedUserID,
   configInitialStateWithLocalStorage,
-} from "./../../common/localStorage";
+} from "common/localStorage";
+
 import {
   addPeriodicPressureTest,
   deletePeriodicPressureTest,

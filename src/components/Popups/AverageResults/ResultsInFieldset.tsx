@@ -1,12 +1,28 @@
 import React from "react";
+
 import { sysDiaType } from "./AverageResults";
-import { Legend } from "./../../../styles/mixins/Fieldset";
+import { Legend } from "styles/mixins/Fieldset";
 import { FieldsetStyled, SysAndDiaColored } from "./AverageResults.css";
 
 export enum resultNameType {
   morninig = "morning",
   evening = "evening",
   total = "total",
+}
+
+interface IProps {
+  timeOfDayName: string;
+  averageResults: {
+    morning: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+    evening: { SYS: number; DIA: number; PULSE: number };
+    total: { SYS: number; DIA: number; PULSE: number };
+  };
+  resultName: resultNameType;
+  getSysDiaColor: Function;
 }
 
 export const ResultsInFieldset: React.FC<IProps> = ({
@@ -36,18 +52,3 @@ export const ResultsInFieldset: React.FC<IProps> = ({
     </p>
   </FieldsetStyled>
 );
-
-interface IProps {
-  timeOfDayName: string;
-  averageResults: {
-    morning: {
-      SYS: number;
-      DIA: number;
-      PULSE: number;
-    };
-    evening: { SYS: number; DIA: number; PULSE: number };
-    total: { SYS: number; DIA: number; PULSE: number };
-  };
-  resultName: resultNameType;
-  getSysDiaColor: Function;
-}

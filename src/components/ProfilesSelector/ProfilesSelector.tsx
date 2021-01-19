@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  deleteProfile,
-  setSelectedUserID,
-} from "./../../store/actions/profilesAction";
+
+import { deleteProfile, setSelectedUserID } from "store/actions/profilesAction";
+import { Portal, PortalTarget } from "common/Portal/Portal";
+import { IGlobalState } from "common/interfaces";
+import { SharedAddButton } from "components/shared/SharedAddButton/SharedAddButton";
+import { SharedPageWrapper } from "components/shared/SharedPageWrapper/SharedPageWrapper";
+import { WarningsYesNo } from "components/Popups/Warnings/Warnings";
+import { AddUser } from "components/Popups/AddUser/AddUser";
+
 import { UserProfile } from "./UserProfile/UserProfile";
-import { AddUser } from "./../Popups/AddUser/AddUser";
-import { WarningsYesNo } from "./../Popups/Warnings/Warnings";
-import { Portal, PortalTarget } from "./../../common/Portal/Portal";
-import { IGlobalState } from "./../../common/interfaces";
+import { Legend } from "styles/mixins/Fieldset";
 import { ProfilesSelectorStyled } from "./ProfilesSelector.css";
-import { SharedPageWrapper } from "./../SharedPageWrapper/SharedPageWrapper";
-import { Legend } from "./../../styles/mixins/Fieldset";
-import { SharedAddButton } from "../Buttons/SharedAddButton/SharedAddButton";
 
 export const ProfilesSelector: React.FC = () => {
   const [isOpenPortal, setIsOpenPortal] = useState(false);
@@ -60,7 +59,7 @@ export const ProfilesSelector: React.FC = () => {
         <Legend>{legendTitle}</Legend>
         <ul>{renderUsers}</ul>
         <SharedAddButton
-          addFunction={handleAddNewProfile}
+          onClick={handleAddNewProfile}
           hoverDescription={"Dodaj nowego użytkownika"}
         />
       </ProfilesSelectorStyled>

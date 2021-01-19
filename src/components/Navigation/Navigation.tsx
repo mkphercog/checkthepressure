@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Header, Logo, Nav, MenuIcon, BackArrowIcon } from "./Navigation.css";
 import { NavLink, useHistory } from "react-router-dom";
+
+import { Header, Logo, Nav, MenuIcon, BackArrowIcon } from "./Navigation.css";
 
 export const Navigation: React.FC = () => {
   const [menuVisibility, setMenuVisibility] = useState(false);

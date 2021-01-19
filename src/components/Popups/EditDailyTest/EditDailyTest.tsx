@@ -1,36 +1,47 @@
 import React, { useState } from "react";
-import {
-  PopupWrapper,
-  PopupTitleGreen,
-  PopupContentWrapper,
-} from "./../../../styles/mixins/Popups";
-import { FormStyled } from "./EditDailyTest.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Warnings } from "./../../Popups/Warnings/Warnings";
+
 import {
   editDailyValues,
   updateNumberOfTotalAndDoneTestsAndState,
-} from "./../../../store/actions/profilesAction";
-import { TimeOfDayStates, TEST_VALUES_INFO } from "./../../../common/constants";
-import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
-import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
+} from "store/actions/profilesAction";
+import { TimeOfDayStates, TEST_VALUES_INFO } from "common/constants";
+import { Portal, PortalTarget } from "common/Portal/Portal";
+import { IGlobalState } from "common/interfaces";
 import {
-  SharedApplyButton,
-  SharedApplyButtonType,
-} from "../../Buttons/SharedApplyButton/SharedApplyButton";
-import { IGlobalState } from "../../../common/interfaces";
+  SharedButton,
+  SharedButtonIcons,
+  SharedButtonStyles,
+  SharedButtonType,
+} from "components/shared/SharedButton/SharedButton";
+import { Information } from "components/Popups/Information/Information";
+import { Warnings } from "components/Popups/Warnings/Warnings";
+
 import {
   getDailyTimeOfDayTestValues,
   validateValues,
   ValidateStateTypes,
 } from "./EditDailyTestFunctions";
-import { SharedInfoButton } from "../../Buttons/SharedInfoButton/SharedInfoButton";
-import { Information } from "../Information/Information";
+import {
+  PopupWrapper,
+  PopupTitleGreen,
+  PopupContentWrapper,
+} from "styles/mixins/Popups";
+import { FormStyled } from "./EditDailyTest.css";
 
 enum SysDiaPulse {
   SYS = "SYS",
   DIA = "DIA",
   PULSE = "PULSE",
+}
+
+interface IProps {
+  userID: number;
+  periodicID: number;
+  dailyID: number;
+  timeOfDay: TimeOfDayStates;
+  setIsOpenEditDailyTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  date: string;
 }
 
 export const EditDailyTest: React.FC<IProps> = ({
@@ -135,7 +146,11 @@ export const EditDailyTest: React.FC<IProps> = ({
               onChange={(e) => setSys(e.target.value)}
               autoFocus
             />
-            <SharedInfoButton onClick={() => handleShowInfo(SysDiaPulse.SYS)} />
+            <SharedButton
+              onClick={() => handleShowInfo(SysDiaPulse.SYS)}
+              styles={SharedButtonStyles.info}
+              icon={SharedButtonIcons.info}
+            />
           </div>
           <div>
             <label htmlFor="dia">DIA: </label>
@@ -145,7 +160,11 @@ export const EditDailyTest: React.FC<IProps> = ({
               value={dia}
               onChange={(e) => setDia(e.target.value)}
             />
-            <SharedInfoButton onClick={() => handleShowInfo(SysDiaPulse.DIA)} />
+            <SharedButton
+              onClick={() => handleShowInfo(SysDiaPulse.DIA)}
+              styles={SharedButtonStyles.info}
+              icon={SharedButtonIcons.info}
+            />
           </div>
           <div>
             <label htmlFor="pulse">PULS: </label>
@@ -155,31 +174,30 @@ export const EditDailyTest: React.FC<IProps> = ({
               value={pulse}
               onChange={(e) => setPulse(e.target.value)}
             />
-            <SharedInfoButton
+            <SharedButton
               onClick={() => handleShowInfo(SysDiaPulse.PULSE)}
+              styles={SharedButtonStyles.info}
+              icon={SharedButtonIcons.info}
             />
           </div>
           <div className="apply-button">
-            <SharedApplyButton
-              type={SharedApplyButtonType.submit}
-              submitFunction={handleSubmit}
+            <SharedButton
+              onClick={handleSubmit}
+              type={SharedButtonType.submit}
+              styles={SharedButtonStyles.apply}
+              icon={SharedButtonIcons.apply}
             />
           </div>
         </FormStyled>
       </PopupContentWrapper>
-      <SharedExitButton setIsOpen={setIsOpenEditDailyTestPopup} />
+      <SharedButton
+        onClick={() => setIsOpenEditDailyTestPopup(false)}
+        styles={SharedButtonStyles.exit}
+        icon={SharedButtonIcons.exit}
+      />
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
     </PopupWrapper>
   );
 };
-
-interface IProps {
-  userID: number;
-  periodicID: number;
-  dailyID: number;
-  timeOfDay: TimeOfDayStates;
-  setIsOpenEditDailyTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
-  date: string;
-}

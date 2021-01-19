@@ -1,5 +1,5 @@
-import { TimeOfDayStates } from "./../../../common/constants";
-import { IDailyTest } from "./../../../common/interfaces";
+import { TimeOfDayStates } from "common/constants";
+import { IDailyTest } from "common/interfaces";
 
 export const generateDateArray = (startDashDate: string, numOfDays: number) => {
   const arrDate = startDashDate.split("-");

@@ -1,5 +1,6 @@
-import { PeriodicTestStates } from "../../common/constants";
-import { IUser } from "../../common/interfaces";
+import { PeriodicTestStates } from "common/constants";
+import { IUser } from "common/interfaces";
+
 import { IAction } from "./profilesReducer";
 
 export const addPeriodicPressureTest = (

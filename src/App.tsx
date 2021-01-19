@@ -1,13 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import { Navigation } from "./components/Navigation/Navigation";
-import { UserPressureBar } from "./components/UserPressureBar/UserPressureBar";
-import { ProfilesSelector } from "./components/ProfilesSelector/ProfilesSelector";
-import { Measurements } from "./components/Measurements/Measurements";
-import { Info } from "./components/Info/Info";
-import { anonymous } from "./common/constants";
-import { IGlobalState } from "./common/interfaces";
+
+import { anonymous } from "common/constants";
+import { IGlobalState } from "common/interfaces";
+import { Navigation } from "components/Navigation/Navigation";
+import { UserPressureBar } from "components/UserPressureBar/UserPressureBar";
+import { ProfilesSelector } from "components/ProfilesSelector/ProfilesSelector";
+import { Measurements } from "components/Measurements/Measurements";
+import { Info } from "components/Info/Info";
+
 import { AppBG, AppWrapper, AppBottomBar } from "./App.css";
 import { GlobalStyles } from "./index.css";
 

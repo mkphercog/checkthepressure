@@ -1,10 +1,6 @@
 import styled from "styled-components";
-import {
-  COLORS,
-  TRANSITION_TIME,
-  CORNER_RADIUS,
-} from "./../../styles/variables";
-import { Fieldset } from "../../styles/mixins/Fieldset";
+import { Fieldset } from "styles/mixins/Fieldset";
+import { COLORS, TRANSITION_TIME, CORNER_RADIUS } from "styles/variables";
 
 export const FieldsetStyled = styled(Fieldset)`
   display: flex;

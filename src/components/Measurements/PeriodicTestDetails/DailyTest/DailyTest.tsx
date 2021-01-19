@@ -1,7 +1,16 @@
 import React from "react";
-import { IDailyTest } from "./../../../../common/interfaces";
+
+import { IDailyTest } from "common/interfaces";
+
 import { MorningEveningDetails, timeOfDayType } from "./MorningEveningDetails";
 import { Wrapper } from "./DailyTest.css";
+
+interface IProps {
+  userID: number;
+  dailyTest: IDailyTest;
+  editDailyTest: Function;
+  setOmittedDaily: Function;
+}
 
 export const DailyTest: React.FC<IProps> = ({
   userID,
@@ -35,10 +44,3 @@ export const DailyTest: React.FC<IProps> = ({
     </Wrapper>
   );
 };
-
-interface IProps {
-  userID: number;
-  dailyTest: IDailyTest;
-  editDailyTest: Function;
-  setOmittedDaily: Function;
-}

@@ -1,26 +1,35 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPeriodicPressureTest } from "./../../../store/actions/profilesAction";
-import { numRangeOptions } from "./../../../common/optionsForSelectTag";
+
+import { addPeriodicPressureTest } from "store/actions/profilesAction";
+import { numRangeOptions } from "common/optionsForSelectTag";
+import { PeriodicTestStates } from "common/constants";
+import {
+  SharedButton,
+  SharedButtonStyles,
+  SharedButtonIcons,
+  SharedButtonType,
+} from "components/shared/SharedButton/SharedButton";
+
 import {
   generateDateArray,
   generateDailyTestList,
 } from "./AddPeriodicTestFunctions";
-import { PeriodicTestStates } from "./../../../common/constants";
-import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
 import {
   PopupWrapper,
   PopupContentWrapper,
   PopupTitleGreen,
   PopupSelect,
-} from "./../../../styles/mixins/Popups";
+} from "styles/mixins/Popups";
 import { FormStyled } from "./AddPeriodicTest.css";
-import {
-  SharedApplyButton,
-  SharedApplyButtonType,
-} from "../../Buttons/SharedApplyButton/SharedApplyButton";
 
 const today = new Date();
+
+interface IProps {
+  userID: number;
+  nextAvailablePeriodicTestID: number;
+  setIsOpenAddPeriodicTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const AddPeriodicTest: React.FC<IProps> = ({
   userID,
@@ -94,20 +103,20 @@ export const AddPeriodicTest: React.FC<IProps> = ({
             </PopupSelect>
           </div>
           <div className="apply-button">
-            <SharedApplyButton
-              type={SharedApplyButtonType.submit}
-              submitFunction={handleSubmit}
+            <SharedButton
+              onClick={handleSubmit}
+              type={SharedButtonType.submit}
+              styles={SharedButtonStyles.apply}
+              icon={SharedButtonIcons.apply}
             />
           </div>
         </FormStyled>
       </PopupContentWrapper>
-      <SharedExitButton setIsOpen={setIsOpenAddPeriodicTestPopup} />
+      <SharedButton
+        onClick={() => setIsOpenAddPeriodicTestPopup(false)}
+        styles={SharedButtonStyles.exit}
+        icon={SharedButtonIcons.exit}
+      />
     </PopupWrapper>
   );
 };
-
-interface IProps {
-  userID: number;
-  nextAvailablePeriodicTestID: number;
-  setIsOpenAddPeriodicTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
-}

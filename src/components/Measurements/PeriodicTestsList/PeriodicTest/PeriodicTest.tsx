@@ -1,8 +1,19 @@
 import React from "react";
-import { IPeriodicPressureTests } from "../../../../common/interfaces";
-import { SharedBasicButton } from "./../../../Buttons/SharedBasicButton/SharedBasicButton";
-import { SharedDeleteButton } from "../../../Buttons/SharedDeleteButton/SharedDeleteButton";
+
+import { IPeriodicPressureTests } from "common/interfaces";
+import {
+  SharedButton,
+  SharedButtonStyles,
+  SharedButtonIcons,
+} from "components/shared/SharedButton/SharedButton";
+
 import { Wrapper, Title, Subtitle, Info, Btns } from "./PeriodicTest.css";
+
+interface IProps {
+  test: IPeriodicPressureTests;
+  openPeriodicTestDetails: (id: number) => void;
+  deletePeriodicTest: (id: number) => void;
+}
 
 export const PeriodicTest: React.FC<IProps> = ({
   test,
@@ -44,17 +55,15 @@ export const PeriodicTest: React.FC<IProps> = ({
       </Info>
 
       <Btns>
-        <SharedBasicButton onClick={() => openPeriodicTestDetails(id)}>
+        <SharedButton onClick={() => openPeriodicTestDetails(id)}>
           Szczegóły...
-        </SharedBasicButton>
-        <SharedDeleteButton deleteFunction={() => deletePeriodicTest(id)} />
+        </SharedButton>
+        <SharedButton
+          onClick={() => deletePeriodicTest(id)}
+          styles={SharedButtonStyles.delete}
+          icon={SharedButtonIcons.delete}
+        />
       </Btns>
     </Wrapper>
   );
 };
-
-interface IProps {
-  test: IPeriodicPressureTests;
-  openPeriodicTestDetails: (id: number) => void;
-  deletePeriodicTest: (id: number) => void;
-}

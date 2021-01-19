@@ -1,20 +1,29 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { anonymous } from "../../../common/constants";
-import { ResultsInFieldset, resultNameType } from "./ResultsInFieldset";
+
+import { IGlobalState, IPeriodicPressureTests } from "common/interfaces";
+import { PdfPageGenerator } from "common/PDF/PdfPageGenerator";
+import { anonymous } from "common/constants";
 import {
-  IGlobalState,
-  IPeriodicPressureTests,
-} from "../../../common/interfaces";
-import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
-import { COLORS } from "../../../styles/variables";
-import { PopupWrapper, PopupTitleGreen } from "./../../../styles/mixins/Popups";
+  SharedButton,
+  SharedButtonIcons,
+  SharedButtonStyles,
+} from "components/shared/SharedButton/SharedButton";
+
+import { ResultsInFieldset, resultNameType } from "./ResultsInFieldset";
+import { PopupWrapper, PopupTitleGreen } from "styles/mixins/Popups";
+import { COLORS } from "styles/variables";
 import { Content } from "./AverageResults.css";
-import { PdfPageGenerator } from "../../../common/PDF/PdfPageGenerator";
 
 export enum sysDiaType {
   SYS = "SYS",
   DIA = "DIA",
+}
+
+interface IProps {
+  userID: number;
+  periodicTest: IPeriodicPressureTests;
+  setIsOpenAverageResultsPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AverageResults: React.FC<IProps> = ({
@@ -81,13 +90,11 @@ export const AverageResults: React.FC<IProps> = ({
           endDate={end}
         />
       </Content>
-      <SharedExitButton setIsOpen={setIsOpenAverageResultsPopup} />
+      <SharedButton
+        onClick={() => setIsOpenAverageResultsPopup(false)}
+        styles={SharedButtonStyles.exit}
+        icon={SharedButtonIcons.exit}
+      />
     </PopupWrapper>
   );
 };
-
-interface IProps {
-  userID: number;
-  periodicTest: IPeriodicPressureTests;
-  setIsOpenAverageResultsPopup: React.Dispatch<React.SetStateAction<boolean>>;
-}

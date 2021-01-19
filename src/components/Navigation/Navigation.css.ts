@@ -1,9 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "./../../styles/variables";
+import { COLORS, CORNER_RADIUS, TRANSITION_TIME } from "styles/variables";
 
 const widthWithoutMenuIcon = "640px";
 const opacityAnimation = keyframes`

@@ -1,10 +1,18 @@
 import React from "react";
-import { SharedApplyButton } from "../../Buttons/SharedApplyButton/SharedApplyButton";
+
 import {
-  PopupTitleBlue,
-  PopupContentWrapper,
-} from "../../../styles/mixins/Popups";
+  SharedButton,
+  SharedButtonIcons,
+  SharedButtonStyles,
+} from "components/shared/SharedButton/SharedButton";
+
+import { PopupTitleBlue, PopupContentWrapper } from "styles/mixins/Popups";
 import { Wrapper } from "./Information.css";
+
+interface IProps {
+  message: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const Information: React.FC<IProps> = ({ message, setIsOpen }) => (
   <Wrapper>
@@ -13,12 +21,11 @@ export const Information: React.FC<IProps> = ({ message, setIsOpen }) => (
     </PopupTitleBlue>
     <PopupContentWrapper>
       <p>{message}</p>
-      <SharedApplyButton setIsOpen={setIsOpen} />
+      <SharedButton
+        onClick={() => setIsOpen(false)}
+        styles={SharedButtonStyles.apply}
+        icon={SharedButtonIcons.apply}
+      />
     </PopupContentWrapper>
   </Wrapper>
 );
-
-interface IProps {
-  message: string;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}

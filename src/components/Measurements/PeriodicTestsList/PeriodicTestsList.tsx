@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import { AddPeriodicTest } from "../../Popups/AddPeriodicTest/AddPeriodicTest";
-import { IPeriodicPressureTests } from "../../../common/interfaces";
-import { Portal, PortalTarget } from "../../../common/Portal/Portal";
-import { Wrapper, FieldsetStyled } from "./PeriodicTestsList.css";
-import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
-import { Legend } from "./../../../styles/mixins/Fieldset";
-import { SharedAddButton } from "../../Buttons/SharedAddButton/SharedAddButton";
-import { deletePeriodicPressureTest } from "./../../../store/actions/profilesAction";
 import { useDispatch } from "react-redux";
-import { WarningsYesNo } from "./../../Popups/Warnings/Warnings";
+
+import { deletePeriodicPressureTest } from "store/actions/profilesAction";
+import { IPeriodicPressureTests } from "common/interfaces";
+import { Portal, PortalTarget } from "common/Portal/Portal";
+import { SharedAddButton } from "components/shared/SharedAddButton/SharedAddButton";
+import { AddPeriodicTest } from "components/Popups/AddPeriodicTest/AddPeriodicTest";
+import { WarningsYesNo } from "components/Popups/Warnings/Warnings";
+
+import { PeriodicTest } from "./PeriodicTest/PeriodicTest";
+import { Legend } from "styles/mixins/Fieldset";
+import { Wrapper, FieldsetStyled } from "./PeriodicTestsList.css";
+
+interface IProps {
+  userID: number;
+  nextAvailablePeriodicTestID: number;
+  tests: IPeriodicPressureTests[];
+  openPeriodicTestDetails: (id: number) => void;
+}
 
 export const PeriodicTestsList: React.FC<IProps> = ({
   userID,
@@ -67,9 +76,9 @@ export const PeriodicTestsList: React.FC<IProps> = ({
         <Legend>{legendTitle}</Legend>
         <ul>{renderPeriodicTests}</ul>
         <SharedAddButton
-          addFunction={handleAddPeriodicTest}
+          onClick={handleAddPeriodicTest}
           hoverDescription={"Dodaj nowy pomiar"}
-          disabled={userID === -1}
+          isDisabled={userID === -1}
         />
         {isOpenPortal ? (
           <Portal target={PortalTarget.MODAL}>{popup}</Portal>
@@ -78,10 +87,3 @@ export const PeriodicTestsList: React.FC<IProps> = ({
     </Wrapper>
   );
 };
-
-interface IProps {
-  userID: number;
-  nextAvailablePeriodicTestID: number;
-  tests: IPeriodicPressureTests[];
-  openPeriodicTestDetails: (id: number) => void;
-}

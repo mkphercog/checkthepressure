@@ -1,23 +1,30 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addProfile } from "store/actions/profilesAction";
+import { anonymous } from "common/constants";
+import { IGlobalState, IUser } from "common/interfaces";
+import { NAME_MAX_CHARS, MAX_AGE } from "common/constants";
+import { Portal, PortalTarget } from "common/Portal/Portal";
+import { findUserBloodPressureBasedOnAge } from "common/bloodPressureTable";
+import {
+  SharedButton,
+  SharedButtonStyles,
+  SharedButtonIcons,
+  SharedButtonType,
+} from "components/shared/SharedButton/SharedButton";
+import { Warnings } from "components/Popups/Warnings/Warnings";
+
 import {
   PopupWrapper,
   PopupContentWrapper,
   PopupTitleGreen,
-} from "./../../../styles/mixins/Popups";
+} from "styles/mixins/Popups";
 import { FormStyled } from "./AddUser.css";
-import { useDispatch, useSelector } from "react-redux";
-import { IGlobalState, IUser } from "./../../../common/interfaces";
-import { Warnings } from "./../../Popups/Warnings/Warnings";
-import { addProfile } from "./../../../store/actions/profilesAction";
-import { findUserBloodPressureBasedOnAge } from "./../../../common/bloodPressureTable";
-import { anonymous } from "./../../../common/constants";
-import { Portal, PortalTarget } from "./../../../common/Portal/Portal";
-import { SharedExitButton } from "../../Buttons/SharedExitButton/SharedExitButton";
-import {
-  SharedApplyButton,
-  SharedApplyButtonType,
-} from "../../Buttons/SharedApplyButton/SharedApplyButton";
-import { NAME_MAX_CHARS, MAX_AGE } from "./../../../common/constants";
+
+interface IProps {
+  setIsOpenAddUserPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
   const [name, setName] = useState("");
@@ -123,21 +130,23 @@ export const AddUser: React.FC<IProps> = ({ setIsOpenAddUserPopup }) => {
             />
           </div>
           <div className="apply-button">
-            <SharedApplyButton
-              type={SharedApplyButtonType.submit}
-              submitFunction={handleSubmit}
+            <SharedButton
+              onClick={handleSubmit}
+              type={SharedButtonType.submit}
+              styles={SharedButtonStyles.apply}
+              icon={SharedButtonIcons.apply}
             />
           </div>
         </FormStyled>
       </PopupContentWrapper>
-      <SharedExitButton setIsOpen={setIsOpenAddUserPopup} />
+      <SharedButton
+        onClick={() => setIsOpenAddUserPopup(false)}
+        styles={SharedButtonStyles.exit}
+        icon={SharedButtonIcons.exit}
+      />
       {isOpenPortal ? (
         <Portal target={PortalTarget.MODAL}>{popup}</Portal>
       ) : null}
     </PopupWrapper>
   );
 };
-
-interface IProps {
-  setIsOpenAddUserPopup: React.Dispatch<React.SetStateAction<boolean>>;
-}

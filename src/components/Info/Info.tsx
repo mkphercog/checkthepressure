@@ -1,6 +1,8 @@
 import React from "react";
-import { SharedPageWrapper } from "./../SharedPageWrapper/SharedPageWrapper";
-import { Legend } from "../../styles/mixins/Fieldset";
+
+import { SharedPageWrapper } from "components/shared/SharedPageWrapper/SharedPageWrapper";
+
+import { Legend } from "styles/mixins/Fieldset";
 import { FieldsetStyled } from "./Info.css";
 
 export const Info: React.FC = () => (

@@ -1,5 +1,7 @@
 import React from "react";
-import { IBloodPressureBasedOnAge } from "../../common/interfaces";
+
+import { IBloodPressureBasedOnAge } from "common/interfaces";
+
 import {
   Bar,
   UserData,
@@ -7,6 +9,12 @@ import {
   PressureNormal,
   PressureMax,
 } from "./UserPressureBar.css";
+
+interface IProps {
+  name: string;
+  age: number;
+  userBloodPressureBasedOnAge: IBloodPressureBasedOnAge;
+}
 
 export const UserPressureBar: React.FC<IProps> = ({
   name,
@@ -43,9 +51,3 @@ export const UserPressureBar: React.FC<IProps> = ({
     </Bar>
   );
 };
-
-interface IProps {
-  name: string;
-  age: number;
-  userBloodPressureBasedOnAge: IBloodPressureBasedOnAge;
-}

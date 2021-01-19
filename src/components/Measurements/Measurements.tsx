@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+
+import { IUser, IPeriodicPressureTests } from "common/interfaces";
+import { emptyPeriodicTest } from "common/constants";
+import { SharedPageWrapper } from "components/shared/SharedPageWrapper/SharedPageWrapper";
 import { PeriodicTestsList } from "./PeriodicTestsList/PeriodicTestsList";
 import { PeriodicTestDetails } from "./PeriodicTestDetails/PeriodicTestDetails";
-import { IUser, IPeriodicPressureTests } from "./../../common/interfaces";
-import { emptyPeriodicTest } from "./../../common/constants";
-import { SharedPageWrapper } from "./../SharedPageWrapper/SharedPageWrapper";
+
+interface IProps {
+  selectedUser: IUser;
+}
 
 export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
   const [
@@ -46,7 +51,3 @@ export const Measurements: React.FC<IProps> = ({ selectedUser }) => {
     </SharedPageWrapper>
   );
 };
-
-interface IProps {
-  selectedUser: IUser;
-}

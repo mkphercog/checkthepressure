@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Fieldset } from "./../../../styles/mixins/Fieldset";
-import { PopupContentWrapper } from "./../../../styles/mixins/Popups";
+import { Fieldset } from "styles/mixins/Fieldset";
+import { PopupContentWrapper } from "styles/mixins/Popups";
 
 export const Content = styled(PopupContentWrapper)`
   justify-content: center;

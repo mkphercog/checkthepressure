@@ -1,25 +1,32 @@
 import React, { useState } from "react";
-import { IPeriodicPressureTests } from "../../../common/interfaces";
-import { Portal, PortalTarget } from "../../../common/Portal/Portal";
-import { EditDailyTest } from "../../Popups/EditDailyTest/EditDailyTest";
-import { DailyTest } from "./DailyTest/DailyTest";
+import { useDispatch } from "react-redux";
+
 import {
   setOmittedDailyTest,
   updateNumberOfTotalAndDoneTestsAndState,
   calculateAverageResults,
-} from "./../../../store/actions/profilesAction";
-import { TimeOfDayStates } from "./../../../common/constants";
+} from "store/actions/profilesAction";
+import { IPeriodicPressureTests } from "common/interfaces";
+import { Portal, PortalTarget } from "common/Portal/Portal";
+import { PeriodicTestStates, TimeOfDayStates } from "common/constants";
+import { EditDailyTest } from "components/Popups/EditDailyTest/EditDailyTest";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
+import { AverageResults } from "components/Popups/AverageResults/AverageResults";
+
+import { DailyTest } from "./DailyTest/DailyTest";
+import { Legend } from "styles/mixins/Fieldset";
 import {
   Wrapper,
   FieldsetStyled,
   ControlPanel,
   BackArrow,
 } from "./PeriodicTestDetails.css";
-import { PeriodicTestStates } from "./../../../common/constants";
-import { Legend } from "./../../../styles/mixins/Fieldset";
-import { useDispatch } from "react-redux";
-import { SharedBasicButton } from "./../../Buttons/SharedBasicButton/SharedBasicButton";
-import { AverageResults } from "../../Popups/AverageResults/AverageResults";
+
+interface IProps {
+  test: IPeriodicPressureTests;
+  userID: number;
+  backToPeriodicTestsList: () => void;
+}
 
 export const PeriodicTestDetails: React.FC<IProps> = ({
   test,
@@ -81,7 +88,7 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
             <i className="fas fa-long-arrow-alt-left"></i>
           </BackArrow>
           <div className="buttons-wapper">
-            <SharedBasicButton
+            <SharedButton
               onClick={() => {
                 dispatch(calculateAverageResults(userID, periodicID));
                 setPopup(
@@ -96,7 +103,7 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
               isDisabled={!testIsDone}
             >
               Podsumowanie
-            </SharedBasicButton>
+            </SharedButton>
           </div>
         </ControlPanel>
         <ul>{renderList}</ul>
@@ -107,9 +114,3 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
     </Wrapper>
   );
 };
-
-interface IProps {
-  test: IPeriodicPressureTests;
-  userID: number;
-  backToPeriodicTestsList: () => void;
-}

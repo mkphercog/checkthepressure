@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Fieldset } from "./../../../styles/mixins/Fieldset";
-import { COLORS, TRANSITION_TIME } from "./../../../styles/variables";
+import { Fieldset } from "styles/mixins/Fieldset";
+import { COLORS, TRANSITION_TIME } from "styles/variables";
 
 export const Wrapper = styled.div`
   display: flex;

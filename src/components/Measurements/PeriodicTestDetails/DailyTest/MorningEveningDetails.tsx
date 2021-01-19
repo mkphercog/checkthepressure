@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { anonymous } from "../../../../common/constants";
-import { IDailyTest, IGlobalState } from "../../../../common/interfaces";
-import { COLORS } from "../../../../styles/variables";
-import { SharedBasicButton } from "../../../Buttons/SharedBasicButton/SharedBasicButton";
+
+import { anonymous } from "common/constants";
+import { IDailyTest, IGlobalState } from "common/interfaces";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
+
+import { COLORS } from "styles/variables";
 import {
   FieldsetStyled,
   MorningEvening as MorningEveningStyled,
@@ -15,6 +17,19 @@ import {
 enum sysDiaType {
   SYS = "SYS",
   DIA = "DIA",
+}
+
+export enum timeOfDayType {
+  morning = "morning",
+  evenign = "evening",
+}
+
+interface IProps {
+  userID: number;
+  dailyTest: IDailyTest;
+  timeOfDayType: timeOfDayType;
+  editDailyTest: Function;
+  setOmittedDaily: Function;
 }
 
 export const MorningEveningDetails: React.FC<IProps> = ({
@@ -91,15 +106,15 @@ export const MorningEveningDetails: React.FC<IProps> = ({
         </p>
       </SysDiaPuls>
       <Btns>
-        <SharedBasicButton
+        <SharedButton
           onClick={() =>
             editDailyTest(id, dailyTest[timeOfDayType].timeOfDay, date)
           }
           isDisabled={dailyTest[timeOfDayType].omitted}
         >
           Edytuj
-        </SharedBasicButton>
-        <SharedBasicButton
+        </SharedButton>
+        <SharedButton
           onClick={() =>
             setOmittedDaily(
               id,
@@ -109,21 +124,8 @@ export const MorningEveningDetails: React.FC<IProps> = ({
           }
         >
           {dailyTest[timeOfDayType].omitted ? "Przywróć" : "Pomiń"}
-        </SharedBasicButton>
+        </SharedButton>
       </Btns>
     </FieldsetStyled>
   );
 };
-
-export enum timeOfDayType {
-  morning = "morning",
-  evenign = "evening",
-}
-
-interface IProps {
-  userID: number;
-  dailyTest: IDailyTest;
-  timeOfDayType: timeOfDayType;
-  editDailyTest: Function;
-  setOmittedDaily: Function;
-}

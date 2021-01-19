@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, CORNER_RADIUS } from "../variables";
+import { COLORS, CORNER_RADIUS } from "styles/variables";
 
 export const Fieldset = styled.fieldset`
   position: relative;

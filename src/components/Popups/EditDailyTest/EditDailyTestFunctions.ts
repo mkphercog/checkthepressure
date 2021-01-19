@@ -1,8 +1,5 @@
-import { IUser } from "../../../common/interfaces";
-import {
-  TimeOfDayStates,
-  MAX_SYS_DIA_PULSE_VALUE,
-} from "./../../../common/constants";
+import { TimeOfDayStates, MAX_SYS_DIA_PULSE_VALUE } from "common/constants";
+import { IUser } from "common/interfaces";
 
 export const getDailyTimeOfDayTestValues = (
   users: IUser[],

@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "./../../../styles/variables";
+import { COLORS, CORNER_RADIUS, TRANSITION_TIME } from "styles/variables";
 
 export const AddButtonStyled = styled.button`
   position: absolute;

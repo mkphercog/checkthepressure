@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Fieldset, Legend } from "./../../../../styles/mixins/Fieldset";
-import { LiElement } from "./../../../../styles/mixins/LiElement";
-import { COLORS } from "../../../../styles/variables";
+import { Fieldset, Legend } from "styles/mixins/Fieldset";
+import { LiElement } from "styles/mixins/LiElement";
+import { COLORS } from "styles/variables";
 
 export const Wrapper = styled(LiElement)`
   @media (orientation: landscape) {

@@ -1,8 +1,21 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { SharedBasicButton } from "../../Buttons/SharedBasicButton/SharedBasicButton";
-import { SharedDeleteButton } from "../../Buttons/SharedDeleteButton/SharedDeleteButton";
+
+import {
+  SharedButton,
+  SharedButtonStyles,
+  SharedButtonIcons,
+} from "components/shared/SharedButton/SharedButton";
+
 import { Wrapper, UserData, Options } from "./UserProfile.css";
+
+interface UserProfileProps {
+  id: number;
+  name: string;
+  age: number;
+  deleteProfile: (id: number, name: string) => void;
+  selectUserID: (id: number) => void;
+}
 
 export const UserProfile: React.FC<UserProfileProps> = ({
   id,
@@ -19,24 +32,20 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         <p>wiek: {age}</p>
       </UserData>
       <Options>
-        <SharedBasicButton
+        <SharedButton
           onClick={() => {
             selectUserID(id);
             history.push("/measurements");
           }}
         >
           Otwórz profil
-        </SharedBasicButton>
-        <SharedDeleteButton deleteFunction={() => deleteProfile(id, name)} />
+        </SharedButton>
+        <SharedButton
+          onClick={() => deleteProfile(id, name)}
+          styles={SharedButtonStyles.delete}
+          icon={SharedButtonIcons.delete}
+        />
       </Options>
     </Wrapper>
   );
 };
-
-interface UserProfileProps {
-  id: number;
-  name: string;
-  age: number;
-  deleteProfile: (id: number, name: string) => void;
-  selectUserID: (id: number) => void;
-}

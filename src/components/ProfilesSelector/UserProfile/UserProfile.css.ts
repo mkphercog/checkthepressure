@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { COLORS } from "../../../styles/variables";
-import { LiElement } from "./../../../styles/mixins/LiElement";
+import { COLORS } from "styles/variables";
+import { LiElement } from "styles/mixins/LiElement";
 
 export const Wrapper = styled(LiElement)``;
 

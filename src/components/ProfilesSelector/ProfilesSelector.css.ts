@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Fieldset } from "../../styles/mixins/Fieldset";
+import { Fieldset } from "styles/mixins/Fieldset";
 
 export const ProfilesSelectorStyled = styled(Fieldset)`
   width: 90%;

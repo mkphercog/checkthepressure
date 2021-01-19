@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "./styles/variables";
+import { COLORS } from "styles/variables";
 
 export const AppBG = styled.div`
   position: relative;

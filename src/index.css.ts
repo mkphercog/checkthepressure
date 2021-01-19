@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { COLORS, CORNER_RADIUS } from "./styles/variables";
+import { COLORS, CORNER_RADIUS } from "styles/variables";
 
 export const GlobalStyles = createGlobalStyle`
 *{

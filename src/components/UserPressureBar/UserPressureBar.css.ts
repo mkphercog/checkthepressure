@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, TRANSITION_TIME } from "../../styles/variables";
+import { COLORS, TRANSITION_TIME } from "styles/variables";
 
 export const Bar = styled.div`
   flex-shrink: 0;
