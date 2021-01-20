@@ -1,29 +1,51 @@
 import { View, Text } from "@react-pdf/renderer";
-import { COLORS } from "../../../styles/variables";
-import { styles } from "./../PdfPage.styles";
 
-enum PropNames {
+import { COLORS } from "styles/variables";
+import { styles } from "common/PDF/PdfPage.styles";
+
+enum TimeOfDayTypes {
   morning = "morning",
   evening = "evening",
   total = "total",
 }
 
+interface IProps {
+  averageResults: {
+    morning: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+    evening: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+    total: {
+      SYS: number;
+      DIA: number;
+      PULSE: number;
+    };
+  };
+}
+
 export const AverageResultsView = ({ averageResults }: IProps) => {
-  const getAverage = (prop: PropNames) => {
+  const getAverage = (timeOfDay: TimeOfDayTypes) => {
     return (
       <>
-        <Text style={styles.boldText}>{averageResults[prop].SYS}</Text>
+        <Text style={styles.boldText}>{averageResults[timeOfDay].SYS}</Text>
         <Text>/</Text>
         <Text style={styles.boldText}>
-          {averageResults[prop].DIA}
-        </Text> Puls: {averageResults[prop].PULSE}
+          {averageResults[timeOfDay].DIA}
+        </Text>{" "}
+        Puls: {averageResults[timeOfDay].PULSE}
       </>
     );
   };
 
-  const renderAverageMorning = getAverage(PropNames.morning);
-  const renderAverageEvening = getAverage(PropNames.evening);
-  const renderAverageTotal = getAverage(PropNames.total);
+  const renderAverageMorning = getAverage(TimeOfDayTypes.morning);
+  const renderAverageEvening = getAverage(TimeOfDayTypes.evening);
+  const renderAverageTotal = getAverage(TimeOfDayTypes.total);
 
   const renderAllAverageResults = (
     <View style={styles.tableContentView}>
@@ -49,23 +71,3 @@ export const AverageResultsView = ({ averageResults }: IProps) => {
     </>
   );
 };
-
-interface IProps {
-  averageResults: {
-    morning: {
-      SYS: number;
-      DIA: number;
-      PULSE: number;
-    };
-    evening: {
-      SYS: number;
-      DIA: number;
-      PULSE: number;
-    };
-    total: {
-      SYS: number;
-      DIA: number;
-      PULSE: number;
-    };
-  };
-}

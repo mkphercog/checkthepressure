@@ -1,5 +1,6 @@
 import { View, Text } from "@react-pdf/renderer";
-import { styles } from "./../PdfPage.styles";
+
+import { styles } from "common/PDF/PdfPage.styles";
 
 export const FooterView = () => (
   <View style={styles.footerView}>

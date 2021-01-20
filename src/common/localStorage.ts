@@ -1,4 +1,4 @@
-import { IUser } from "./interfaces";
+import { IUser } from "common/interfaces";
 
 const LOCAL_PROFILES = "localProfiles";
 const LOCAL_SELECTED_USER_ID = "localSelectedUserID";

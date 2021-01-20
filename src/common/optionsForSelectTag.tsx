@@ -1,4 +1,4 @@
-import { PopupSelectOption } from "./../styles/mixins/Popups";
+import { PopupSelectOption } from "styles/mixins/Popups";
 
 export const numRangeOptions = (minValue: number, maxValue: number) => {
   let numbers = [];

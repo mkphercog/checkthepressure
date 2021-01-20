@@ -1,13 +1,20 @@
-import { styles } from "./PdfPage.styles";
 import { Document, Page, View } from "@react-pdf/renderer";
-import { IUser } from "./../interfaces";
-import { anonymous } from "../constants";
+
+import { IUser } from "common/interfaces";
+import { anonymous } from "common/constants";
 import { LogoView } from "./PageViews/LogoView";
 import { UserDataView } from "./PageViews/UserDataView";
 import { PeriodicTestInfoView } from "./PageViews/PeriodicTestInfoView";
 import { DailyTestsTableView } from "./PageViews/DailyTestsTableView";
 import { AverageResultsView } from "./PageViews/AverageResultsView";
 import { FooterView } from "./PageViews/FooterView";
+
+import { styles } from "./PdfPage.styles";
+
+interface IProps {
+  user: IUser;
+  periodicID: number;
+}
 
 export const MyDocument = ({ user, periodicID }: IProps) => {
   const { name, age, periodicPressureTests } = user;
@@ -29,8 +36,3 @@ export const MyDocument = ({ user, periodicID }: IProps) => {
     </Document>
   );
 };
-
-interface IProps {
-  user: IUser;
-  periodicID: number;
-}

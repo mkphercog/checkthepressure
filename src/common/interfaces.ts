@@ -1,4 +1,4 @@
-import { TimeOfDayStates } from "./constants";
+import { TimeOfDayStates } from "common/constants";
 
 export interface IGlobalState {
   profiles: {

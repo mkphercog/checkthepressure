@@ -1,6 +1,11 @@
 import { View, Text } from "@react-pdf/renderer";
-import { IDailyTest } from "../../interfaces";
-import { styles } from "./../PdfPage.styles";
+
+import { IDailyTest } from "common/interfaces";
+import { styles } from "common/PDF/PdfPage.styles";
+
+interface IProps {
+  list: IDailyTest[];
+}
 
 export const DailyTestsTableView = ({ list }: IProps) => {
   const renderDailyTests = list.map((item) => {
@@ -45,7 +50,3 @@ export const DailyTestsTableView = ({ list }: IProps) => {
     </>
   );
 };
-
-interface IProps {
-  list: IDailyTest[];
-}

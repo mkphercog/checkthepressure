@@ -1,6 +1,7 @@
 import { View, Text } from "@react-pdf/renderer";
-import { COLORS } from "./../../../styles/variables";
-import { styles } from "./../PdfPage.styles";
+
+import { COLORS } from "styles/variables";
+import { styles } from "common/PDF/PdfPage.styles";
 
 export const LogoView = () => (
   <View style={styles.logoView}>

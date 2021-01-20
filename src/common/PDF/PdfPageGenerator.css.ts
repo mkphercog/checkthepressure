@@ -1,10 +1,7 @@
-import styled from "styled-components";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import {
-  COLORS,
-  CORNER_RADIUS,
-  TRANSITION_TIME,
-} from "./../../styles/variables";
+import styled from "styled-components";
+
+import { COLORS, CORNER_RADIUS, TRANSITION_TIME } from "styles/variables";
 
 export const PDFDownloadLinkStyled = styled(PDFDownloadLink)`
   margin-bottom: 15px;

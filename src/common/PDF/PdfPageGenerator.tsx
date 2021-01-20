@@ -1,9 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { anonymous } from "../constants";
-import { IGlobalState } from "../interfaces";
+
+import { anonymous } from "common/constants";
+import { IGlobalState } from "common/interfaces";
 import { MyDocument } from "./PdfPage";
+
 import { PDFDownloadLinkStyled } from "./PdfPageGenerator.css";
+
+interface IProps {
+  userID: number;
+  periodicID: number;
+  startDate: string;
+  endDate: string;
+}
 
 export const PdfPageGenerator: React.FC<IProps> = ({
   userID,
@@ -26,10 +35,3 @@ export const PdfPageGenerator: React.FC<IProps> = ({
     </PDFDownloadLinkStyled>
   );
 };
-
-interface IProps {
-  userID: number;
-  periodicID: number;
-  startDate: string;
-  endDate: string;
-}

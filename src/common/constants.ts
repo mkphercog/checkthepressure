@@ -1,4 +1,4 @@
-import { IPeriodicPressureTests, IUser } from "./interfaces";
+import { IPeriodicPressureTests, IUser } from "common/interfaces";
 
 export enum PeriodicTestStates {
   DONE = "Zakończono",

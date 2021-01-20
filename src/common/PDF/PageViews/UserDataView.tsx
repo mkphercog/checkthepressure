@@ -1,5 +1,11 @@
 import { View, Text } from "@react-pdf/renderer";
-import { styles } from "./../PdfPage.styles";
+
+import { styles } from "common/PDF/PdfPage.styles";
+
+interface IProps {
+  name: string;
+  age: number;
+}
 
 export const UserDataView = ({ name, age }: IProps) => (
   <View style={styles.userDataView}>
@@ -11,8 +17,3 @@ export const UserDataView = ({ name, age }: IProps) => (
     </Text>
   </View>
 );
-
-interface IProps {
-  name: string;
-  age: number;
-}
