@@ -1,4 +1,4 @@
-import { TimeOfDayStates } from "common/constants";
+import { TimeOfDayTypes } from "common/constants";
 
 export interface IGlobalState {
   profiles: {
@@ -64,14 +64,14 @@ export interface IDailyTest {
   id: number;
   date: string;
   morning: {
-    timeOfDay: TimeOfDayStates.MORNING;
+    timeOfDay: TimeOfDayTypes.morning;
     omitted: boolean;
     SYS: number;
     DIA: number;
     PULSE: number;
   };
   evening: {
-    timeOfDay: TimeOfDayStates.EVENING;
+    timeOfDay: TimeOfDayTypes.evening;
     omitted: boolean;
     SYS: number;
     DIA: number;

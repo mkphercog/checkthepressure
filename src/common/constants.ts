@@ -5,9 +5,27 @@ export enum PeriodicTestStates {
   IN_PROGRESS = "W realizacji",
 }
 
-export enum TimeOfDayStates {
-  MORNING = "Rano",
-  EVENING = "Wieczór",
+export enum TimeOfDayTypes {
+  morning = "morning",
+  evening = "evening",
+}
+
+export enum TimeOfDayAverageTypes {
+  morning = "morning",
+  evening = "evening",
+  total = "total",
+}
+
+export const TimeOfDayDisplayNames = {
+  morning: "Rano",
+  evening: "Wieczór",
+  total: "Łącznie",
+};
+
+export enum MeasurementSymbols {
+  sys = "sys",
+  dia = "dia",
+  pulse = "pulse",
 }
 
 export const MAX_SYS_DIA_PULSE_VALUE = 250;

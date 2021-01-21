@@ -8,7 +8,7 @@ import {
 } from "store/actions/profilesAction";
 import { IPeriodicPressureTests } from "common/interfaces";
 import { Portal, PortalTarget } from "common/Portal/Portal";
-import { PeriodicTestStates, TimeOfDayStates } from "common/constants";
+import { PeriodicTestStates, TimeOfDayTypes } from "common/constants";
 import { EditDailyTest } from "components/Popups/EditDailyTest/EditDailyTest";
 import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import { AverageResults } from "components/Popups/AverageResults/AverageResults";
@@ -49,7 +49,7 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
       dailyTest={item}
       editDailyTest={(
         dailyID: number,
-        timeOfDay: TimeOfDayStates,
+        timeOfDay: TimeOfDayTypes,
         date: string
       ) => {
         setPopup(
@@ -66,7 +66,7 @@ export const PeriodicTestDetails: React.FC<IProps> = ({
       }}
       setOmittedDaily={(
         dailyID: number,
-        timeOfDay: TimeOfDayStates,
+        timeOfDay: TimeOfDayTypes,
         omitted: boolean
       ) => {
         dispatch(

@@ -1,4 +1,4 @@
-import { TimeOfDayStates } from "common/constants";
+import { TimeOfDayTypes } from "common/constants";
 import { IDailyTest } from "common/interfaces";
 
 export const generateDateArray = (startDashDate: string, numOfDays: number) => {
@@ -21,14 +21,14 @@ export const generateDailyTestList = (dateList: string[]) => {
     id: index + 1,
     date: date,
     morning: {
-      timeOfDay: TimeOfDayStates.MORNING,
+      timeOfDay: TimeOfDayTypes.morning,
       omitted: false,
       SYS: 0,
       DIA: 0,
       PULSE: 0,
     },
     evening: {
-      timeOfDay: TimeOfDayStates.EVENING,
+      timeOfDay: TimeOfDayTypes.evening,
       omitted: false,
       SYS: 0,
       DIA: 0,

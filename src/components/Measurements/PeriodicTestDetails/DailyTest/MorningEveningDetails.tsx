@@ -1,7 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { anonymous } from "common/constants";
+import {
+  anonymous,
+  TimeOfDayTypes,
+  TimeOfDayDisplayNames,
+  MeasurementSymbols,
+} from "common/constants";
 import { IDailyTest, IGlobalState } from "common/interfaces";
 import { SharedButton } from "components/shared/SharedButton/SharedButton";
 
@@ -14,20 +19,10 @@ import {
   Btns,
 } from "./DailyTest.css";
 
-enum sysDiaType {
-  SYS = "SYS",
-  DIA = "DIA",
-}
-
-export enum timeOfDayType {
-  morning = "morning",
-  evenign = "evening",
-}
-
 interface IProps {
   userID: number;
   dailyTest: IDailyTest;
-  timeOfDayType: timeOfDayType;
+  timeOfDayType: TimeOfDayTypes;
   editDailyTest: Function;
   setOmittedDaily: Function;
 }
@@ -48,16 +43,16 @@ export const MorningEveningDetails: React.FC<IProps> = ({
   const { MIN, MAX } =
     userBloodPressureBasedOnAge || anonymous.userBloodPressureBasedOnAge;
 
-  const getSysDiaColor = (value: number, type: sysDiaType) => {
+  const getSysDiaColor = (value: number, type: MeasurementSymbols) => {
     if (value === 0) return COLORS.black;
     else if (
-      (value <= MIN.SYS && type === sysDiaType.SYS) ||
-      (value <= MIN.DIA && type === sysDiaType.DIA)
+      (value <= MIN.SYS && type === MeasurementSymbols.sys) ||
+      (value <= MIN.DIA && type === MeasurementSymbols.dia)
     )
       return COLORS.blue;
     else if (
-      (value >= MAX.SYS && type === sysDiaType.SYS) ||
-      (value >= MAX.DIA && type === sysDiaType.DIA)
+      (value >= MAX.SYS && type === MeasurementSymbols.sys) ||
+      (value >= MAX.DIA && type === MeasurementSymbols.dia)
     )
       return COLORS.red;
     return COLORS.darkGreen;
@@ -76,7 +71,11 @@ export const MorningEveningDetails: React.FC<IProps> = ({
         pulse={dailyTest[timeOfDayType].PULSE}
         omitted={dailyTest[timeOfDayType].omitted}
       >
-        <p>{dailyTest[timeOfDayType].timeOfDay}</p>
+        <p>
+          {timeOfDayType === TimeOfDayTypes.morning
+            ? TimeOfDayDisplayNames.morning
+            : TimeOfDayDisplayNames.evening}
+        </p>
       </MorningEveningStyled>
       <SysDiaPuls>
         <p>
@@ -85,7 +84,10 @@ export const MorningEveningDetails: React.FC<IProps> = ({
             color={
               dailyTest[timeOfDayType].omitted
                 ? COLORS.gray
-                : getSysDiaColor(dailyTest[timeOfDayType].SYS, sysDiaType.SYS)
+                : getSysDiaColor(
+                    dailyTest[timeOfDayType].SYS,
+                    MeasurementSymbols.sys
+                  )
             }
           >
             {dailyTest[timeOfDayType].SYS}
@@ -95,7 +97,10 @@ export const MorningEveningDetails: React.FC<IProps> = ({
             color={
               dailyTest[timeOfDayType].omitted
                 ? COLORS.gray
-                : getSysDiaColor(dailyTest[timeOfDayType].DIA, sysDiaType.DIA)
+                : getSysDiaColor(
+                    dailyTest[timeOfDayType].DIA,
+                    MeasurementSymbols.dia
+                  )
             }
           >
             {dailyTest[timeOfDayType].DIA}

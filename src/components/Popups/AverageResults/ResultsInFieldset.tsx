@@ -1,14 +1,9 @@
 import React from "react";
 
-import { sysDiaType } from "./AverageResults";
+import { TimeOfDayAverageTypes, MeasurementSymbols } from "common/constants";
+
 import { Legend } from "styles/mixins/Fieldset";
 import { FieldsetStyled, SysAndDiaColored } from "./AverageResults.css";
-
-export enum resultNameType {
-  morninig = "morning",
-  evening = "evening",
-  total = "total",
-}
 
 interface IProps {
   timeOfDayName: string;
@@ -21,7 +16,7 @@ interface IProps {
     evening: { SYS: number; DIA: number; PULSE: number };
     total: { SYS: number; DIA: number; PULSE: number };
   };
-  resultName: resultNameType;
+  resultName: TimeOfDayAverageTypes;
   getSysDiaColor: Function;
 }
 
@@ -36,13 +31,19 @@ export const ResultsInFieldset: React.FC<IProps> = ({
     <p>
       Ciśnienie:{" "}
       <SysAndDiaColored
-        color={getSysDiaColor(averageResults[resultName].SYS, sysDiaType.SYS)}
+        color={getSysDiaColor(
+          averageResults[resultName].SYS,
+          MeasurementSymbols.sys
+        )}
       >
         {averageResults[resultName].SYS}
       </SysAndDiaColored>
       /
       <SysAndDiaColored
-        color={getSysDiaColor(averageResults[resultName].DIA, sysDiaType.DIA)}
+        color={getSysDiaColor(
+          averageResults[resultName].DIA,
+          MeasurementSymbols.dia
+        )}
       >
         {averageResults[resultName].DIA}
       </SysAndDiaColored>

@@ -5,7 +5,12 @@ import {
   editDailyValues,
   updateNumberOfTotalAndDoneTestsAndState,
 } from "store/actions/profilesAction";
-import { TimeOfDayStates, TEST_VALUES_INFO } from "common/constants";
+import {
+  TimeOfDayTypes,
+  TEST_VALUES_INFO,
+  TimeOfDayDisplayNames,
+  MeasurementSymbols,
+} from "common/constants";
 import { Portal, PortalTarget } from "common/Portal/Portal";
 import { IGlobalState } from "common/interfaces";
 import {
@@ -29,17 +34,11 @@ import {
 } from "styles/mixins/Popups";
 import { FormStyled } from "./EditDailyTest.css";
 
-enum SysDiaPulse {
-  SYS = "SYS",
-  DIA = "DIA",
-  PULSE = "PULSE",
-}
-
 interface IProps {
   userID: number;
   periodicID: number;
   dailyID: number;
-  timeOfDay: TimeOfDayStates;
+  timeOfDay: TimeOfDayTypes;
   setIsOpenEditDailyTestPopup: React.Dispatch<React.SetStateAction<boolean>>;
   date: string;
 }
@@ -103,19 +102,19 @@ export const EditDailyTest: React.FC<IProps> = ({
     }
   };
 
-  const handleShowInfo = (messageType: SysDiaPulse) => {
+  const handleShowInfo = (messageType: MeasurementSymbols) => {
     let messageToShow = "";
 
     switch (messageType) {
-      case SysDiaPulse.SYS: {
+      case MeasurementSymbols.sys: {
         messageToShow = TEST_VALUES_INFO.SYS;
         break;
       }
-      case SysDiaPulse.DIA: {
+      case MeasurementSymbols.dia: {
         messageToShow = TEST_VALUES_INFO.DIA;
         break;
       }
-      case SysDiaPulse.PULSE: {
+      case MeasurementSymbols.pulse: {
         messageToShow = TEST_VALUES_INFO.PULSE;
         break;
       }
@@ -130,9 +129,9 @@ export const EditDailyTest: React.FC<IProps> = ({
     <PopupWrapper>
       <PopupTitleGreen>
         <p>{`${
-          timeOfDay === TimeOfDayStates.MORNING
-            ? TimeOfDayStates.MORNING
-            : TimeOfDayStates.EVENING
+          timeOfDay === TimeOfDayTypes.morning
+            ? TimeOfDayDisplayNames.morning
+            : TimeOfDayDisplayNames.evening
         } ${date}`}</p>
       </PopupTitleGreen>
       <PopupContentWrapper>
@@ -147,7 +146,7 @@ export const EditDailyTest: React.FC<IProps> = ({
               autoFocus
             />
             <SharedButton
-              onClick={() => handleShowInfo(SysDiaPulse.SYS)}
+              onClick={() => handleShowInfo(MeasurementSymbols.sys)}
               styles={SharedButtonStyles.info}
               icon={SharedButtonIcons.info}
             />
@@ -161,7 +160,7 @@ export const EditDailyTest: React.FC<IProps> = ({
               onChange={(e) => setDia(e.target.value)}
             />
             <SharedButton
-              onClick={() => handleShowInfo(SysDiaPulse.DIA)}
+              onClick={() => handleShowInfo(MeasurementSymbols.dia)}
               styles={SharedButtonStyles.info}
               icon={SharedButtonIcons.info}
             />
@@ -175,7 +174,7 @@ export const EditDailyTest: React.FC<IProps> = ({
               onChange={(e) => setPulse(e.target.value)}
             />
             <SharedButton
-              onClick={() => handleShowInfo(SysDiaPulse.PULSE)}
+              onClick={() => handleShowInfo(MeasurementSymbols.pulse)}
               styles={SharedButtonStyles.info}
               icon={SharedButtonIcons.info}
             />

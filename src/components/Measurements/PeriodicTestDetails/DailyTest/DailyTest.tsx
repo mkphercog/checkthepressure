@@ -1,8 +1,9 @@
 import React from "react";
 
 import { IDailyTest } from "common/interfaces";
+import { TimeOfDayTypes } from "common/constants";
 
-import { MorningEveningDetails, timeOfDayType } from "./MorningEveningDetails";
+import { MorningEveningDetails } from "./MorningEveningDetails";
 import { Wrapper } from "./DailyTest.css";
 
 interface IProps {
@@ -29,7 +30,7 @@ export const DailyTest: React.FC<IProps> = ({
       <MorningEveningDetails
         userID={userID}
         dailyTest={dailyTest}
-        timeOfDayType={timeOfDayType.morning}
+        timeOfDayType={TimeOfDayTypes.morning}
         editDailyTest={editDailyTest}
         setOmittedDaily={setOmittedDaily}
       />
@@ -37,7 +38,7 @@ export const DailyTest: React.FC<IProps> = ({
       <MorningEveningDetails
         userID={userID}
         dailyTest={dailyTest}
-        timeOfDayType={timeOfDayType.evenign}
+        timeOfDayType={TimeOfDayTypes.evening}
         editDailyTest={editDailyTest}
         setOmittedDaily={setOmittedDaily}
       />

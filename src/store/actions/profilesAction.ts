@@ -10,7 +10,7 @@ import {
   CALCULATE_AVERAGE_RESULTS,
 } from "store/types/";
 import { IUser, IPeriodicPressureTests } from "common/interfaces";
-import { TimeOfDayStates } from "common/constants";
+import { TimeOfDayTypes } from "common/constants";
 
 export const addProfile = (newProfile: IUser) => ({
   type: ADD_PROFILE,
@@ -45,7 +45,7 @@ export const editDailyValues = (
   userID: number,
   periodicID: number,
   dailyID: number,
-  timeOfDay: TimeOfDayStates,
+  timeOfDay: TimeOfDayTypes,
   sys: number,
   dia: number,
   pulse: number
@@ -64,7 +64,7 @@ export const setOmittedDailyTest = (
   userID: number,
   periodicID: number,
   dailyID: number,
-  timeOfDay: TimeOfDayStates,
+  timeOfDay: TimeOfDayTypes,
   omitted: boolean
 ) => ({
   type: SET_OMITTED_DAILY_TEST,

@@ -1,4 +1,4 @@
-import { TimeOfDayStates, MAX_SYS_DIA_PULSE_VALUE } from "common/constants";
+import { TimeOfDayTypes, MAX_SYS_DIA_PULSE_VALUE } from "common/constants";
 import { IUser } from "common/interfaces";
 
 export const getDailyTimeOfDayTestValues = (
@@ -6,16 +6,16 @@ export const getDailyTimeOfDayTestValues = (
   userID: number,
   periodicID: number,
   dailyID: number,
-  timeOfDay: TimeOfDayStates
+  timeOfDay: TimeOfDayTypes
 ) => {
   let testValues: {
-    timeOfDay: TimeOfDayStates;
+    timeOfDay: TimeOfDayTypes;
     omitted: boolean;
     SYS: number;
     DIA: number;
     PULSE: number;
   } = {
-    timeOfDay: TimeOfDayStates.MORNING,
+    timeOfDay: TimeOfDayTypes.morning,
     omitted: false,
     SYS: 0,
     DIA: 0,

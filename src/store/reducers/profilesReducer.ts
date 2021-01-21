@@ -10,7 +10,7 @@ import {
   CALCULATE_AVERAGE_RESULTS,
 } from "store/types/";
 import { IUser, IPeriodicPressureTests } from "common/interfaces";
-import { TimeOfDayStates } from "common/constants";
+import { TimeOfDayTypes } from "common/constants";
 import {
   updateLocalStorageProfiles,
   updateLocalSelectedUserID,
@@ -27,6 +27,22 @@ import {
 } from "./profilesReducerFunctions";
 
 const initialState = configInitialStateWithLocalStorage();
+
+export interface IAction {
+  type: string;
+  newUser: IUser;
+  userID: number;
+  selectedUserID: number;
+  periodicID: number;
+  dailyID: number;
+  idToDelete: number;
+  newPeriodicTest: IPeriodicPressureTests;
+  timeOfDay: TimeOfDayTypes;
+  sys: number;
+  dia: number;
+  pulse: number;
+  omitted: boolean;
+}
 
 export const profilesReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
@@ -112,19 +128,3 @@ export const profilesReducer = (state = initialState, action: IAction) => {
       return state;
   }
 };
-
-export interface IAction {
-  type: string;
-  newUser: IUser;
-  userID: number;
-  selectedUserID: number;
-  periodicID: number;
-  dailyID: number;
-  idToDelete: number;
-  newPeriodicTest: IPeriodicPressureTests;
-  timeOfDay: TimeOfDayStates;
-  sys: number;
-  dia: number;
-  pulse: number;
-  omitted: boolean;
-}

@@ -3,22 +3,22 @@ import { useSelector } from "react-redux";
 
 import { IGlobalState, IPeriodicPressureTests } from "common/interfaces";
 import { PdfPageGenerator } from "common/PDF/PdfPageGenerator";
-import { anonymous } from "common/constants";
+import {
+  anonymous,
+  TimeOfDayAverageTypes,
+  TimeOfDayDisplayNames,
+  MeasurementSymbols,
+} from "common/constants";
 import {
   SharedButton,
   SharedButtonIcons,
   SharedButtonStyles,
 } from "components/shared/SharedButton/SharedButton";
 
-import { ResultsInFieldset, resultNameType } from "./ResultsInFieldset";
+import { ResultsInFieldset } from "./ResultsInFieldset";
 import { PopupWrapper, PopupTitleGreen } from "styles/mixins/Popups";
 import { COLORS } from "styles/variables";
 import { Content } from "./AverageResults.css";
-
-export enum sysDiaType {
-  SYS = "SYS",
-  DIA = "DIA",
-}
 
 interface IProps {
   userID: number;
@@ -41,16 +41,16 @@ export const AverageResults: React.FC<IProps> = ({
   const { MIN, MAX } =
     userBloodPressureBasedOnAge || anonymous.userBloodPressureBasedOnAge;
 
-  const getSysDiaColor = (value: number, type: sysDiaType) => {
+  const getSysDiaColor = (value: number, type: MeasurementSymbols) => {
     if (value === 0) return COLORS.black;
     else if (
-      (value <= MIN.SYS && type === sysDiaType.SYS) ||
-      (value <= MIN.DIA && type === sysDiaType.DIA)
+      (value <= MIN.SYS && type === MeasurementSymbols.sys) ||
+      (value <= MIN.DIA && type === MeasurementSymbols.dia)
     )
       return COLORS.blue;
     else if (
-      (value >= MAX.SYS && type === sysDiaType.SYS) ||
-      (value >= MAX.DIA && type === sysDiaType.DIA)
+      (value >= MAX.SYS && type === MeasurementSymbols.sys) ||
+      (value >= MAX.DIA && type === MeasurementSymbols.dia)
     )
       return COLORS.red;
     return COLORS.darkGreen;
@@ -65,21 +65,21 @@ export const AverageResults: React.FC<IProps> = ({
         <h1>Średnie wyniki</h1>
         <div>
           <ResultsInFieldset
-            timeOfDayName={"Rano"}
+            timeOfDayName={TimeOfDayDisplayNames.morning}
             averageResults={averageResults}
-            resultName={resultNameType.morninig}
+            resultName={TimeOfDayAverageTypes.morning}
             getSysDiaColor={getSysDiaColor}
           />
           <ResultsInFieldset
-            timeOfDayName={"Wieczór"}
+            timeOfDayName={TimeOfDayDisplayNames.evening}
             averageResults={averageResults}
-            resultName={resultNameType.evening}
+            resultName={TimeOfDayAverageTypes.evening}
             getSysDiaColor={getSysDiaColor}
           />
           <ResultsInFieldset
-            timeOfDayName={"Łącznie"}
+            timeOfDayName={TimeOfDayDisplayNames.total}
             averageResults={averageResults}
-            resultName={resultNameType.total}
+            resultName={TimeOfDayAverageTypes.total}
             getSysDiaColor={getSysDiaColor}
           />
         </div>

@@ -1,13 +1,9 @@
 import { View, Text } from "@react-pdf/renderer";
 
+import { TimeOfDayAverageTypes } from "common/constants";
+
 import { COLORS } from "styles/variables";
 import { styles } from "common/PDF/PdfPage.styles";
-
-enum TimeOfDayTypes {
-  morning = "morning",
-  evening = "evening",
-  total = "total",
-}
 
 interface IProps {
   averageResults: {
@@ -30,7 +26,7 @@ interface IProps {
 }
 
 export const AverageResultsView = ({ averageResults }: IProps) => {
-  const getAverage = (timeOfDay: TimeOfDayTypes) => {
+  const getAverage = (timeOfDay: TimeOfDayAverageTypes) => {
     return (
       <>
         <Text style={styles.boldText}>{averageResults[timeOfDay].SYS}</Text>
@@ -43,9 +39,9 @@ export const AverageResultsView = ({ averageResults }: IProps) => {
     );
   };
 
-  const renderAverageMorning = getAverage(TimeOfDayTypes.morning);
-  const renderAverageEvening = getAverage(TimeOfDayTypes.evening);
-  const renderAverageTotal = getAverage(TimeOfDayTypes.total);
+  const renderAverageMorning = getAverage(TimeOfDayAverageTypes.morning);
+  const renderAverageEvening = getAverage(TimeOfDayAverageTypes.evening);
+  const renderAverageTotal = getAverage(TimeOfDayAverageTypes.total);
 
   const renderAllAverageResults = (
     <View style={styles.tableContentView}>
