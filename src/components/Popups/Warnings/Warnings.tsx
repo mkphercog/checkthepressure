@@ -1,10 +1,10 @@
 import React from "react";
 
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
   SharedButtonStyles,
   SharedButtonIcons,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 
 import {
   PopupWrapper,

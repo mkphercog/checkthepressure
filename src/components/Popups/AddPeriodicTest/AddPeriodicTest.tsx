@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { addPeriodicPressureTest } from "store/actions/profilesAction";
 import { numRangeOptions } from "common/optionsForSelectTag";
 import { PeriodicTestStates } from "common/constants";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
   SharedButtonStyles,
   SharedButtonIcons,
   SharedButtonType,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 
 import {
   generateDateArray,

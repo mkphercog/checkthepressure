@@ -1,11 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
   SharedButtonStyles,
   SharedButtonIcons,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 
 import { Wrapper, UserData, Options } from "./UserProfile.css";
 

@@ -9,11 +9,11 @@ import {
   TimeOfDayDisplayNames,
   MeasurementSymbols,
 } from "common/constants";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
-  SharedButtonIcons,
   SharedButtonStyles,
-} from "components/shared/SharedButton/SharedButton";
+  SharedButtonIcons,
+} from "components/shared/SharedButton/SharedButtonTypes";
 
 import { ResultsInFieldset } from "./ResultsInFieldset";
 import { PopupWrapper, PopupTitleGreen } from "styles/mixins/Popups";

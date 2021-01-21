@@ -7,12 +7,12 @@ import { IGlobalState, IUser } from "common/interfaces";
 import { NAME_MAX_CHARS, MAX_AGE } from "common/constants";
 import { Portal, PortalTarget } from "common/Portal/Portal";
 import { findUserBloodPressureBasedOnAge } from "common/bloodPressureTable";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
   SharedButtonStyles,
   SharedButtonIcons,
   SharedButtonType,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 import { Warnings } from "components/Popups/Warnings/Warnings";
 
 import {

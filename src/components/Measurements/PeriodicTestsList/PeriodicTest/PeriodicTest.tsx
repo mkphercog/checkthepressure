@@ -1,11 +1,11 @@
 import React from "react";
 
 import { IPeriodicPressureTests } from "common/interfaces";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
   SharedButtonStyles,
   SharedButtonIcons,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 
 import { Wrapper, Title, Subtitle, Info, Btns } from "./PeriodicTest.css";
 

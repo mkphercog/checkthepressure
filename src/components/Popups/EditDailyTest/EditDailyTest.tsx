@@ -13,12 +13,12 @@ import {
 } from "common/constants";
 import { Portal, PortalTarget } from "common/Portal/Portal";
 import { IGlobalState } from "common/interfaces";
+import { SharedButton } from "components/shared/SharedButton/SharedButton";
 import {
-  SharedButton,
-  SharedButtonIcons,
   SharedButtonStyles,
+  SharedButtonIcons,
   SharedButtonType,
-} from "components/shared/SharedButton/SharedButton";
+} from "components/shared/SharedButton/SharedButtonTypes";
 import { Information } from "components/Popups/Information/Information";
 import { Warnings } from "components/Popups/Warnings/Warnings";
 
